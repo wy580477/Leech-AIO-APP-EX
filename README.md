@@ -9,7 +9,7 @@
 
 ## Attention
 
- 1. **Do not abuse Heroku's service or your accout could get banned. Deploy at your own risk.**
+ 1. **Do not abuse Heroku's service or your account could get banned. Deploy at your own risk.**
  2. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
  3. Anyone who can login into this app has full access to data in this app and Rclone remotes. Do not share with other ppl, and do not store sensitive information with this app.
  4. To prevent Heroku dyno from auto-sleeping, use website monitoring service such as uptimerobot to http ping your heroku domain every 10 mins.
