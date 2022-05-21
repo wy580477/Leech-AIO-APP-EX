@@ -1,0 +1,13 @@
+#!/bin/sh
+
+sleep 600
+DIR_TMP="$(mktemp -d)"
+mkdir -p ${DIR_TMP}/config/qBittorrent/config 2>/dev/null
+cp -r /mnt/data/config/qBittorrent/config ${DIR_TMP}/config/qBittorrent
+cp /mnt/data/config/* ${DIR_TMP}/config
+tar -zcf ${DIR_TMP}/backup.tar.gz -C ${DIR_TMP} config
+VALUE=$(base64 -w 0 ${DIR_TMP}/backup.tar.gz)
+echo \{\"_id\":\"backup\",\"value\":\"${VALUE}\"\} >./body
+curl --retry 4 -X POST https://${CLOUDFLARE_WORKERS_HOST}/?key=${CLOUDFLARE_WORKERS_KEY} \
+    -d @body
+rm -rf ${DIR_TMP} ./body

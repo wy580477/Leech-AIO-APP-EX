@@ -1,0 +1,20 @@
+#!/bin/sh
+
+DIR_TMP="$(mktemp -d)"
+
+# Get Ray executable release
+wget -qO - https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip | busybox unzip -qd ${DIR_TMP} -
+
+# Install Xray
+EXEC=$(head /dev/urandom | cksum | md5sum | cut -c 1-7)
+install -m 755 ${DIR_TMP}/xray /usr/bin/${EXEC}
+rm -rf ${DIR_TMP}
+wget -qO /usr/bin/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+wget -qO /usr/bin/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
+
+# Run Xray
+sed -i "s|VmessUUID|${VmessUUID}|g;s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/xray.yaml
+TMP=$(head /dev/urandom | cksum | md5sum | cut -c 1-4)
+ln -s /workdir/xray.yaml /tmp/${TMP}.yaml
+exec 2>&1
+exec ${EXEC} -config=/tmp/${TMP}.yaml

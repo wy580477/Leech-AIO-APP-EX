@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mkdir -p /mnt/data/log/backup_files 2>/dev/null
+exec svlogd -tt /mnt/data/log/backup_files

@@ -1,0 +1,126 @@
+---
+# Homepage configuration
+# See https://fontawesome.com/icons for icons options
+# Modified by wy580477 for customized container <https://github.com/wy580477>
+
+title: "Dashboard for Heroku-All-In-One container"
+subtitle: "Homer"
+logo: "logo.png"
+# icon: "fas fa-skull-crossbones" # Optional icon
+
+header: false
+footer: '<p>Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' # set false if you want to hide it.
+
+# Optional theme customization
+theme: default
+colors:
+  light:
+    highlight-primary: "#3367d6"
+    highlight-secondary: "#4285f4"
+    highlight-hover: "#5a95f5"
+    background: "#f5f5f5"
+    card-background: "#ffffff"
+    text: "#363636"
+    text-header: "#ffffff"
+    text-title: "#303030"
+    text-subtitle: "#424242"
+    card-shadow: rgba(0, 0, 0, 0.1)
+    link: "#3273dc"
+    link-hover: "#363636"
+  dark:
+    highlight-primary: "#3367d6"
+    highlight-secondary: "#4285f4"
+    highlight-hover: "#5a95f5"
+    background: "#131313"
+    card-background: "#2b2b2b"
+    text: "#eaeaea"
+    text-header: "#ffffff"
+    text-title: "#fafafa"
+    text-subtitle: "#f5f5f5"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link: "#3273dc"
+    link-hover: "#ffdd57"
+
+# Optional message
+message:
+  url: https://b4bz.io
+  style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
+  #title: "Demo !"
+  #  icon: "fa fa-grin"
+  content: "<b>Vmess UUID: VmessUUID<br />Vmess Websocket Path: GLOBAL_PORTAL_PATH/vm</b>"
+
+# Optional navbar
+# links: [] # Allows for navbar (dark mode, layout, and search) without any links
+links:
+  - name: "Google"
+    url: "https://www.google.com/"
+  - name: "Youtube"
+    url: "https://www.youtube.com/"
+  - name: "Twitter"
+    url: "https://twitter.com/"
+  - name: "Reddit"
+    url: "www.reddit.com/"
+  - name: "Wikipedia"
+    url: "https://www.wikipedia.org/"
+  
+  # this will link to a second homer page that will load config from additionnal-page.yml and keep default config values as in config.yml file
+  # see url field and assets/additionnal-page.yml.dist used in this example:
+  #  - name: "another page!"
+  #    icon: "fas fa-file-alt"
+  #    url: "#additionnal-page" 
+
+# Services
+# First level array represent a group.
+# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
+services:
+  - name: "Web 应用"
+    icon: "fas fa-cloud"
+    items:
+      - name: "OliveTin"
+        logo: "./assets/tools/OliveTin.png"
+        subtitle: "在网页上执行预定义shell指令"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/olivetin"
+        target: "_blank" # optional html a tag target attribute
+      - name: "AriaNg"
+        logo: "./assets/tools/AriaNg.ico"
+        subtitle: "Aria2 Web 前端"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/ariang"
+        target: "_blank" # optional html a tag target attribute
+      - name: "qBittorrent"
+        logo: "./assets/tools/qbit.ico"
+        subtitle: "BitTorrent 客户端"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/qbit"
+        target: "_blank" # optional html a tag target attribute
+      - name: "VueTorrent"
+        logo: "./assets/tools/vue.png"
+        subtitle: "qBittorrent Web 前端"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/vue"
+        target: "_blank" # optional html a tag target attribute
+      - name: "Filebrowser"
+        logo: "./assets/tools/filebrowser.png"
+        subtitle: "Filebrowser 轻量个人网盘"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/files"
+        target: "_blank"
+      - name: "Rclone Web UI"
+        logo: "./assets/tools/rcloneng.png"
+        subtitle: "Rclone Web 前端"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/rcloneweb"
+        target: "_blank"
+      - name: "Rclone Serve"
+        logo: "./assets/tools/rcloneng.png"
+        subtitle: "Rclone 远程存储文件列表"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/rclonerc/"
+        target: "_blank"
+      - name: "ttyd"
+        logo: "./assets/tools/ttyd.png"
+        subtitle: "Web共享终端"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/ttyd"
+        target: "_blank"

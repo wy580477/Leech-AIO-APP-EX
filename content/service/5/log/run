@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mkdir -p /mnt/data/log/rclone_webdav 2>/dev/null
+exec svlogd /mnt/data/log/rclone_webdav

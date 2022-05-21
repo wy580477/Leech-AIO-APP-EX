@@ -1,0 +1,25 @@
+log:
+  loglevel: info
+dns:
+  servers:
+  - https+local://8.8.8.8/dns-query
+inbounds:
+- port: 61807
+  protocol: vmess
+  settings:
+    clients:
+    - id: VmessUUID
+  streamSettings:
+    network: ws
+    wsSettings:
+      path: GLOBAL_PORTAL_PATH/vm
+  sniffing:
+    enabled: true
+    destOverride:
+    - http
+    - tls
+outbounds:
+- protocol: freedom
+  tag: direct
+  settings:
+    domainStrategy: UseIPv4

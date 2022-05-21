@@ -1,0 +1,12 @@
+#!/bin/sh
+
+mkdir -p /mnt/data/config/olivetin 2>/dev/null
+
+if [ ! -f "/mnt/data/config/olivetin/config.yaml" ]; then
+    mv /workdir/olivetin_config.yaml  /mnt/data/config/olivetin/config.yaml
+fi
+
+yt-dlp -U &
+
+exec 2>&1
+exec OliveTin --configdir /mnt/data/config/olivetin

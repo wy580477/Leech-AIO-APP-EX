@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Configure aria2
+touch /mnt/data/config/aria2.session
+
+if [ ! -f "/mnt/data/config/aria2.conf" ]; then
+       cp /workdir/aria2/aria2_${GLOBAL_LANGUAGE}.conf /mnt/data/config/aria2.conf
+fi
+
+if [ ! -f "/mnt/data/config/dht.dat" ]; then
+       cp /workdir/aria2/dht.dat /mnt/data/config/
+fi
+
+/workdir/aria2/tracker.sh /mnt/data/config/aria2.conf 2>/dev/null
+
+EXEC=$(head /dev/urandom | cksum | md5sum | cut -c 1-9)
+TMP=$(head /dev/urandom | cksum | md5sum | cut -c 1-4)
+ln -s /mnt/data/config/aria2.conf /tmp/2${TMP}.conf
+cp /workdir/2* /usr/bin/${EXEC}
+
+# Run aria2
+exec 2>&1
+exec ${EXEC} --conf-path="/tmp/2${TMP}.conf" \
+--enable-rpc \
+--rpc-secret=${GLOBAL_PASSWORD} \
+--rpc-listen-port=61800

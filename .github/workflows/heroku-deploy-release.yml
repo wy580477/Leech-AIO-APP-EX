@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  push:
+    tags: [ 'v*.*.*' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+        env:
+          HD_GLOBAL_USER: ${{secrets.GLOBAL_USER}}
+          HD_GLOBAL_PASSWORD: ${{secrets.GLOBAL_PASSWORD}}
+          HD_GLOBAL_LANGUAGE: ${{secrets.GLOBAL_LANGUAGE}}
+          HD_GLOBAL_PORTAL_PATH: ${{secrets.GLOBAL_PORTAL_PATH}}
+          HD_CLOUDFLARE_WORKERS_HOST: ${{secrets.CLOUDFLARE_WORKERS_HOST}}
+          HD_CLOUDFLARE_WORKERS_KEY: ${{secrets.CLOUDFLARE_WORKERS_KEY}}
+          HD_VmessUUID: ${{secrets.VmessUUID}}
+          HD_TZ: ${{secrets.TZ}}

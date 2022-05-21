@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ ! -f "/mnt/data/config/bashrc" ]; then
+    cp /workdir/bashrc /mnt/data/config/
+fi
+
+exec 2>&1
+exec ttyd -i 127.0.0.1 -p 61803 -P 3 -t fontSize=17 -t titleFixed=Heroku_ttyd -t 'theme={"background": "black"}' bash --rcfile /mnt/data/config/bashrc
