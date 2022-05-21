@@ -1,4 +1,4 @@
-[点击前往中文说明](https://github.com/wy580477/Heroku-All-In-One-APP/blob/main/README_en.md)
+[点击前往中文说明](https://github.com/wy580477/Heroku-AIO-APP-EX/blob/main/README_chs.md)
 
 ## Acknowledgments
 
