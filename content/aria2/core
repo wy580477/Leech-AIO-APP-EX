@@ -72,7 +72,7 @@ CHECK_SCRIPT_CONF() {
 
 LOAD_SCRIPT_CONF() {
     DRIVE_NAME="$(grep ^drive-name "${SCRIPT_CONF}" | cut -d= -f2-)"
-    DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/\[//g;s/\]//g")"
+    DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g")"
     if [ "${DRIVE_NAME}" = "auto" ]; then
         DRIVENAME=${DRIVE_NAME_AUTO}
     else
