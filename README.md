@@ -87,4 +87,4 @@ remote = /mnt/data
    Example client setting:  
    ![image](https://user-images.githubusercontent.com/98247050/169536721-4b4fc824-454a-4bec-9342-40978b1d99a4.png)   
    With tls:    
-   ![image](https://user-images.githubusercontent.com/98247050/169536800-df4e966a-a36d-42f0-93c6-10d37e96d6e3.png)
+   ![image](https://user-images.githubusercontent.com/98247050/169670311-1bf05652-8b5c-459a-9c24-41eef341006a.png)
