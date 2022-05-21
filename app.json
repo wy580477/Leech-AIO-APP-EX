@@ -17,7 +17,7 @@
         },
         "GLOBAL_PORTAL_PATH": {
             "description": "Portal page & base URL for all web services. Set this to an uncommon path. Do not set to blank or '/'",
-            "value": "/secret"
+            "value": "/mypath"
         },
         "CLOUDFLARE_WORKERS_HOST": {
             "description": "Cloudflare workers service Hostname",
