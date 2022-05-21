@@ -25,7 +25,7 @@
 
 ## 概述
 
-本项目集成了yt-dlp、Aria2+Rclone+WebUI、Aria2+Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、可自定义的导航页、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端、Xray Vmess协议。
+本项目集成了yt-dlp、Aria2+Rclone+qBittorrent+WebUI、Aria2+Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、可自定义的导航页、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端、Xray Vmess协议。
 
 [VPS部署版本](https://github.com/wy580477/Aria2-AIO-Container)
 

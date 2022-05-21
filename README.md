@@ -24,7 +24,7 @@
 
 ## <a id="Overview"></a>Overview
 
-This project integrates yt-dlp, Aria2 + WebUI, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal, Xray Vmess proxy protocol.
+This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal, Xray Vmess proxy protocol.
 
 [VPS version](https://github.com/wy580477/Aria2-AIO-Container)
 
