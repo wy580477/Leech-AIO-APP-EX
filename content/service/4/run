@@ -1,19 +1,18 @@
 #!/bin/sh
 
-EXEC=$(head /dev/urandom | cksum | md5sum | cut -c 1-6)
-TMP=$(head /dev/urandom | cksum | md5sum | cut -c 1-4)
-ln -s /mnt/data/config/rclone.conf /tmp/4${TMP}.conf
-cp /workdir/4* /usr/bin/${EXEC}
+EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+ln -s /mnt/data/config/rclone.conf /tmp/4${EXEC}.conf
+cp /workdir/4* /workdir/5${EXEC}
 
 # Run rclone
 htpasswd -csb /workdir/htpasswd ${GLOBAL_USER} ${GLOBAL_PASSWORD}
 exec 2>&1
-exec ${EXEC} rcd --rc-serve \
+exec /workdir/5${EXEC} rcd --rc-serve \
 --rc-web-gui-no-open-browser \
 --rc-htpasswd=/workdir/htpasswd \
 --rc-addr=localhost:61802 \
 --buffer-size 4M \
 --transfers 3 \
---config /tmp/4${TMP}.conf \
+--config /tmp/4${EXEC}.conf \
 --rc-allow-origin=* \
 --use-mmap

@@ -9,5 +9,5 @@ tar -zcf ${DIR_TMP}/backup.tar.gz -C ${DIR_TMP} config
 VALUE=$(base64 -w 0 ${DIR_TMP}/backup.tar.gz)
 echo \{\"_id\":\"backup\",\"value\":\"${VALUE}\"\} >./body
 curl --retry 4 -X POST https://${CLOUDFLARE_WORKERS_HOST}/?key=${CLOUDFLARE_WORKERS_KEY} \
-    -d @body
+    -d @body -H "Content-Type: application/json"
 rm -rf ${DIR_TMP} ./body

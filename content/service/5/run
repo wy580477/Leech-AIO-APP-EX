@@ -9,18 +9,17 @@ else
     DRIVENAME=${DRIVE_NAME}
 fi
 
-EXEC=$(head /dev/urandom | cksum | md5sum | cut -c 1-5)
-TMP=$(head /dev/urandom | cksum | md5sum | cut -c 1-4)
-ln -s /mnt/data/config/rclone.conf /tmp/5${TMP}.conf
-cp /workdir/4* /usr/bin/${EXEC}
+EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+ln -s /mnt/data/config/rclone.conf /tmp/5${EXEC}.conf
+cp /workdir/4* /workdir/6${EXEC}
 
 # Run rclone
 htpasswd -csb /workdir/htpasswd_webdav ${GLOBAL_USER} ${GLOBAL_PASSWORD}
 exec 2>&1
-exec ${EXEC} serve webdav ${DRIVENAME}:/ \
+exec /workdir/6${EXEC} serve webdav ${DRIVENAME}:/ \
 --htpasswd=/workdir/htpasswd_webdav \
 --addr=localhost:61805 \
 --buffer-size 4M \
---config /tmp/5${TMP}.conf \
+--config /tmp/5${EXEC}.conf \
 --use-mmap \
 --vfs-cache-mode writes

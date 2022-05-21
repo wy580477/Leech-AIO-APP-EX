@@ -13,14 +13,13 @@ fi
 
 /workdir/aria2/tracker.sh /mnt/data/config/aria2.conf 2>/dev/null
 
-EXEC=$(head /dev/urandom | cksum | md5sum | cut -c 1-9)
-TMP=$(head /dev/urandom | cksum | md5sum | cut -c 1-4)
-ln -s /mnt/data/config/aria2.conf /tmp/2${TMP}.conf
-cp /workdir/2* /usr/bin/${EXEC}
+EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+ln -s /mnt/data/config/aria2.conf /tmp/2${EXEC}.conf
+cp /workdir/2* /workdir/2${EXEC}
 
 # Run aria2
 exec 2>&1
-exec ${EXEC} --conf-path="/tmp/2${TMP}.conf" \
+exec /workdir/2${EXEC} --conf-path="/tmp/2${EXEC}.conf" \
 --enable-rpc \
 --rpc-secret=${GLOBAL_PASSWORD} \
 --rpc-listen-port=61800

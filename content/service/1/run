@@ -14,8 +14,8 @@ fi
 
 RAN=$(shuf -i 60001-61799 -n 1)
 sed -i "s|Session.Port=.*|Session\\\Port=${RAN}|g" /mnt/data/config/qBittorrent/config/qBittorrent.conf
-EXEC=$(head /dev/urandom |cksum |md5sum |cut -c 1-8)
-cp /workdir/1* /usr/bin/${EXEC}
+EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+cp /workdir/1* /workdir/1${EXEC}
 
 exec 2>&1
-exec ${EXEC} --webui-port=61804 --profile=/mnt/data/config
+exec /workdir/1${EXEC} --webui-port=61804 --profile=/mnt/data/config
