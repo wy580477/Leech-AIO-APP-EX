@@ -15,7 +15,7 @@ fi
 
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 ln -s /mnt/data/config/aria2.conf /tmp/2${EXEC}.conf
-cp /workdir/2* /workdir/2${EXEC}
+mv /workdir/2* /workdir/2${EXEC}
 
 # Run aria2
 exec 2>&1

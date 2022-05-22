@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mkdir -p /mnt/data/log/qbittorrent 2>/dev/null
-exec svlogd /mnt/data/log/qbittorrent
+mkdir -p /mnt/data/log/qbit 2>/dev/null
+exec svlogd /mnt/data/log/qbit

@@ -2,12 +2,12 @@
 
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 ln -s /mnt/data/config/rclone.conf /tmp/4${EXEC}.conf
-cp /workdir/4* /workdir/5${EXEC}
+mv /workdir/4* /workdir/4${EXEC}
 
 # Run rclone
 htpasswd -csb /workdir/htpasswd ${GLOBAL_USER} ${GLOBAL_PASSWORD}
 exec 2>&1
-exec /workdir/5${EXEC} rcd --rc-serve \
+exec /workdir/4${EXEC} rcd --rc-serve \
 --rc-web-gui-no-open-browser \
 --rc-htpasswd=/workdir/htpasswd \
 --rc-addr=localhost:61802 \
