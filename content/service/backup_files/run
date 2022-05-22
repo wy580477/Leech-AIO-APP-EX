@@ -2,8 +2,9 @@
 
 sleep 600
 DIR_TMP="$(mktemp -d)"
-mkdir -p ${DIR_TMP}/config/qBittorrent/config 2>/dev/null
+mkdir -p ${DIR_TMP}/config/qBittorrent
 cp -r /mnt/data/config/qBittorrent/config ${DIR_TMP}/config/qBittorrent
+cp -r /mnt/data/config/olivetin ${DIR_TMP}/config
 cp /mnt/data/config/* ${DIR_TMP}/config
 tar -zcf ${DIR_TMP}/backup.tar.gz -C ${DIR_TMP} config
 VALUE=$(base64 -w 0 ${DIR_TMP}/backup.tar.gz)
