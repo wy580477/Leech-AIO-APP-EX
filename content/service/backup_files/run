@@ -11,7 +11,7 @@ else
     DRIVENAME=${DRIVE_NAME}
 fi
 
-curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"fs":"'"${DRIVENAME}"'"}' 'localhost:61802/operations/about'
+curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"fs":"'"${DRIVENAME}"':/"}' 'localhost:61802/operations/about'
 
 # Back config files
 DIR_TMP="$(mktemp -d)"
