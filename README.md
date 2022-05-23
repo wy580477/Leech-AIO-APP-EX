@@ -5,7 +5,7 @@
 - [P3TERX/aria2.conf](https://github.com/P3TERX/aria2.conf)  Rely on the Aria2 script from P3TERX to automatically trigger the Rclone upload after the Aria2 downloads completed.
 - [wahyd4/aria2-ariang-docker](https://github.com/wahyd4/aria2-ariang-docker)  Inspiration for this project.
 - [bastienwirtz/homer](https://github.com/bastienwirtz/homer)  A very simple static homepage for your server.
-- [mayswind/AriaNg](https://github.com/mayswind/AriaNg) | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) | [aria2/aria2](https://github.com/aria2/aria2) | [rclone/rclone](https://github.com/rclone/rclone) | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | [userdocs/qbittorrent-nox-static](https://github.com/userdocs/qbittorrent-nox-static) | [WDaan/VueTorrent](https://github.com/WDaan/VueTorrent)
+- [mayswind/AriaNg](https://github.com/mayswind/AriaNg) | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) | [aria2/aria2](https://github.com/aria2/aria2) | [rclone/rclone](https://github.com/rclone/rclone) | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | [userdocs/qbittorrent-nox-static](https://github.com/userdocs/qbittorrent-nox-static) | [WDaan/VueTorrent](https://github.com/WDaan/VueTorrent) | [OliveTin/OliveTin](https://github.com/OliveTin/OliveTin)
 
 ## Attention
 
@@ -34,7 +34,7 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, R
  2. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
  3. You can connect Aria2, qBittorrent and Rclone from frontends running on other hosts.
  4. Auto-backup configuration files to Cloudflare Workers KV, and try to restore when dyno restarts.
- 5. Execute predefined yt-dlp commands from OliveTin WebUI.
+ 5. Execute predefined yt-dlp & Rclone commands from OliveTin WebUI.
  6. ttyd web terminal, which can execute yt-dlp and other commands on the command line.
  7. There are independent logs for each service in the log directory.
 
@@ -42,16 +42,10 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, R
 
  **Do not deploy directly from this repository**  
 
- 1. Open [Cloudflare Workers KV](https://dash.cloudflare.com/workers/kv "Cloudflare Workers KV") Page
- 2. Click on Manage KV namespaces, then create a namespace.
- 3. Now click on Workers & Create a workers service.
- 4. Copy the code of <code>[worker.js](https://github.com/wy580477/CloudflareDB/blob/main/worker.js "worker.js")</code> , paste code into Workers service editor and change KEY & GETKEY to your own. Then Click on Save & Deploy.
- 5. Now go back to your Workers service main page, Click on <code>Settings</code>.
- 6. Click on <code>Variables</code>, in <code>KV Namespace Bindings</code> section click on <code>Add Binding</code>.
- 7. Write <code>JSONBASE</code> in Variable name & select your recently created Namespace for KV namespace.
- 8. Fork this this repository, then click Setting on fork repository page and check Template repository.
- 9. Click new button: Use this template，create a new repository。
- 10. For example, your Github username is bobby, and the new repository name is green. After logging in to heroku, visit <https://dashboard.heroku.com/new?template=https://github.com/bobby/green> to deploy.
+ 1. [Set up your Cloudflare workers KV service](https://github.com/wy580477/PaaS-Related/blob/main/SET_CLOUDFLARE_KV.md)
+ 2. Fork this this repository, then click Setting on fork repository page and check Template repository.
+ 3. Click new button: Use this template，create a new repository。
+ 4. For example, your Github username is bobby, and the new repository name is green. After logging in to heroku, visit <https://dashboard.heroku.com/new?template=https://github.com/bobby/green> to deploy.
 
 ## <a id="first"></a>First run
 
