@@ -29,7 +29,7 @@
 
 [VPS部署版本](https://github.com/wy580477/Aria2-AIO-Container)
 
-![image](https://user-images.githubusercontent.com/98247050/169528289-9598589f-3959-4b8c-892d-bf41103348ec.png)
+![image](https://user-images.githubusercontent.com/98247050/169793534-1e10be5a-c2b7-41f3-a67a-b1c922d7d57b.png)
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
