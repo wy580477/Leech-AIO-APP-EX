@@ -28,6 +28,33 @@ actions:
         type: very_dangerous_raw_string
       - name: options
         type: very_dangerous_raw_string
+  - title: Rclone Copy
+    icon: "&#10145;"
+    shell: /workdir/callapi.sh copy {{ source }} {{ destination }}  
+    timeout: 36000
+    arguments:
+      - name: source
+        type: very_dangerous_raw_string
+      - name: destination
+        type: very_dangerous_raw_string
+  - title: Rclone Move
+    icon: "&#10145;"
+    shell: /workdir/callapi.sh move {{ source }} {{ destination }}  
+    timeout: 36000
+    arguments:
+      - name: source
+        type: very_dangerous_raw_string
+      - name: destination
+        type: very_dangerous_raw_string
+  - title: Rclone Sync
+    icon: "&#8596;"
+    shell: /workdir/callapi.sh sync {{ source }} {{ destination }} 
+    timeout: 36000
+    arguments:
+      - name: source
+        type: very_dangerous_raw_string
+      - name: destination
+        type: very_dangerous_raw_string
 
 
 
