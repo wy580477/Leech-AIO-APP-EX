@@ -3,7 +3,8 @@
 - [P3TERX/aria2.conf](https://github.com/P3TERX/aria2.conf)  依靠来自P3TERX的Aria2脚本，实现了Aria2下载完成自动触发Rclone上传。
 - [wahyd4/aria2-ariang-docker](https://github.com/wahyd4/aria2-ariang-docker)  启发了本项目的总体思路。
 - [bastienwirtz/homer](https://github.com/bastienwirtz/homer)  使用yaml配置文件的静态导航页，便于自定义。
-- [mayswind/AriaNg](https://github.com/mayswind/AriaNg) | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) | [aria2/aria2](https://github.com/aria2/aria2) | [rclone/rclone](https://github.com/rclone/rclone) | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | [userdocs/qbittorrent-nox-static](https://github.com/userdocs/qbittorrent-nox-static) | [WDaan/VueTorrent](https://github.com/WDaan/VueTorrent)
+- [mayswind/AriaNg](https://github.com/mayswind/AriaNg) | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) | [aria2/aria2](https://github.com/aria2/aria2) | [rclone/rclone](https://github.com/rclone/rclone) | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | [userdocs/qbittorrent-nox-static](https://github.com/userdocs/qbittorrent-nox-static) | [WDaan/VueTorrent](https://github.com/WDaan/VueTorrent) | [OliveTin/OliveTin (https://github.com/OliveTin/OliveTin)
+
 
 ## 注意
 
@@ -35,7 +36,7 @@
  2. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
  3. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板。
  4. 自动备份相关配置文件到Cloudflare KV，dyno重启时尝试恢复，实现了配置文件持久化。
- 5. 可以从OliveTin网页端执行预定义yt-dlp指令。
+ 5. 可以从OliveTin网页端执行预定义yt-dlp和Rclone指令。
  6. ttyd网页终端，可命令行执行yt-dlp下载工具和其它命令。
  7. log目录下有每个服务独立日志。
 
@@ -45,15 +46,11 @@
 
   **Heroku修复安全漏洞中，目前无法通过网页从私有库部署**  
 
- 1. 打开 [Cloudflare Workers KV](https://dash.cloudflare.com/workers/kv "Cloudflare Workers KV")
- 2. 点击创建命名空间, 然后建立一个命名空间。
- 3. 点击Workers，建立一个Workers服务。
- 4. 将此链接 <code>[worker.js](https://github.com/wy580477/CloudflareDB/blob/main/worker.js "worker.js")</code> 中代码复制进Workers服务编辑器，将KEY和GETKEY值更换为一个自定义密钥，然后保存并部署。
- 5. 回到Workers服务主页面，点击设置--变量--KV命名空间绑定--添加绑定，变量名称填JSONBASE，选择刚才建立的KV命名空间，然后保存。
- 6. 点击本仓库右上角Fork，再点击Create Fork。
- 7. 在Fork出来的仓库页面上点击Setting，勾选Template repository。
- 8. 然后点击Code返回之前的页面，点Setting下面新出现的按钮Use this template，起个随机名字创建新库。
- 9. 比如你的Github用户名是bobby，新库名称是green。浏览器登陆heroku后，访问<https://dashboard.heroku.com/new?template=https://github.com/bobby/green> 即可部署。
+ 1. [设置Cloudflare Workers KV服务](https://github.com/wy580477/PaaS-Related/blob/main/SET_CLOUDFLARE_KV_chs.md)
+ 2. 点击本仓库右上角Fork，再点击Create Fork。
+ 3. 在Fork出来的仓库页面上点击Setting，勾选Template repository。
+ 4. 然后点击Code返回之前的页面，点Setting下面新出现的按钮Use this template，起个随机名字创建新库。
+ 5. 比如你的Github用户名是bobby，新库名称是green。浏览器登陆heroku后，访问<https://dashboard.heroku.com/new?template=https://github.com/bobby/green> 即可部署。
 
 ### 变量设置
 
