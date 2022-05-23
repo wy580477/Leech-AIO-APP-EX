@@ -15,6 +15,7 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
+          env_file: ".env"
         env:
           HD_GLOBAL_USER: ${{secrets.GLOBAL_USER}}
           HD_GLOBAL_PASSWORD: ${{secrets.GLOBAL_PASSWORD}}
