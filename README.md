@@ -28,7 +28,7 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, R
 
 [VPS version](https://github.com/wy580477/Aria2-AIO-Container)
 
-![image](https://user-images.githubusercontent.com/98247050/169536342-d8d8a7eb-1c77-42fe-bfa5-3176cddfb025.png)
+![image](https://user-images.githubusercontent.com/98247050/169794040-0d5cc4f5-2160-4a0b-878e-60dfe8ed1001.png)
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
