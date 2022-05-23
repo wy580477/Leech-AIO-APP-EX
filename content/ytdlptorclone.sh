@@ -20,7 +20,7 @@ FILEPATH=$(echo $1 | sed 's:[^/]*$::')
 FILENAME=$(basename "$1")
 mv "$1" "${FILEPATH}""${FILENAME}"
 
-if [ ${UPLOAD_MODE} = "disable" ]; then
+if [ "${UPLOAD_MODE}" = "disable" ]; then
     :
 else
     curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${FILEPATH}"'","srcRemote":"'"${FILENAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${FILENAME}"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file'
