@@ -8,10 +8,11 @@ if [ ! -f "/mnt/data/config/aria2.conf" ]; then
 fi
 
 if [ ! -f "/mnt/data/config/dht.dat" ]; then
-       cp /workdir/aria2/dht.dat /mnt/data/config/
+    cp /workdir/aria2/dht.dat /mnt/data/config/
 fi
 
 /workdir/aria2/tracker.sh /mnt/data/config/aria2.conf 2>/dev/null
+sed -i "s|^rpc-secret=.*|rpc-secret=${GLOBAL_PASSWORD}|g" /mnt/data/config/aria2.conf
 
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 ln -s /mnt/data/config/aria2.conf /tmp/2${EXEC}.conf
@@ -19,7 +20,4 @@ mv /workdir/2* /workdir/2${EXEC}
 
 # Run aria2
 exec 2>&1
-exec /workdir/2${EXEC} --conf-path="/tmp/2${EXEC}.conf" \
---enable-rpc \
---rpc-secret=${GLOBAL_PASSWORD} \
---rpc-listen-port=61800
+exec /workdir/2${EXEC} --conf-path="/tmp/2${EXEC}.conf" --rpc-listen-port=61800
