@@ -1,22 +1,21 @@
 #!/bin/sh
 
 sleep 3
-DRIVE_NAME="$(grep ^drive-name /mnt/data/config/script.conf | cut -d= -f2-)"
 
+source /mnt/data/config/rclone_options.conf
+export $(sed '/^#/d' /mnt/data/config/rclone_options.conf | cut -d= -f1)
+export RCLONE_USER=${GLOBAL_USER}
+export RCLONE_PASS=${GLOBAL_PASSWORD}
+export RCLONE_CONFIG=/mnt/data/config/rclone.conf
+export RCLONE_ADDR=localhost:61805
 DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g")"
-if [ "${DRIVE_NAME}" = "auto" ]; then
-    DRIVENAME=${DRIVE_NAME_AUTO}
+
+if [ "${REMOTE_PATH}" = "auto" ]; then
+    WEBDAV_PATH=${DRIVE_NAME_AUTO}:/
 else
-    DRIVENAME=${DRIVE_NAME}
+    WEBDAV_PATH=${REMOTE_PATH}
 fi
 
 # Run rclone
-htpasswd -csb /workdir/htpasswd_webdav ${GLOBAL_USER} ${GLOBAL_PASSWORD}
 exec 2>&1
-exec /workdir/4* serve webdav ${DRIVENAME}:/ \
---htpasswd=/workdir/htpasswd_webdav \
---addr=localhost:61805 \
---buffer-size 4M \
---config /tmp/4*.conf \
---use-mmap \
---vfs-cache-mode writes
+exec /workdir/4* serve webdav ${WEBDAV_PATH}

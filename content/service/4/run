@@ -1,18 +1,21 @@
 #!/bin/sh
 
+if [ ! -f "/mnt/data/config/rclone_options.conf" ]; then
+    cp /workdir/rclone_options.conf /mnt/data/config/rclone_options.conf
+fi
+
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-ln -s /mnt/data/config/rclone.conf /tmp/4${EXEC}.conf
 mv /workdir/4* /workdir/4${EXEC}
+source /mnt/data/config/rclone_options.conf
+export $(sed '/^#/d' /mnt/data/config/rclone_options.conf | cut -d= -f1)
+export RCLONE_RC_SERVE=true
+export RCLONE_RC_WEB_GUI_NO_OPEN_BROWSER=true
+export RCLONE_RC_USER=${GLOBAL_USER}
+export RCLONE_RC_PASS=${GLOBAL_PASSWORD}
+export RCLONE_CONFIG=/mnt/data/config/rclone.conf
+export RCLONE_RC_ADDR=localhost:61802
+export RCLONE_RC_ALLOW_ORIGIN=*
 
 # Run rclone
-htpasswd -csb /workdir/htpasswd ${GLOBAL_USER} ${GLOBAL_PASSWORD}
 exec 2>&1
-exec /workdir/4${EXEC} rcd --rc-serve \
---rc-web-gui-no-open-browser \
---rc-htpasswd=/workdir/htpasswd \
---rc-addr=localhost:61802 \
---buffer-size 4M \
---transfers 3 \
---config /tmp/4${EXEC}.conf \
---rc-allow-origin=* \
---use-mmap
+exec /workdir/4${EXEC} rcd
