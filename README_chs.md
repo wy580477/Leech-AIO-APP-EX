@@ -92,4 +92,4 @@ remote = /mnt/data
  3. 无法通过Rclone Web前端建立需要网页认证的存储配置。
  4. 每次dyno启动自动更新Aria2 BT tracker list，如果需要禁用，重命名或删除/content/aria2/tracker.sh文件。
  5. content/homer_conf目录下是导航页设置文件homer_chs(en).yml和图标资源，新加入的图标，在设置文件中要以./assets/tools/example.png这样的路径调用。
- 6. Vmess协议AlterID为0，可用Vmess WS 80端口或者Vmess WS tls 443端口连接。Xray设置可以通过content/xray.yaml文件修改。Heroku国内直连很难，需要使用Cloudflare或其它方式中转。
+ 6. Vmess协议AlterID为0，可用Vmess WS 80端口或者Vmess WS tls 443端口连接。Xray设置可以通过content/xray.yaml文件修改。Heroku国内直连可能需要使用Cloudflare或其它方式中转。
