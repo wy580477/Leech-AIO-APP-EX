@@ -65,7 +65,10 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
 ## <a id="more"></a>More usages and precautions
 
  1. Hit shift+F5 to force refresh if web services don't work properly. If app still doesn't work, clear cache and cookie of your heroku domain from browser.
- 2. After adding the following content to the end of Rclone config file, you can add local heroku storage in Rclone Web UI for manual upload.
+ 2. Known pyLoad bugs：
+    - Redirect to http after login，solution: close the pyLoad page and reopen it.
+    - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.
+ 4. After adding the following content to the end of Rclone config file, you can add local heroku storage in Rclone Web UI for manual upload.
 
 ```
 [local]
