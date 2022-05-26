@@ -92,6 +92,14 @@ handle {$GLOBAL_PORTAL_PATH}/olivetin* {
         }     
         reverse_proxy * localhost:61806
 }
+# Configure pyload
+handle {$GLOBAL_PORTAL_PATH}/pyload* {
+        redir {$GLOBAL_PORTAL_PATH}/pyload {$GLOBAL_PORTAL_PATH}/pyload/    
+        basicauth {              
+                {$GLOBAL_USER} HASH
+        }     
+        reverse_proxy * localhost:61808
+}
 # Configure homer
 handle {$GLOBAL_PORTAL_PATH}* {  
         redir {$GLOBAL_PORTAL_PATH} {$GLOBAL_PORTAL_PATH}/         

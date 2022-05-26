@@ -87,6 +87,12 @@ services:
         tag: "app"
         url: "GLOBAL_PORTAL_PATH/ariang"
         target: "_blank" # optional html a tag target attribute
+      - name: "pyLoad"
+        logo: "./assets/tools/pyload.png"
+        subtitle: "Download Manager for one-click hosters"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/pyload"
+        target: "_blank" # optional html a tag target attribute
       - name: "qBittorrent"
         logo: "./assets/tools/qbit.ico"
         subtitle: "BitTorrent client"

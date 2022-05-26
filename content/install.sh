@@ -48,7 +48,17 @@ chmod +x /usr/bin/yt-dlp
 wget -qO /usr/bin/ffmpeg https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
 chmod +x /usr/bin/ffmpeg
 
+# Install pyload
+apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev
+pip install --no-cache-dir --pre pyload-ng[plugins] --quiet
+apk del .build-deps
+EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
+
 rm -rf ${DIR_TMP}
 chmod +x /workdir/aria2/*.sh
 mv /workdir/ytdlp*.sh /usr/bin/
+mkdir -p /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
+mv /workdir/pyload_to_rclone.sh /workdir/.pyload/scripts/download_finished/
+mv /workdir/pyload_to_rclone_package_extracted.sh /workdir/.pyload/scripts/package_extracted/
 ln -s /workdir/service/* /etc/service/
