@@ -82,14 +82,16 @@
 
  1. 如果网页访问APP出现故障，按下shift+F5强制刷新，如果还不行，从浏览器中清除app对应的heroku域名缓存和cookie。
  2. Rclone配置文件末尾加上如下内容，可以在Rclone Web前端中挂载Heroku本地存储，方便手动上传。
-
+ 3. pyLoad已知Bug：
+    - 登陆后重定向到http，解决方法：关闭当前pyLoad页面，重新打开。
+    - 解压后不能删除原文件，解决方法：Settings--Plugins--ExtractArchive，将"Move to trash instead delete"项设置为off。
 ```
 [local]
 type = alias
 remote = /mnt/data
 ```
 
- 3. 无法通过Rclone Web前端建立需要网页认证的存储配置。
- 4. 每次dyno启动自动更新Aria2 BT tracker list，如果需要禁用，重命名或删除/content/aria2/tracker.sh文件。
- 5. content/homer_conf目录下是导航页设置文件homer_chs(en).yml和图标资源，新加入的图标，在设置文件中要以./assets/tools/example.png这样的路径调用。
- 6. Vmess协议AlterID为0，可用Vmess WS 80端口或者Vmess WS tls 443端口连接。Xray设置可以通过content/xray.yaml文件修改。Heroku国内直连可能需要使用Cloudflare或其它方式中转。
+ 4. 无法通过Rclone Web前端建立需要网页认证的存储配置。
+ 5. 每次dyno启动自动更新Aria2 BT tracker list，如果需要禁用，重命名或删除/content/aria2/tracker.sh文件。
+ 6. content/homer_conf目录下是导航页设置文件homer_chs(en).yml和图标资源，新加入的图标，在设置文件中要以./assets/tools/example.png这样的路径调用。
+ 7. Vmess协议AlterID为0，可用Vmess WS 80端口或者Vmess WS tls 443端口连接。Xray设置可以通过content/xray.yaml文件修改。Heroku国内直连可能需要使用Cloudflare或其它方式中转。
