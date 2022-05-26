@@ -16,7 +16,7 @@ FILE_NAME="$(basename "$1")"
 FILE_PATH="$(echo $1 | sed 's:[^/]*$::')"
 
 if [ "${UPLOAD_MODE}" = "disable" ]; then
-    :
+    echo "[INFO] Auto-upload to Rclone remote disabled"
 elif [ -f "$1" ]; then
     curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${FILE_PATH}"'","srcRemote":"'"${FILE_NAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${FILE_NAME}"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file'
     EXIT_CODE=$?
