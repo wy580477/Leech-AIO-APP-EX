@@ -8,13 +8,13 @@ if [ ! -f "/workdir/.pyload/settings/pyload.cfg" ]; then
 fi
 
 sed -i "s|str\ prefix\ :\ \"Path prefix\"\ =.*|str\ prefix\ :\ \"Path prefix\"\ =\ ${GLOBAL_PORTAL_PATH}/pyload|g" /workdir/.pyload/settings/pyload.cfg
+sed -i 's|delete\"\ =.*|delete"\ =\ False|g' /workdir/.pyload/settings/plugins.cfg
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv /usr/local/bin/1* /usr/local/bin/1${EXEC}
 ln -s /workdir/.pyload/settings /mnt/data/config/pyload
 ln -s /workdir/Downloads/pyLoad /mnt/data/pyload_downloads
 export HOME=/workdir
 cd
-/workdir/fixpypluginconfig.sh &
 
 # Run pyload
 exec 2>&1
