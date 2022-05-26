@@ -54,9 +54,9 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
 
 ![image](https://user-images.githubusercontent.com/98247050/165651080-b1b79ba6-7cc0-4c7c-b65b-fbc4256f59f9.png)  
 
- 4. Click qBittorrent or VueTorrent, then login in with default user admin and default password adminadmin. Change default user/password to your own. Recommend strong password.
- 5. Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
- 6. yt-dlp command can be executed through ttyd web terminal，for more information：<https://github.com/yt-dlp/yt-dlp#usage-and-options>  
+ 3. Click qBittorrent or VueTorrent, then login in with default user admin and default password adminadmin. Change default user/password to your own. Recommend strong password.
+ 4. Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
+ 5. yt-dlp command can be executed through ttyd web terminal，for more information：<https://github.com/yt-dlp/yt-dlp#usage-and-options>  
     Built-in alias：  
     dlpr：Use yt-dlp to download videos to videos folder, then send task to Rclone after downloads completed.
 
@@ -68,7 +68,7 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
  2. Known pyLoad bugs：
     - Redirect to http after login，solution: close the pyLoad page and reopen it.
     - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.
- 4. After adding the following content to the end of Rclone config file, you can add local heroku storage in Rclone Web UI for manual upload.
+ 3. After adding the following content to the end of Rclone config file, you can add local heroku storage in Rclone Web UI for manual upload.
 
 ```
 [local]
@@ -76,10 +76,10 @@ type = alias
 remote = /mnt/data
 ```
 
- 3. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
- 4. Aria2 BT tracker list is auto-updated each time dyno restarted, rename or delete /content/aria2/tracker.sh file to disable this function.
- 5. Portal page config file homer_en.yml and icon resources are under content/homer_conf directory in repository, use path as ./assets/tools/example.png to add the new icon to homer config file.
- 6. Vmess proxy protocol: AlterID is 0, you can connect to either Vmess WS port 80 or Vmess WS tls port 443. Xray settings can be modified via content/xray.yaml file in repository. Heroku is difficult to connect in mainland China.   
+ 4. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
+ 5. Aria2 BT tracker list is auto-updated each time dyno restarted, rename or delete /content/aria2/tracker.sh file to disable this function.
+ 6. Portal page config file homer_en.yml and icon resources are under content/homer_conf directory in repository, use path as ./assets/tools/example.png to add the new icon to homer config file.
+ 7. Vmess proxy protocol: AlterID is 0, you can connect to either Vmess WS port 80 or Vmess WS tls port 443. Xray settings can be modified via content/xray.yaml file in repository. Heroku is difficult to connect in mainland China.   
    Example client setting:   
    ![image](https://user-images.githubusercontent.com/98247050/169536721-4b4fc824-454a-4bec-9342-40978b1d99a4.png)   
    With tls:   
