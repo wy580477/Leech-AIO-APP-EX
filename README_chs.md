@@ -25,11 +25,11 @@
 
 ## 概述
 
-本项目集成了yt-dlp、Aria2+Rclone+qBittorrent+WebUI、Aria2+Rclone联动自动上传功能、pyLoad下载管理器、Rclone远程存储文件列表和Webdav服务、可自定义的导航页、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端、Xray Vmess协议。
+本项目集成了yt-dlp、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、、Rclone远程存储文件列表和Webdav服务、可自定义的导航页、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端、Xray Vmess协议。
 
 [VPS部署版本](https://github.com/wy580477/Aria2-AIO-Container)
 
-![image](https://user-images.githubusercontent.com/98247050/169793534-1e10be5a-c2b7-41f3-a67a-b1c922d7d57b.png)
+![image](https://user-images.githubusercontent.com/98247050/170441806-1d6fd4f4-d1e3-479f-9893-13f1a3e03433.png)
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
