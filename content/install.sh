@@ -10,7 +10,7 @@ sed -i 's|6800|443|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js
 wget -qO - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip | busybox unzip -qd /workdir/rcloneweb -
 
 # Install Homer
-wget -qO - https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer -
+wget -qO - https://github.com/wy580477/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer -
 
 # Install Filebrowser
 wget -qO - https://github.com/filebrowser/filebrowser/releases/latest/download/linux-amd64-filebrowser.tar.gz | tar -zxf - -C /usr/bin
