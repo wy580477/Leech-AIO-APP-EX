@@ -12,7 +12,7 @@
             "value": "password"
         },
         "GLOBAL_LANGUAGE": {
-            "description": "Set language of portal page & filebrowser.(en or chs)",
+            "description": "Set language of portal page, qbit & filebrowser.(en or chs)",
             "value": "en"
         },
         "GLOBAL_PORTAL_PATH": {
