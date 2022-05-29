@@ -84,11 +84,11 @@
 - 通过Filebrowse将rclone.conf文件上传到config目录，可以通过编辑script.conf文件更改Rclone自动上传设置。
 - Colab部署后，可以将下列内容添加到rclone.conf文件，以便将Colab中挂载的Google Drive作为Rclone的远程存储。
 
-      ```
+      
       [local]
       type = alias
       remote = /content/drive/MyDrive
-      ```
+      
 
 - yt-dlp下载工具可以通过ttyd在网页终端执行，使用方法详细见：<https://github.com/yt-dlp/yt-dlp#usage-and-options>  
     内置快捷指令：  
