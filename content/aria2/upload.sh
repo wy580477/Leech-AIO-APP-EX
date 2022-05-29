@@ -38,23 +38,6 @@ CHECK_CORE_FILE() {
     fi
 }
 
-CHECK_RCLONE() {
-    [[ $# -eq 0 ]] && {
-        echo && echo -e "Checking RCLONE connection ..."
-        rclone mkdir "${DRIVE_NAME}:${DRIVE_DIR}/P3TERX.COM"
-        if [[ $? -eq 0 ]]; then
-            rclone rmdir "${DRIVE_NAME}:${DRIVE_DIR}/P3TERX.COM"
-            echo
-            echo -e "${LIGHT_GREEN_FONT_PREFIX}success${FONT_COLOR_SUFFIX}"
-            exit 0
-        else
-            echo
-            echo -e "${RED_FONT_PREFIX}failure${FONT_COLOR_SUFFIX}"
-            exit 1
-        fi
-    }
-}
-
 TASK_INFO() {
     echo -e "
 -------------------------- [${YELLOW_FONT_PREFIX}Task Infomation${FONT_COLOR_SUFFIX}] --------------------------
@@ -81,15 +64,10 @@ OUTPUT_UPLOAD_LOG() {
 DEFINITION_PATH() {
     LOCAL_PATH="${TASK_PATH}"
     if [[ -f "${TASK_PATH}" ]]; then
-        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${DEST_PATH_SUFFIX%/*}"
+        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}"
     else
-        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${DEST_PATH_SUFFIX}"
+        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}/${TASK_FILE_NAME}"
     fi
-}
-
-LOAD_RCLONE_ENV() {
-    RCLONE_ENV_FILE="${ARIA2_CONF_DIR}/rclone.env"
-    [[ -f ${RCLONE_ENV_FILE} ]] && export $(grep -Ev "^#|^$" ${RCLONE_ENV_FILE} | xargs -0)
 }
 
 UPLOAD_FILE() {
@@ -132,7 +110,6 @@ if [ "${UPLOAD_MODE}" = "disable" ]; then
     echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
     exit 0
 fi
-CHECK_RCLONE "$@"
 CHECK_FILE_NUM
 GET_TASK_INFO
 GET_DOWNLOAD_DIR
