@@ -9,7 +9,7 @@
 
 ## Attention
 
- 1. **Do not abuse Heroku's service or your account could get banned. Deploy at your own risk.**
+ 1. **Do not abuse service from Colab/Heroku or your account could get banned. Deploy at your own risk.**
  2. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
  3. Anyone who can login into this app has full access to data in this app and Rclone remotes. Do not share with other ppl, and do not store sensitive information with this app.
  4. To prevent Heroku dyno from auto-sleeping, use website monitoring service such as uptimerobot to http ping your heroku domain every 10 mins.
@@ -24,7 +24,7 @@
 
 ## <a id="Overview"></a>Overview
 
-This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal, Xray Vmess proxy protocol.
+This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal, Xray Vmess proxy protocol. (Rclone Webdav & Xray proxy only available on Heroku deployment)
 
 [VPS version](https://github.com/wy580477/Aria2-AIO-Container)
 
@@ -33,12 +33,21 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
  3. You can connect Aria2, qBittorrent and Rclone from frontends running on other hosts.
- 4. Auto-backup configuration files to Cloudflare Workers KV, and try to restore when dyno restarts.
+ 4. Auto-backup configuration files and try to restore when dyno restarts.
  5. Execute predefined yt-dlp & Rclone commands from OliveTin WebUI.
  6. ttyd web terminal, which can execute yt-dlp and other commands on the command line.
  7. There are independent logs for each service in the log directory.
 
 ## <a id="Deployment"></a>Deployment
+
+### Colab Deployment
+
+ 1. Make a folder named <code>AIO_FILES</code> in your Google Drive root folder.
+ 2. Upload [main.zip](https://github.com/wy580477/Heroku-AIO-APP-EX/archive/refs/heads/main.zip) to <code>AIO_FILES</code> folder.
+ 3. Upload [AIO.ipynb](https://github.com/wy580477/Heroku-AIO-APP-EX/raw/main/AIO.ipynb) to Google Drive.
+ 4. Run AIO.ipynb.
+
+### Heroku Deployment
 
  **Do not deploy directly from this repository**  
 
@@ -49,14 +58,22 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
 
 ## <a id="first"></a>First run
 
- 1. After deployment, for example, your heroku domain name is bobby.herokuapp.com, the portal page path is /portal, then visit bobby.herokuapp.com/portal to reach the portal page.
- 2. Click AriaNg, then authentication failure warning will pop up, fill in Aria2 secret RPC token with password set during deployment.  
+- For Heroku deployment,
+   1. visit your_heroku_domain + \${GLOBAL_PORTAL_PATH} to reach portal page.
+   2. Click AriaNg, then authentication failure warning will pop up, fill in Aria2 secret RPC token with password set during deployment.  
 
-![image](https://user-images.githubusercontent.com/98247050/165651080-b1b79ba6-7cc0-4c7c-b65b-fbc4256f59f9.png)  
+         <img src="https://user-images.githubusercontent.com/98247050/165651080-b1b79ba6-7cc0-4c7c-b65b-fbc4256f59f9.png"  width="700"/>
 
- 3. Click qBittorrent or VueTorrent, then login in with default user admin and default password adminadmin. Change default user/password to your own. Recommend strong password.
- 4. Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
- 5. yt-dlp command can be executed through ttyd web terminal，for more information：<https://github.com/yt-dlp/yt-dlp#usage-and-options>  
+   3. Click qBittorrent or VueTorrent, then login in with default user admin and default password adminadmin. Change default user/password to your own. Recommend strong password.
+- Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
+- For Colab deployment, add following content to rclone.conf file in order to use your mounted Google Drive as a Rclone remote.
+
+      ```
+      [local]
+      type = alias
+      remote = /content/drive/MyDrive
+      ```
+- yt-dlp command can be executed through ttyd web terminal，for more information：<https://github.com/yt-dlp/yt-dlp#usage-and-options>  
     Built-in alias：  
     dlpr：Use yt-dlp to download videos to videos folder, then send task to Rclone after downloads completed.
 
@@ -68,19 +85,24 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
  2. Known pyLoad bugs：
     - Redirect to http after login，solution: close the pyLoad page and reopen it.
     - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.
- 3. After adding the following content to the end of Rclone config file, you can add local heroku storage in Rclone Web UI for manual upload.
+ 3. For Heroku deployment, after adding following content to rclone.conf file, you can use local heroku storage as a Rclone remote for manually uploading via Rclone Web UI.
 
-```
-[local]
-type = alias
-remote = /mnt/data
-```
+      ```
+      [local]
+      type = alias
+      remote = /mnt/data
+      ```
 
  4. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
  5. Aria2 BT tracker list is auto-updated each time dyno restarted, rename or delete /content/aria2/tracker.sh file to disable this function.
  6. Portal page config file homer_en.yml and icon resources are under content/homer_conf directory in repository, use path as ./assets/tools/example.png to add the new icon to homer config file.
- 7. Vmess proxy protocol: AlterID is 0, you can connect to either Vmess WS port 80 or Vmess WS tls port 443. Xray settings can be modified via content/xray.yaml file in repository. Heroku is difficult to connect in mainland China.   
-   Example client setting:   
-   ![image](https://user-images.githubusercontent.com/98247050/169536721-4b4fc824-454a-4bec-9342-40978b1d99a4.png)   
-   With tls:   
-   ![image](https://user-images.githubusercontent.com/98247050/169670311-1bf05652-8b5c-459a-9c24-41eef341006a.png)
+ 7. Vmess proxy protocol: AlterID is 0, you can connect to either Vmess WS port 80 or Vmess WS tls port 443. Xray settings can be modified via content/xray.yaml file in repository. Heroku is difficult to connect in mainland China.
+
+      <details>
+      <summary>Example client setting</summary>
+      <img src="https://user-images.githubusercontent.com/98247050/169536721-4b4fc824-454a-4bec-9342-40978b1d99a4.png"/>
+      </details>
+      <details>
+      <summary>Example client setting with tls</summary>
+      <img src="https://user-images.githubusercontent.com/98247050/169670311-1bf05652-8b5c-459a-9c24-41eef341006a.png"/>
+      </details>
