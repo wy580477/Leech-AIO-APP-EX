@@ -72,7 +72,7 @@ CHECK_SCRIPT_CONF() {
 
 LOAD_SCRIPT_CONF() {
     DRIVE_NAME="$(grep ^drive-name "${SCRIPT_CONF}" | cut -d= -f2-)"
-    DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g")"
+    DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g;s/\r$//")"
     if [ "${DRIVE_NAME}" = "auto" ]; then
         DRIVENAME=${DRIVE_NAME_AUTO}
     else
@@ -166,7 +166,6 @@ CONVERSION_PATH() {
     RELATIVE_PATH="${FILE_PATH#"${DOWNLOAD_DIR}/"}"
     TASK_FILE_NAME="${RELATIVE_PATH%%/*}"
     TASK_PATH="${DOWNLOAD_DIR}/${TASK_FILE_NAME}"
-    DEST_PATH_SUFFIX="${TASK_PATH#"${ARIA2_DOWNLOAD_DIR}"}"
 }
 
 OUTPUT_LOG() {
