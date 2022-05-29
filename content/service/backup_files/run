@@ -16,10 +16,10 @@ curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json"
 # Back config files
 DIR_TMP="$(mktemp -d)"
 mkdir -p ${DIR_TMP}/config/qBittorrent
-cp -r /mnt/data/config/qBittorrent/config ${DIR_TMP}/config/qBittorrent
+cp -r /mnt/data/config/qBittorrent/config ${DIR_TMP}/config/qBittorrent 2>/dev/null
 cp -r /mnt/data/config/olivetin ${DIR_TMP}/config
 cp -r /workdir/.pyload/settings ${DIR_TMP}/config
-cp /mnt/data/config/* ${DIR_TMP}/config
+cp /mnt/data/config/* ${DIR_TMP}/config 2>/dev/null
 tar -zcf ${DIR_TMP}/backup.tar.gz -C ${DIR_TMP} config
 VALUE=$(base64 -w 0 ${DIR_TMP}/backup.tar.gz)
 echo \{\"_id\":\"backup\",\"value\":\"${VALUE}\"\} >./body

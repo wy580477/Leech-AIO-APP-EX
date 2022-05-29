@@ -4,7 +4,7 @@
 touch /mnt/data/config/aria2.session
 
 if [ ! -f "/mnt/data/config/aria2.conf" ]; then
-       cp /workdir/aria2/aria2_${GLOBAL_LANGUAGE}.conf /mnt/data/config/aria2.conf
+    cp /workdir/aria2/aria2_${GLOBAL_LANGUAGE}.conf /mnt/data/config/aria2.conf
 fi
 
 if [ ! -f "/mnt/data/config/dht.dat" ]; then
