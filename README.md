@@ -68,11 +68,11 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
 - Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
 - For Colab deployment, add following content to rclone.conf file in order to use your mounted Google Drive as a Rclone remote.
 
-      ```
+      
       [local]
       type = alias
       remote = /content/drive/MyDrive
-      ```
+      
 - yt-dlp command can be executed through ttyd web terminal，for more information：<https://github.com/yt-dlp/yt-dlp#usage-and-options>  
     Built-in alias：  
     dlpr：Use yt-dlp to download videos to videos folder, then send task to Rclone after downloads completed.
