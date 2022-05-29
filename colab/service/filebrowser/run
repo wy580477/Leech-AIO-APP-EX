@@ -1,0 +1,20 @@
+#!/bin/sh
+
+source /etc/env
+export $(sed '/^#/d' /etc/env | cut -d= -f1)
+
+# Configure filebrowser
+if [ ! -f "/mnt/data/config/filebrowser.db" ]; then
+    if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
+        filebrowser -d /mnt/data/config/filebrowser.db config init
+        filebrowser -d /mnt/data/config/filebrowser.db users add admin admin --perm.admin --locale zh-cn --commands="sv,du,df,free,nslookup,netstat,top,ps"        
+    else
+        filebrowser -d /mnt/data/config/filebrowser.db config init
+        filebrowser -d /mnt/data/config/filebrowser.db users add admin admin --perm.admin --commands="sv,du,df,free,nslookup,netstat,top,ps"
+    fi
+    filebrowser -d /mnt/data/config/filebrowser.db config set -r /mnt/data --auth.method=noauth -b ${GLOBAL_PORTAL_PATH}/files -p 61801
+fi
+
+# Run filebrowser
+exec 2>&1
+exec filebrowser -d /mnt/data/config/filebrowser.db

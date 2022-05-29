@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Configure aria2
+source /etc/env
+export $(sed '/^#/d' /etc/env | cut -d= -f1)
+touch /mnt/data/config/aria2.session
+
+if [ ! -f "/mnt/data/config/aria2.conf" ]; then
+    cp /workdir/aria2/aria2_${GLOBAL_LANGUAGE}.conf /mnt/data/config/aria2.conf
+fi
+
+if [ ! -f "/mnt/data/config/dht.dat" ]; then
+    cp /workdir/aria2/dht.dat /mnt/data/config/
+fi
+
+/workdir/aria2/tracker.sh /mnt/data/config/aria2.conf 2>/dev/null
+sed -i "s|^rpc-secret=.*||g;s|^rpc-listen-port=.*|rpc-listen-port=61800|g" /mnt/data/config/aria2.conf
+
+EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+ln -s /mnt/data/config/aria2.conf /tmp/2${EXEC}.conf
+mv /workdir/2* /workdir/2${EXEC}
+
+# Run aria2
+exec 2>&1
+exec /workdir/2${EXEC} --conf-path="/tmp/2${EXEC}.conf"

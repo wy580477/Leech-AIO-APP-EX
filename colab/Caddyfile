@@ -1,0 +1,79 @@
+# Created by wy580477 for customized container <https://github.com/wy580477>
+{
+        log {
+                exclude http.handlers.reverse_proxy
+        }
+}
+:8880
+encode gzip
+# Configure ttyd
+handle {$GLOBAL_PORTAL_PATH}/ttyd* {
+        redir {$GLOBAL_PORTAL_PATH}/ttyd {$GLOBAL_PORTAL_PATH}/ttyd/
+        uri strip_prefix {$GLOBAL_PORTAL_PATH}/ttyd          
+        reverse_proxy * localhost:61803
+}
+# Configure AriaNg
+handle {$GLOBAL_PORTAL_PATH}/ariang* {
+        redir {$GLOBAL_PORTAL_PATH}/ariang {$GLOBAL_PORTAL_PATH}/ariang/         
+        uri strip_prefix {$GLOBAL_PORTAL_PATH}/ariang
+        root * /workdir/ariang
+        file_server
+}
+# Configure qbittorrent
+handle {$GLOBAL_PORTAL_PATH}/qbit* {
+        redir {$GLOBAL_PORTAL_PATH}/qbit {$GLOBAL_PORTAL_PATH}/qbit/         
+        uri strip_prefix {$GLOBAL_PORTAL_PATH}/qbit
+        reverse_proxy * localhost:61804
+}
+# Configure Vuetorrent   
+handle {$GLOBAL_PORTAL_PATH}/vue* {
+        redir {$GLOBAL_PORTAL_PATH}/vue {$GLOBAL_PORTAL_PATH}/vue/
+        uri strip_prefix {$GLOBAL_PORTAL_PATH}/vue
+        handle /api* {
+                reverse_proxy * localhost:61804                                                               
+        }                                                                                                             
+        root * /workdir/vuetorrent/public                                                             
+        file_server                    
+}
+# Configure Rclone Web UI
+handle {$GLOBAL_PORTAL_PATH}/rcloneweb* {
+        redir {$GLOBAL_PORTAL_PATH}/rcloneweb {$GLOBAL_PORTAL_PATH}/rcloneweb/         
+        uri strip_prefix {$GLOBAL_PORTAL_PATH}/rcloneweb
+        root * /workdir/rcloneweb/build
+        file_server
+}
+# Configure Rclone RC
+handle_path {$GLOBAL_PORTAL_PATH}/rclonerc {
+        reverse_proxy * localhost:61802
+}
+# Configure Rclone Serve
+handle_path {$GLOBAL_PORTAL_PATH}/rclonerc/* {
+        reverse_proxy * localhost:61802
+}
+# Configure Aria2 RPC
+handle {$GLOBAL_PORTAL_PATH}/jsonrpc {
+        uri replace {$GLOBAL_PORTAL_PATH}/jsonrpc /jsonrpc
+        reverse_proxy /jsonrpc localhost:61800
+}
+# Configure Filebrowser
+handle {$GLOBAL_PORTAL_PATH}/files* {
+        reverse_proxy {$GLOBAL_PORTAL_PATH}/files* localhost:61801
+}
+# Configure OliveTin
+handle {$GLOBAL_PORTAL_PATH}/olivetin* {
+        redir {$GLOBAL_PORTAL_PATH}/olivetin {$GLOBAL_PORTAL_PATH}/olivetin/
+        uri strip_prefix {$GLOBAL_PORTAL_PATH}/olivetin       
+        reverse_proxy * localhost:61806
+}
+# Configure pyload
+handle {$GLOBAL_PORTAL_PATH}/pyload* {
+        redir {$GLOBAL_PORTAL_PATH}/pyload {$GLOBAL_PORTAL_PATH}/pyload/ 
+        reverse_proxy * localhost:61808
+}
+# Configure homer
+handle {$GLOBAL_PORTAL_PATH}* {  
+        redir {$GLOBAL_PORTAL_PATH} {$GLOBAL_PORTAL_PATH}/         
+        uri strip_prefix {$GLOBAL_PORTAL_PATH}
+        root * /workdir/homer
+        file_server
+}

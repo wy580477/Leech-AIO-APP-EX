@@ -1,0 +1,25 @@
+#!/bin/sh
+
+sleep 600
+
+# Refresh rclone config file
+DRIVE_NAME="$(grep ^drive-name /mnt/data/config/script.conf | cut -d= -f2-)"
+DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g")"
+if [ "${DRIVE_NAME}" = "auto" ]; then
+    DRIVENAME=${DRIVE_NAME_AUTO}
+else
+    DRIVENAME=${DRIVE_NAME}
+fi
+
+curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"fs":"'"${DRIVENAME}"':/"}' 'localhost:61802/operations/about'
+
+# Back config files
+DIR_TMP="$(mktemp -d)"
+mkdir -p ${DIR_TMP}/config/qBittorrent
+cp -r /mnt/data/config/qBittorrent/config ${DIR_TMP}/config/qBittorrent 2>/dev/null
+cp -r /mnt/data/config/olivetin ${DIR_TMP}/config
+cp -r /workdir/.pyload/settings ${DIR_TMP}/config
+cp /mnt/data/config/* ${DIR_TMP}/config 2>/dev/null
+tar -zcf ${DIR_TMP}/backup.tar.gz -C ${DIR_TMP} config
+mv ${DIR_TMP}/backup.tar.gz /content/drive/*/AIO_FILES/
+rm -rf ${DIR_TMP}

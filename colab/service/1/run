@@ -1,0 +1,26 @@
+#!/bin/sh
+
+source /etc/env
+export $(sed '/^#/d' /etc/env | cut -d= -f1)
+mkdir -p /mnt/data/config/qBittorrent/config 2>/dev/null
+
+if [ ! -f "/mnt/data/config/qBittorrent/config/qBittorrent.conf" ]; then
+    cp /workdir/qbit.conf /mnt/data/config/qBittorrent/config/qBittorrent.conf
+    if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
+        LANG=zh
+    else
+        LANG=en
+    fi
+    sed -i "s|General.Locale=.*|General\\\Locale=${LANG}|g" /mnt/data/config/qBittorrent/config/qBittorrent.conf
+fi
+
+RAN=$(shuf -i 60001-60499 -n 1)
+sed -i "s|Session.Port=.*|Session\\\Port=${RAN}|g" /mnt/data/config/qBittorrent/config/qBittorrent.conf
+sed -i "s|WebUI.LocalHostAuth=.*|WebUI\\\LocalHostAuth=false|g" /mnt/data/config/qBittorrent/config/qBittorrent.conf
+EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+mv /workdir/1* /workdir/1${EXEC}
+export QBT_WEBUI_PORT=61804
+export QBT_PROFILE=/mnt/data/config
+
+exec 2>&1
+exec /workdir/1${EXEC}
