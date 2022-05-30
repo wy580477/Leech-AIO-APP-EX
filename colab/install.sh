@@ -16,10 +16,14 @@ apt-get -qq update >/dev/null && apt-get -qq install -y jq runit >/dev/null
 rm -rf /var/lib/apt/lists/*
 
 # Install pyload
-pip install --no-cache-dir --pre pyload-ng[plugins] --quiet 2>&1 >/dev/null
-EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
-
+if [ "${PYLOAD_INSTALL}" = "Enable" ]; then
+    pip install --no-cache-dir --pre pyload-ng[plugins] --quiet 2>&1 >/dev/null
+    EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+    mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
+else
+    rm -rf /workdir/service/6
+fi
+    
 # Install OliveTin
 VERSION="$(curl --retry 5 https://api.github.com/repos/OliveTin/OliveTin/releases/latest | jq .tag_name | sed 's/\"//g')"
 curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/download/${VERSION}/OliveTin-${VERSION}-Linux-amd64.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
@@ -85,6 +89,8 @@ chmod +x /usr/bin/argo
 
 
 rm -rf ${DIR_TMP} /workdir/service/3 /workdir/service/5
+PORTAL_PATH=$(echo ${RANDOM} | md5sum | head -c 6; echo)
+echo GLOBAL_PORTAL_PATH=/${PORTAL_PATH} >>/etc/env
 sed -i "s/message\:/#&/;s/Heroku/Colab/g" /workdir/homer_conf/homer_*.yml
 
 # Configure scripts

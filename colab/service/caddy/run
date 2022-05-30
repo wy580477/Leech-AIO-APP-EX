@@ -12,6 +12,12 @@ cp /workdir/homer_conf/* /workdir/homer/assets/tools/
 cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config.yml
 sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/homer/assets/config.yml
 
+if [ "${PYLOAD_INSTALL}" = "Disable" ]; then
+    LINE=$(sed -n -e '/pyLoad/=' /workdir/homer/assets/config.yml)
+    LINE2=$((LINE + 5))
+    sed -i "${LINE},${LINE2}d" /workdir/homer/assets/config.yml
+fi
+
 # Run caddy
 exec 2>&1
 exec caddy run --config /workdir/Caddyfile --adapter caddyfile
