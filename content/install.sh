@@ -97,7 +97,7 @@ echo GLOBAL_PORTAL_PATH=/${PORTAL_PATH} >>/etc/env
 chmod +x /workdir/*.sh /workdir/aria2/*.sh /workdir/service/*/run /workdir/service/*/log/run
 sed -i 's/\r$//' /workdir/*.sh /workdir/aria2/*.sh /workdir/aria2/core /workdir/service/*/run /workdir/service/*/log/run /workdir/rclone_options.conf /workdir/bashrc
 mv /workdir/ytdlp*.sh /usr/bin/
-mkdir -p /mnt/data/config /mnt/data/qbit_downloads /mnt/data/aria2_downloads /mnt/data/videos /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
+mkdir -p /mnt/data/config /mnt/data/qbit_downloads /mnt/data/aria2_downloads /mnt/data/pyload_downloads /mnt/data/videos /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
 mv /workdir/pyload_to_rclone.sh /workdir/.pyload/scripts/download_finished/
 mv /workdir/pyload_to_rclone_package_extracted.sh /workdir/.pyload/scripts/package_extracted/
 
