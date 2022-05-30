@@ -81,6 +81,7 @@ services:
         subtitle: "Web UI for predefined shell commands"
         tag: "app"
         url: "GLOBAL_PORTAL_PATH/olivetin"
+        target: "_blank" # optional html a tag target attribute
       - name: "AriaNg"
         logo: "./assets/tools/AriaNg.ico"
         subtitle: "Web frontend for Aria2"
