@@ -79,6 +79,10 @@ handle {$GLOBAL_PORTAL_PATH}/jsonrpc {
         uri replace {$GLOBAL_PORTAL_PATH}/jsonrpc /jsonrpc
         reverse_proxy /jsonrpc localhost:61800
 }
+handle {$GLOBAL_PORTAL_PATH}/rpc {                                                                         
+        uri replace {$GLOBAL_PORTAL_PATH}/rpc /rpc                                                     
+        reverse_proxy /rpc localhost:61800                                                                 
+}
 # Configure Filebrowser
 handle {$GLOBAL_PORTAL_PATH}/files* {
         reverse_proxy {$GLOBAL_PORTAL_PATH}/files* localhost:61801
