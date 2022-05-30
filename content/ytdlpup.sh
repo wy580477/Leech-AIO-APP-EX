@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 touch /mnt/data/log/ytdlp.log
 

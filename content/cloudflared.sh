@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source /etc/env
 export $(sed '/^#/d' /etc/env | cut -d= -f1)

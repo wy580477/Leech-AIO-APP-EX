@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 mkdir -p /mnt/data/log/rclone 2>/dev/null
 exec svlogd /mnt/data/log/rclone

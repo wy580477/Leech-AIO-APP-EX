@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 DATE_TIME() {
     date +"%m/%d %H:%M:%S"

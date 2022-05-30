@@ -1,5 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
+source /etc/env
+export $(sed '/^#/d' /etc/env | cut -d= -f1)
 mkdir -p /mnt/data/config/qBittorrent/config 2>/dev/null
 
 if [ ! -f "/mnt/data/config/qBittorrent/config/qBittorrent.conf" ]; then

@@ -1,22 +1,64 @@
-#!/bin/sh
+#!/bin/bash
 
 DIR_TMP="$(mktemp -d)"
+source /etc/env
+export $(sed '/^#/d' /etc/env | cut -d= -f1)
+
+if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
+    echo "安装将用时一到两分钟"
+else
+    echo "Install process will take 1-2 minutes"
+fi
+
+# Install jq & runit
+CODE_NAME=$(lsb_release -c | sed 's/.*:\s*//')
+echo "deb http://us.archive.ubuntu.com/ubuntu/ ${CODE_NAME} main universe" >>/etc/apt/sources.list
+apt-get -qq update >/dev/null && apt-get -qq install -y jq runit >/dev/null
+rm -rf /var/lib/apt/lists/*
+
+# Install pyload
+if [ "${PYLOAD_INSTALL}" = "Enable" ]; then
+    pip install --no-cache-dir --pre pyload-ng[plugins] --quiet 2>&1 >/dev/null
+    EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
+    mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
+else
+    rm -rf /workdir/service/6
+fi
+    
+# Install OliveTin
+VERSION="$(curl --retry 5 https://api.github.com/repos/OliveTin/OliveTin/releases/latest | jq .tag_name | sed 's/\"//g')"
+curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/download/${VERSION}/OliveTin-${VERSION}-Linux-amd64.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
+mv ${DIR_TMP}/*/OliveTin /usr/bin/
+mkdir -p /var/www/olivetin
+mv ${DIR_TMP}/*/webui/* /var/www/olivetin/
+
+# Install ttyd
+wget -qO /usr/bin/ttyd https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64
+chmod +x /usr/bin/ttyd
+
+# Install Caddy
+wget -qO /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=amd64"
+chmod +x /usr/bin/caddy
 
 # Install AriaNg
-wget -qO - https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip | busybox unzip -qd /workdir/ariang -
+wget -qP ${DIR_TMP} https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip
+unzip -qd /workdir/ariang ${DIR_TMP}/AriaNg-1.2.4.zip
 sed -i 's|6800|443|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js
 
 # Install Rclone WebUI
-wget -qO - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip | busybox unzip -qd /workdir/rcloneweb -
+wget -qP ${DIR_TMP} - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip
+unzip -qd /workdir/rcloneweb ${DIR_TMP}/currentbuild.zip
 
 # Install Homer
-wget -qO - https://github.com/wy580477/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer -
+wget -qP ${DIR_TMP} https://github.com/wy580477/homer/releases/latest/download/homer.zip
+unzip -qd /workdir/homer ${DIR_TMP}/homer.zip
 
 # Install Filebrowser
 wget -qO - https://github.com/filebrowser/filebrowser/releases/latest/download/linux-amd64-filebrowser.tar.gz | tar -zxf - -C /usr/bin
 
 # Install Rclone
-wget -qO - https://downloads.rclone.org/rclone-current-linux-amd64.zip | busybox unzip -qd ${DIR_TMP} -
+wget -qP ${DIR_TMP} https://downloads.rclone.org/rclone-current-linux-amd64.zip
+unzip -qd ${DIR_TMP} ${DIR_TMP}/rclone-current-linux-amd64.zip
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 install -m 755 ${DIR_TMP}/*/rclone /workdir/4${EXEC}
 
@@ -27,18 +69,12 @@ mv ${DIR_TMP}/aria2c /workdir/2${EXEC}
 
 # Install qBit
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-wget -qO /workdir/1${EXEC} https://github.com/userdocs/qbittorrent-nox-static/releases/latest/download/x86_64-qbittorrent-nox
+wget -qO  /workdir/1${EXEC} https://github.com/userdocs/qbittorrent-nox-static/releases/latest/download/x86_64-qbittorrent-nox
 chmod +x /workdir/1${EXEC}
 
-# Install OliveTin
-VERSION="$(curl --retry 5 https://api.github.com/repos/OliveTin/OliveTin/releases/latest | jq .tag_name | sed 's/\"//g')"
-curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/download/${VERSION}/OliveTin-${VERSION}-Linux-amd64.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
-mv ${DIR_TMP}/*/OliveTin /usr/bin/
-mkdir -p /var/www/olivetin
-mv ${DIR_TMP}/*/webui/* /var/www/olivetin/
-
 # Install Vuetorrent
-wget -qO - https://github.com/WDaan/VueTorrent/releases/latest/download/vuetorrent.zip | busybox unzip -qd /workdir -
+wget -qP ${DIR_TMP} https://github.com/WDaan/VueTorrent/releases/latest/download/vuetorrent.zip
+unzip -qd /workdir ${DIR_TMP}/vuetorrent.zip
 
 # Install yt-dlp
 wget -qO /usr/bin/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
@@ -48,17 +84,39 @@ chmod +x /usr/bin/yt-dlp
 wget -qO /usr/bin/ffmpeg https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
 chmod +x /usr/bin/ffmpeg
 
-# Install pyload
-apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev
-pip install --no-cache-dir --pre pyload-ng[plugins] --quiet
-apk del .build-deps
-EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
+# Install Cloudflared
+wget -qO /usr/bin/argo https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+chmod +x /usr/bin/argo
+
 
 rm -rf ${DIR_TMP}
-chmod +x /workdir/aria2/*.sh
+PORTAL_PATH=$(echo ${RANDOM} | md5sum | head -c 6; echo)
+echo GLOBAL_PORTAL_PATH=/${PORTAL_PATH} >>/etc/env
+
+# Configure scripts
+chmod +x /workdir/*.sh /workdir/aria2/*.sh /workdir/service/*/run /workdir/service/*/log/run
+sed -i 's/\r$//' /workdir/*.sh /workdir/aria2/*.sh /workdir/aria2/core /workdir/service/*/run /workdir/service/*/log/run /workdir/rclone_options.conf /workdir/bashrc
 mv /workdir/ytdlp*.sh /usr/bin/
-mkdir -p /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
+mkdir -p /mnt/data/config /mnt/data/qbit_downloads /mnt/data/aria2_downloads /mnt/data/videos /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
 mv /workdir/pyload_to_rclone.sh /workdir/.pyload/scripts/download_finished/
 mv /workdir/pyload_to_rclone_package_extracted.sh /workdir/.pyload/scripts/package_extracted/
-ln -s /workdir/service/* /etc/service/
+
+# restore backup
+tar -zxf /content/drive/*/AIO_FILES/backup.tar.gz -C /mnt/data 2>/dev/null
+mv /mnt/data/config/settings /workdir/.pyload 2>/dev/null
+
+if [ ! -f "/mnt/data/config/script.conf" ]; then
+    cp /workdir/script.conf /mnt/data/config/script.conf
+fi
+
+sed -i 's/\r$//' /mnt/data/config/script.conf
+
+# Run services
+ln -s /workdir/service/* /etc/service
+nohup runsvdir -P /etc/service &
+
+if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
+    echo "<<安装已完成, 运行下一单元格启动 Cloudflare Argo 隧道。>>"
+else
+    echo "<<Install completed, run next Cell to start Cloudflare Argo Tunnel.>>"
+fi
