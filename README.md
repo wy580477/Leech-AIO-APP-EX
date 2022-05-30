@@ -43,8 +43,8 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
 ### Colab Deployment
 
  1. Make a folder named <code>AIO_FILES</code> in your Google Drive root folder.
- 2. Upload [main.zip](https://github.com/wy580477/Heroku-AIO-APP-EX/archive/refs/heads/main.zip) to <code>AIO_FILES</code> folder.
- 3. Upload [AIO.ipynb](https://github.com/wy580477/Heroku-AIO-APP-EX/raw/main/AIO.ipynb) to Google Drive.
+ 2. Upload [Colab.zip](https://github.com/wy580477/Colab-Heroku-AIO-APP-EX/archive/refs/heads/Colab.zip) to <code>AIO_FILES</code> folder.
+ 3. Upload [AIO.ipynb](https://raw.githubusercontent.com/wy580477/Colab-Heroku-AIO-APP-EX/Colab/AIO.ipynb) to Google Drive.
  4. Run AIO.ipynb.
 
 ### Heroku Deployment

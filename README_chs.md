@@ -44,8 +44,8 @@
 ### Colab 部署步骤
 
  1. 在Google Drive根目录下建立一个名为 <code>AIO_FILES</code> 的文件夹.
- 2. 将 [main.zip](https://github.com/wy580477/Heroku-AIO-APP-EX/archive/refs/heads/main.zip) 上传到 <code>AIO_FILES</code> 文件夹.
- 3. 将 [AIO.ipynb](https://github.com/wy580477/Heroku-AIO-APP-EX/raw/main/AIO.ipynb) 上传到Google Drive.
+ 2. 将 [Colab.zip](https://github.com/wy580477/Colab-Heroku-AIO-APP-EX/archive/refs/heads/Colab.zip) 上传到 <code>AIO_FILES</code> 文件夹.
+ 3. 将 [AIO.ipynb](https://raw.githubusercontent.com/wy580477/Colab-Heroku-AIO-APP-EX/Colab/AIO.ipynb) 上传到Google Drive.
  4. 运行 AIO.ipynb.
 
 ### Heroku 部署步骤
