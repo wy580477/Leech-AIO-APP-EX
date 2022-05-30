@@ -2,8 +2,8 @@
 
 # Configure filebrowser
 if [ ! -f "/mnt/data/config/filebrowser.db" ]; then
-    filebrowser -d /mnt/data/config/filebrowser.db config init -r /mnt/data -b ${GLOBAL_PORTAL_PATH}/files -p 61801
-    filebrowser -d /mnt/data/config/filebrowser.db users add ${GLOBAL_USER} ${GLOBAL_PASSWORD} --perm.admin --commands="sv,aria2c,rclone,du,df,free,nslookup,netstat,top,ps"
+    filebrowser -d /mnt/data/config/filebrowser.db config init
+    filebrowser -d /mnt/data/config/filebrowser.db users add ${GLOBAL_USER} ${GLOBAL_PASSWORD} --perm.admin --commands="sv,du,df,free,nslookup,netstat,top,ps"
     if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
         filebrowser -d /mnt/data/config/filebrowser.db users update ${GLOBAL_USER} --locale zh-cn
     fi
@@ -15,6 +15,8 @@ else
     fi
     filebrowser -d /mnt/data/config/filebrowser.db users update ${GLOBAL_USER} -p ${GLOBAL_PASSWORD}
 fi
+
+filebrowser -d /mnt/data/config/filebrowser.db config set -r /mnt/data -b ${GLOBAL_PORTAL_PATH}/files -p 61801
 
 # Run filebrowser
 exec 2>&1
