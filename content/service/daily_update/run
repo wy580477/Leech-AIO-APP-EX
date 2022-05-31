@@ -1,0 +1,11 @@
+#!/bin/sh
+
+pipx upgrade --pip-args='--pre --no-cache-dir' pyload-ng[plugins]
+sv start aria2 || exit 1
+
+if [ -f "/mnt/data/config/aria2/tracker.sh" ]; then
+    /mnt/data/config/aria2/tracker.sh RPC localhost:61800 ${GLOBAL_PASSWORD}
+    sleep 24h
+else
+    sleep 24h
+fi

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mkdir -p /mnt/data/log/daily_update 2>/dev/null
+exec svlogd -tt /mnt/data/log/daily_update
