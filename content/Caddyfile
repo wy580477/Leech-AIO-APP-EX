@@ -86,7 +86,7 @@ handle {$GLOBAL_PORTAL_PATH}/files* {
 }
 # Configure metube
 handle {$GLOBAL_PORTAL_PATH}/metube* {
-        redir {$GLOBAL_PATH}/metube {$GLOBAL_PORTAL_PATH}/metube/         
+        redir {$GLOBAL_PORTAL_PATH}/metube {$GLOBAL_PORTAL_PATH}/metube/         
         uri strip_prefix {$GLOBAL_PORTAL_PATH}/metube
         basicauth {
                 {$GLOBAL_USER} HASH
