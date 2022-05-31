@@ -10,9 +10,9 @@ cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config
 sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/homer/assets/config.yml
 
 # Configure Caddyfile
+mkdir -p /mnt/config/caddy
 if [ ! -f "/mnt/config/caddy/Caddyfile" ]; then
-  mkdir -p /mnt/config/caddy
-  cp /workdir/Caddyfile /mnt/config/caddy/Caddyfile
+  cp /workdir/Caddyfile /mnt/config/caddy/
 fi
 
 HASH="$(caddy hash-password --plaintext ${GLOBAL_PASSWORD})"
@@ -20,4 +20,4 @@ sed -i "s|HASH|${HASH}|g" /mnt/config/caddy/Caddyfile
 
 # Run caddy
 exec 2>&1
-exec caddy run --config /workdir/Caddyfile --adapter caddyfile
+exec caddy run --config /mnt/config/caddy/Caddyfile --adapter caddyfile

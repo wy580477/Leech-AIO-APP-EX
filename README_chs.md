@@ -28,7 +28,7 @@
 ![image](https://user-images.githubusercontent.com/98247050/170441806-1d6fd4f4-d1e3-479f-9893-13f1a3e03433.png)
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
- 2. AMD64/Arm64/Armv7多架构支持。
+ 2. AMD64/Arm64架构支持。
  3. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
  4. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板。
  5. log目录下有每个服务独立日志。

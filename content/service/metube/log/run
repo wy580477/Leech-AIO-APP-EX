@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mkdir -p /mnt/data/log/olivetin 2>/dev/null
-exec svlogd -tt /mnt/data/log/olivetin
+mkdir -p /mnt/data/log/metube 2>/dev/null
+exec svlogd -tt /mnt/data/log/metube

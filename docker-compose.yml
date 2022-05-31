@@ -9,8 +9,8 @@ services:
       driver: "journald"
       # 个人偏好journald自动管理日志。
       options:
-      tag: "{{.Name}}"
-      # 给日志添加容器名(container_name)的tag。
+        tag: "{{.Name}}"
+        # 给日志添加容器名(container_name)的tag。
     volumes:
       - ~/data:/mnt/data
       # 数据存放目录。将~/data换成你在host上想指定的目录。

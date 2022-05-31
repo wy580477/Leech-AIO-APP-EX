@@ -26,7 +26,7 @@ This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittor
 ![image](https://user-images.githubusercontent.com/98247050/170442242-9876b732-c3c0-4604-a820-f26545f1f620.png)
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
- 2. AMD64/Arm64/Armv7 multi-architecture support.
+ 2. AMD64/Arm64 multi-architecture support.
  3. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
  4. You can connect Aria2, qBittorrent and Rclone from frontends running on other hosts.
  5. There are independent logs for each service in the log directory.

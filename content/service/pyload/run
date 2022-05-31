@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CONF_PATH=/mnt/data/config/pyload
+CONF_PATH=/mnt/data/config/.pyload
 
 mkdir -p ${CONF_PATH}/settings ${CONF_PATH}/scripts/download_finished ${CONF_PATH}/scripts/package_extracted 2>/dev/null
 
@@ -18,7 +18,7 @@ fi
 
 sed -i "s|str\ prefix\ :\ \"Path prefix\"\ =.*|str\ prefix\ :\ \"Path prefix\"\ =\ ${GLOBAL_PORTAL_PATH}/pyload|g" ${CONF_PATH}/settings/pyload.cfg
 sed -i 's|delete\"\ =.*|delete"\ =\ False|g' ${CONF_PATH}/settings/plugins.cfg 2>/dev/null
-export HOME=${CONF_PATH}
+export HOME=/mnt/data/config
 cd
 
 # Run pyload

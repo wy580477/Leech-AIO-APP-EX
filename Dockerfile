@@ -15,10 +15,9 @@ ENV XDG_CONFIG_HOME=/mnt/data/config
 ENV DOWNLOAD_DIR=/mnt/data/videos
 ENV STATE_DIR=/mnt/data/videos/.metube
 
-RUN apk update && apk add --no-cache caddy jq runit tzdata fuse \
-    && python3 -m pip install --user --no-cache-dir pipx \
+RUN apk add --no-cache caddy jq runit tzdata fuse libcurl \
     && apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev jpeg-dev \
-    && pipx install --pip-args='--pre --no-cache-dir' pyload-ng[plugins] \
+    && pip install --pre --no-cache-dir pyload-ng[plugins] \
     && apk del .build-deps \
     && wget -O - https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip | busybox unzip -qd /workdir/ariang - \
     && sed -i 's|6800|443|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js \
