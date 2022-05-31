@@ -1,6 +1,6 @@
 # Created by wy580477 for customized container <https://github.com/wy580477>
 {
-        storage file_system /mnt/config/caddy
+        storage file_system /mnt/data/config/caddy
         log {
                 exclude http.handlers.reverse_proxy
         }
@@ -98,7 +98,7 @@ handle {$PORTAL_PATH}/metube* {
         redir {$PORTAL_PATH}/metube {$PORTAL_PATH}/metube/         
         uri strip_prefix {$PORTAL_PATH}/metube
         basicauth {
-                {$USER} HASH
+                {$GLOBAL_USER} HASH
         }
         reverse_proxy * localhost:8081
 }

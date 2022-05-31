@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pipx upgrade --pip-args='--pre --no-cache-dir' pyload-ng[plugins]
+pipx upgrade --pip-args='--pre --no-cache-dir' pyload-ng
 sv start aria2 || exit 1
 
 if [ -f "/mnt/data/config/aria2/tracker.sh" ]; then
