@@ -1,7 +1,5 @@
 #!/bin/sh
 
-sleep 3
-
 source /mnt/data/config/rclone_options.conf
 export $(sed '/^#/d' /mnt/data/config/rclone_options.conf | cut -d= -f1)
 export RCLONE_USER=${GLOBAL_USER}
@@ -18,4 +16,4 @@ fi
 
 # Run rclone
 exec 2>&1
-exec /workdir/4* serve webdav ${WEBDAV_PATH}
+exec rclone serve webdav ${WEBDAV_PATH}

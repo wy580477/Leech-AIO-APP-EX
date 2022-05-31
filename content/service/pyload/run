@@ -1,0 +1,26 @@
+#!/bin/sh
+
+CONF_PATH=/mnt/data/config/pyload
+
+mkdir -p ${CONF_PATH}/settings ${CONF_PATH}/scripts/download_finished ${CONF_PATH}/scripts/package_extracted 2>/dev/null
+
+if [ ! -f "${CONF_PATH}/settings/pyload.cfg" ]; then
+    cp /workdir/pyload.cfg ${CONF_PATH}/settings/pyload.cfg
+fi
+
+if [ ! -f "${CONF_PATH}/scripts/download_finished/pyload_to_rclone.sh" ]; then
+    cp /workdir/pyload_to_rclone.sh ${CONF_PATH}/scripts/download_finished/
+fi
+
+if [ ! -f "${CONF_PATH}/scripts/package_extracted/pyload_to_rclone_package_extracted.sh" ]; then
+    cp /workdir/pyload_to_rclone_package_extracted.sh ${CONF_PATH}/scripts/package_extracted/
+fi
+
+sed -i "s|str\ prefix\ :\ \"Path prefix\"\ =.*|str\ prefix\ :\ \"Path prefix\"\ =\ ${GLOBAL_PORTAL_PATH}/pyload|g" ${CONF_PATH}/settings/pyload.cfg
+sed -i 's|delete\"\ =.*|delete"\ =\ False|g' ${CONF_PATH}/settings/plugins.cfg 2>/dev/null
+export HOME=${CONF_PATH}
+cd
+
+# Run pyload
+exec 2>&1
+exec pyload

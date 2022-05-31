@@ -47,7 +47,7 @@ message:
   style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
   #title: "Demo !"
   #  icon: "fa fa-grin"
-  content: "<b>Vmess UUID: VmessUUID<br />Vmess Websocket Path: GLOBAL_PORTAL_PATH/vm<br />Rclone Webdav Path: GLOBAL_PORTAL_PATH/rclonedav</b>"
+  content: "<b>Rclone Webdav Path: GLOBAL_PORTAL_PATH/rclonedav</b>"
 
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
@@ -76,11 +76,11 @@ services:
   - name: "Web 应用"
     icon: "fas fa-cloud"
     items:
-      - name: "OliveTin"
-        logo: "./assets/tools/OliveTin.png"
-        subtitle: "在网页上执行预定义 shell 指令"
+      - name: "metube"
+        logo: "./assets/tools/metube.png"
+        subtitle: "yt-dlp Web 前端"
         tag: "app"
-        url: "GLOBAL_PORTAL_PATH/olivetin"
+        url: "PORTAL_PATH/metube"
         target: "_blank" # optional html a tag target attribute
       - name: "AriaNg"
         logo: "./assets/tools/AriaNg.ico"

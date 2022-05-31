@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # https://github.com/P3TERX/aria2.conf
 # File name：tracker.sh

@@ -1,0 +1,36 @@
+version: '2.3'
+services:
+  allinone:
+    image: ghcr.io/wy580477/aria2-aio-container:latest
+    container_name: allinone
+    network_mode: host
+    restart: unless-stopped
+    logging:
+      driver: "journald"
+      # 个人偏好journald自动管理日志。
+      options:
+      tag: "{{.Name}}"
+      # 给日志添加容器名(container_name)的tag。
+    volumes:
+      - ~/data:/mnt/data
+      # 数据存放目录。将~/data换成你在host上想指定的目录。
+    environment:
+      GLOBAL_USER: admin
+      # 用户名，适用于所有需要输入用户名的Web服务。
+      GLOBAL_PASSWORD: password
+      # 务必设置为强密码。同样适用于所有需要输入密码的Web服务，同时也是Aria2的RPC密钥。
+      GLOBAL_LANGUAGE: chs
+      # 设置导航页、qBittorrent和Filebrowser界面语言为中文，可选en（英文）。
+      GLOBAL_PORTAL_PATH: /portal
+      # 导航页路径和所有Web服务基础URL，不能为空值和"/"，后面不能加"/"。建议设置为不常见的字符串，防止字典爆破攻击。
+      CADDY_DOMAIN: 
+      # 域名设置为有效域名（可以解析到你的host）,并且80端口面向公网开放，就可启用caddy的自动申请证书开启https功能。
+      # 设置为http://localhost，则监听本地回环地址提供http服务。
+      # 设置为空值，则对外部ip开放http服务，不建议在家庭局域网以外的环境使用。
+      CADDY_EMAIL: internal
+      # 接受证书颁发机构通知邮件的地址，可以填虚假地址。
+      # 默认值internal为使用caddy自签证书。
+      CADDY_WEB_PORT: 443
+      # 提供Web服务的端口，如果要关闭caddy自动https功能，需设置为非443端口。
+      TZ: Asia/Shanghai
+      # 指定时区。UTC为标准时间。

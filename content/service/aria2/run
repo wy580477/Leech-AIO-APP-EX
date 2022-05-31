@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Configure aria2
+mkdir -p /mnt/data/config/aria2 2>/dev/null
+touch /mnt/data/config/aria2/aria2.session
+
+if [ ! -f "/mnt/data/config/aria2/aria2.conf" ]; then
+    cp /workdir/aria2/aria2_${GLOBAL_LANGUAGE}.conf /mnt/data/config/aria2/
+fi
+
+if [ ! -f "/mnt/data/config/aria2/dht.dat" ]; then
+    cp /workdir/aria2/dht.dat /mnt/data/config/aria2/
+fi
+
+if [ ! -f "/mnt/data/config/aria2/dht6.dat" ]; then
+    cp /workdir/aria2/dht6.dat /mnt/data/config/aria2/
+fi
+
+sed -i "s|^rpc-secret=.*|rpc-secret=${GLOBAL_PASSWORD}|g;s|^rpc-listen-port=.*|rpc-listen-port=61800|g" /mnt/data/config/aria2/aria2.conf
+
+# Run aria2
+exec 2>&1
+exec aria2c --conf-path="/mnt/data/config/aria2/aria2.conf"
