@@ -17,15 +17,6 @@ encode gzip
 #handle @websockets {
 #        reverse_proxy * localhost:61807
 #}
-# Configure ttyd
-handle {$GLOBAL_PORTAL_PATH}/ttyd* {
-        redir {$GLOBAL_PORTAL_PATH}/ttyd {$GLOBAL_PORTAL_PATH}/ttyd/
-        uri strip_prefix {$GLOBAL_PORTAL_PATH}/ttyd       
-        basicauth {              
-                {$GLOBAL_USER} HASH
-        }     
-        reverse_proxy * localhost:61803
-}
 # Configure AriaNg
 handle {$GLOBAL_PORTAL_PATH}/ariang* {
         redir {$GLOBAL_PORTAL_PATH}/ariang {$GLOBAL_PORTAL_PATH}/ariang/         
@@ -43,14 +34,14 @@ handle {$GLOBAL_PORTAL_PATH}/qbit* {
         reverse_proxy * localhost:61804
 }
 # Direct /api to qBittorrent WebUI port, for connecting from services which don't support custom path.
-#handle /api {       
+#handle /api* {       
 #        reverse_proxy * localhost:61804
 #}
-#Configure Vuetorrent   
+# Configure Vuetorrent   
 handle {$GLOBAL_PORTAL_PATH}/vue* {
         redir {$GLOBAL_PORTAL_PATH}/vue {$GLOBAL_PORTAL_PATH}/vue/
         uri strip_prefix {$GLOBAL_PORTAL_PATH}/vue
-        handle /api {
+        handle /api* {
                 reverse_proxy * localhost:61804                                                               
         }                                                                                                             
         root * /workdir/vuetorrent/public                                                             
@@ -94,9 +85,9 @@ handle {$GLOBAL_PORTAL_PATH}/files* {
         reverse_proxy {$GLOBAL_PORTAL_PATH}/files* localhost:61801
 }
 # Configure metube
-handle {$PORTAL_PATH}/metube* {
-        redir {$PORTAL_PATH}/metube {$PORTAL_PATH}/metube/         
-        uri strip_prefix {$PORTAL_PATH}/metube
+handle {$GLOBAL_PORTAL_PATH}/metube* {
+        redir {$GLOBAL_PATH}/metube {$GLOBAL_PORTAL_PATH}/metube/         
+        uri strip_prefix {$GLOBAL_PORTAL_PATH}/metube
         basicauth {
                 {$GLOBAL_USER} HASH
         }

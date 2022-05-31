@@ -16,6 +16,10 @@ if [ ! -f "/mnt/data/config/aria2/dht6.dat" ]; then
     cp /workdir/aria2/dht6.dat /mnt/data/config/aria2/
 fi
 
+if [ ! -f "/mnt/data/config/aria2/tracker.sh" ]; then
+    cp /workdir/aria2/tracker.sh /mnt/data/config/aria2/
+fi
+
 sed -i "s|^rpc-secret=.*|rpc-secret=${GLOBAL_PASSWORD}|g;s|^rpc-listen-port=.*|rpc-listen-port=61800|g" /mnt/data/config/aria2/aria2.conf
 
 # Run aria2

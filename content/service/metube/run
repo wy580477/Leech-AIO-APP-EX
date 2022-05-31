@@ -7,7 +7,6 @@ fi
 
 source /mnt/data/config/metube_options.conf
 export $(sed '/^#/d' /mnt/data/config/metube_options.conf | cut -d= -f1)
-mkdir -p /mnt/data/videos 2>/dev/null
 cd /app
 
 exec 2>&1
