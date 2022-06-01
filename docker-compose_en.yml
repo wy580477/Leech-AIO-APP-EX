@@ -1,0 +1,33 @@
+version: '2.3'
+services:
+  allinone:
+    image: ghcr.io/wy580477/leech-aio-app-ex:latest
+    # For lite version without pyLoad, use: ghcr.io/wy580477/leech-aio-app-ex-lite:latest
+    container_name: allinone
+    network_mode: host
+    restart: unless-stopped
+    logging:
+      driver: "journald"
+      options:
+        tag: "{{.Name}}"
+    volumes:
+      - ~/data:/mnt/data
+      # Volume for storing data.
+    environment:
+      GLOBAL_USER: admin
+      # Username for all web services except qBittorret.
+      GLOBAL_PASSWORD: password
+      # Password for all web services except qBittorret, double as Aria2 RPC token. Recommend strong password.
+      GLOBAL_PORTAL_PATH: /portal
+      # Portal page & base URL for all web services. Do not set to blank or '/'.
+      CADDY_DOMAIN: 
+      # If value is set to a valid domain name (it can be resolved to your host) and port 80 is open to internet, caddy's auto-https function will be enabled.
+      # Set value to http://localhost, http service is provided at local loopback address.
+      # If you set value to blank, http service will open to external IP.This is not recommended other than using in home LAN.
+      CADDY_EMAIL: internal
+      # Email address for receiving notification emails from certification authority, you can use fake address.
+      # If set to "internal", caddy will use self-signed cert.
+      CADDY_WEB_PORT: 443
+      # Port for web services. If you want to disable auto-https from caddy, set to non-443 port.
+      TZ: UTC
+      # Timezone
