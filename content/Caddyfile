@@ -25,6 +25,10 @@ handle {$GLOBAL_PORTAL_PATH}/qbit* {
         uri strip_prefix {$GLOBAL_PORTAL_PATH}/qbit
         reverse_proxy * localhost:61804
 }
+# Direct /api to qBittorrent WebUI port, for connecting from services which don't support custom path.
+#handle /api* {       
+#        reverse_proxy * localhost:61804
+#}
 # Configure Vuetorrent   
 handle {$GLOBAL_PORTAL_PATH}/vue* {
         redir {$GLOBAL_PORTAL_PATH}/vue {$GLOBAL_PORTAL_PATH}/vue/
