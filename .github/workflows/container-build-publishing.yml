@@ -72,5 +72,5 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:full,${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
