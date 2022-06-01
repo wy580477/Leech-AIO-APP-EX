@@ -2,7 +2,7 @@ version: '2.3'
 services:
   allinone:
     image: ghcr.io/wy580477/leech-aio-app-ex:latest
-    # For lite version without pyLoad, use: ghcr.io/wy580477/leech-aio-app-ex-lite:latest
+    # For lite version without pyLoad, use: ghcr.io/wy580477/leech-aio-app-ex:lite
     container_name: allinone
     network_mode: host
     restart: unless-stopped
