@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Update pyLoad
+pipx upgrade --pip-args='--pre --no-cache-dir' pyload-ng 2>/dev/null
+
 CONF_PATH=/mnt/data/config/.pyload
 
 mkdir -p ${CONF_PATH}/settings ${CONF_PATH}/scripts/download_finished ${CONF_PATH}/scripts/package_extracted 2>/dev/null
