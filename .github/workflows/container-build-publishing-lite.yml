@@ -14,7 +14,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: leech-aio-app-ex
+  IMAGE_NAME: ${{ github.repository }}
 
 
 jobs:
@@ -57,11 +57,14 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          flavor: |
+            latest=false
           tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=raw,enable=true,value=lite
+            type=semver,pattern={{version}},suffix=lite
+            type=semver,pattern={{major}}.{{minor}},suffix=lite
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
@@ -74,5 +77,5 @@ jobs:
           file: Dockerfile.lite
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:lite,${{ steps.meta.outputs.tags }}_lite
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
