@@ -11,7 +11,7 @@ RUN apk add --no-cache caddy jq runit tzdata fuse \
     && wget -O - https://github.com/wy580477/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer - \
     && wget -O - https://github.com/WDaan/VueTorrent/releases/latest/download/vuetorrent.zip | busybox unzip -qd /workdir - \
     && chmod +x /workdir/service/*/run /workdir/service/*/log/run /workdir/aria2/*.sh /workdir/*.sh \
-    && /workdir/install_lite.sh \
+    && /workdir/install.sh \
     && rm -f /workdir/install.sh \
     && mv /workdir/ytdlp*.sh /usr/bin/ \
     && ln -s /workdir/service/* /etc/service/

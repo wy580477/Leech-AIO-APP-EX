@@ -2,6 +2,19 @@ FROM alexta69/metube:latest
 
 COPY ./content /workdir/
 
+ENV GLOBAL_USER=admin
+ENV GLOBAL_PASSWORD=password
+ENV CADDY_DOMAIN=http://localhost
+ENV CADDY_EMAIL=internal
+ENV CADDY_WEB_PORT=8080
+ENV GLOBAL_LANGUAGE=en
+ENV GLOBAL_PORTAL_PATH=/portal
+ENV TZ=UTC
+ENV PATH="/root/.local/bin:$PATH"
+ENV XDG_CONFIG_HOME=/mnt/data/config
+ENV DOWNLOAD_DIR=/mnt/data/videos
+ENV STATE_DIR=/mnt/data/videos/.metube
+
 RUN apk add --no-cache caddy jq runit tzdata fuse libcurl p7zip \
     && python3 -m pip install --user --no-cache-dir pipx \
     && apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev jpeg-dev \
@@ -19,18 +32,5 @@ RUN apk add --no-cache caddy jq runit tzdata fuse libcurl p7zip \
     && ln -s /workdir/service/* /etc/service/
 
 VOLUME /mnt/data
-
-ENV GLOBAL_USER=admin
-ENV GLOBAL_PASSWORD=password
-ENV CADDY_DOMAIN=http://localhost
-ENV CADDY_EMAIL=internal
-ENV CADDY_WEB_PORT=8080
-ENV GLOBAL_LANGUAGE=en
-ENV GLOBAL_PORTAL_PATH=/portal
-ENV TZ=UTC
-ENV PATH="/root/.local/bin:$PATH"
-ENV XDG_CONFIG_HOME=/mnt/data/config
-ENV DOWNLOAD_DIR=/mnt/data/videos
-ENV STATE_DIR=/mnt/data/videos/.metube
 
 ENTRYPOINT ["sh","-c","/workdir/entrypoint.sh"]
