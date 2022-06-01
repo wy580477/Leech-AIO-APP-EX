@@ -1,10 +1,3 @@
-## 鸣谢
-
-- [P3TERX/aria2.conf](https://github.com/P3TERX/aria2.conf)  依靠来自P3TERX的Aria2脚本，实现了Aria2下载完成自动触发Rclone上传。
-- [wahyd4/aria2-ariang-docker](https://github.com/wahyd4/aria2-ariang-docker)  启发了本项目的总体思路。
-- [bastienwirtz/homer](https://github.com/bastienwirtz/homer)  使用yaml配置文件的静态导航页，便于自定义。
-- [mayswind/AriaNg](https://github.com/mayswind/AriaNg) | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) | [aria2/aria2](https://github.com/aria2/aria2) | [rclone/rclone](https://github.com/rclone/rclone) | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | [userdocs/qbittorrent-nox-static](https://github.com/userdocs/qbittorrent-nox-static) | [WDaan/VueTorrent](https://github.com/WDaan/VueTorrent) | [alexta69/metube](https://github.com/alexta69/metube) | [pyload/pyload](https://github.com/pyload/pyload)
-
 ## 注意
 
 - 所有可以登陆此APP的用户可以访问/修改此APP以及Rclone远程存储的所有数据，不要存放敏感数据，不要与他人共享使用。
@@ -21,21 +14,19 @@
 
 ## 概述
 
-本项目集成了yt-dlp和其Web前端metube、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、、Rclone远程存储文件列表和Webdav服务、可自定义的导航页、Filebrowser轻量网盘。
-
-[VPS部署版本](https://github.com/wy580477/Aria2-AIO-Container)
+本项目集成了yt-dlp和其Web前端metube、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘。
 
 ![image](https://user-images.githubusercontent.com/98247050/170441806-1d6fd4f4-d1e3-479f-9893-13f1a3e03433.png)
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
- 2. AMD64/Arm64架构支持。
+ 2. AMD64/Arm64架构支持，Lite版本增加Armv7支持。
  3. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
- 4. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板。
+ 4. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板和flexget/Radarr/Sonarr等应用。
  5. log目录下有每个服务独立日志。
 
 ## 部署方式
 
- 1. 下载[docker-compose文件](https://raw.githubusercontent.com/wy580477/Aria2-AIO-Container/master/docker-compose.yml)
+ 1. 下载[docker-compose文件](https://raw.githubusercontent.com/wy580477/Leech-AIO-APP-EX/container/docker-compose.yml). Lite版本无pyLoad，容器体积更小。
  2. 按说明设置好变量，用如下命令运行容器。
 
         ```
@@ -44,7 +35,7 @@
 
 ### 初次使用
 
-    1. 按ip地址或域名+基础URL即可打开导航页。
+    1. 访问ip地址或域名+基础URL即可打开导航页。
     2. 点击AriaNg，这时会弹出认证失败警告，按下图把之前部署时设置的密码填入RPC密钥即可。
           <img src="https://user-images.githubusercontent.com/98247050/163184113-d0f09e78-01f9-4d4a-87b9-f4a9c1218253.png"  width="700"/>
     3. 点击qBittorrent或者VueTorrent，输入默认用户名admin和默认密码adminadmin登陆。然后更改用户名和密码，务必设置为强密码。
@@ -52,8 +43,7 @@
 
 ### 更多用法和注意事项
 
- 1. 如果网页访问APP出现故障，按下shift+F5强制刷新，如果还不行，从浏览器中清除域名/ip缓存和cookie。
- 2. 命令行调用yt-dlp方法：
+ 1. 命令行调用yt-dlp方法：
 
         ```
         docker exec allinone yt-dlp
@@ -61,8 +51,21 @@
         docker exec allinone yt-dlpup.sh https://www.youtube.com/watch?v=rbDzVzBsbGM
         # 下载到/mnt/data/videos目录并与rclone联动。注意要用容器内部路径，不是主机路径。
         ```
+ 2. 对于不支持qBittorrent自定义路径的应用比如Radarr, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
 
- 3. 考虑安全原因Filebrowser初始用户无管理员权限，如需要管理员权限，执行下列命令：
+            ```
+            handle /api* {       
+                    reverse_proxy * localhost:61804
+            }
+            ```
+    然后在宿主机终端执行如下命令即可生效:
+
+            ```
+            docker exec allinone sv restart caddy
+            ```
+ 3. Aria2 JSON-RPC 路径为： ${GLOBAL_PORTAL_PATH}/jsonrpc
+    Aria2 XML-RPC 路径为： ${GLOBAL_PORTAL_PATH}/rpc
+ 4. 考虑安全原因Filebrowser初始用户无管理员权限，如需要管理员权限，执行下列命令：
 
         ```
         docker exec -it allinone sh
@@ -74,10 +77,11 @@
         sv start filebrowser
         # 启动filebrowser服务
         ```
- 4. pyLoad已知Bug：
+ 5. pyLoad已知Bug：
     - 登陆后重定向到http，解决方法：关闭当前pyLoad页面，重新打开。
     - 解压后不能删除原文件，解决方法：Settings--Plugins--ExtractArchive，将"Move to trash instead delete"项设置为off。
- 5. 将下列内容添加到rclone.conf文件，可以将本地存储作为Rclone的远程存储，便于在Rclone WebUI上手动上传。
+    - 下载http/https直链文件可能会自动移动文件到trash文件夹，解决方法：http/https直链请使用aria2下载。
+ 6. 将下列内容添加到rclone.conf文件，可以将本地存储作为Rclone的远程存储，便于在Rclone WebUI上手动上传。
 
         ```
         [local]
@@ -85,4 +89,12 @@
         remote = /mnt/data
         ```
 
- 6. 无法通过Rclone Web前端建立需要网页认证的存储配置。
+ 7. 无法通过Rclone Web前端建立需要网页认证的存储配置。
+
+## 鸣谢
+
+- [alexta69/metube](https://github.com/alexta69/metube) 简洁好用的yt-dlp前端。
+- [P3TERX/aria2.conf](https://github.com/P3TERX/aria2.conf)  依靠来自P3TERX的Aria2脚本，实现了Aria2下载完成自动触发Rclone上传。
+- [wahyd4/aria2-ariang-docker](https://github.com/wahyd4/aria2-ariang-docker)  启发了本项目的总体思路。
+- [bastienwirtz/homer](https://github.com/bastienwirtz/homer)  使用yaml配置文件的静态导航页，便于自定义。
+- [mayswind/AriaNg](https://github.com/mayswind/AriaNg) | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) | [aria2/aria2](https://github.com/aria2/aria2) | [rclone/rclone](https://github.com/rclone/rclone) | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | [userdocs/qbittorrent-nox-static](https://github.com/userdocs/qbittorrent-nox-static) | [WDaan/VueTorrent](https://github.com/WDaan/VueTorrent) | [alexta69/metube](https://github.com/alexta69/metube) | [pyload/pyload](https://github.com/pyload/pyload)
