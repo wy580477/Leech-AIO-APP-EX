@@ -9,10 +9,16 @@ cp /workdir/homer_conf/* /workdir/homer/assets/tools/
 cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config.yml
 sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/homer/assets/config.yml
 
+if [ ! -f "/workdir/homer_conf/pyload.png" ]; then
+    LINE=$(sed -n -e '/pyLoad/=' /workdir/homer/assets/config.yml)
+    LINE2=$((LINE + 5))
+    sed -i "${LINE},${LINE2}d" /workdir/homer/assets/config.yml
+fi
+
 # Configure Caddyfile
-mkdir -p /mnt/data/config/caddy
+mkdir -p /mnt/data/config/caddy 2>/dev/null
 if [ ! -f "/mnt/data/config/caddy/Caddyfile" ]; then
-  cp /workdir/Caddyfile /mnt/data/config/caddy/
+    cp /workdir/Caddyfile /mnt/data/config/caddy/
 fi
 
 HASH="$(caddy hash-password --plaintext ${GLOBAL_PASSWORD})"
