@@ -1,7 +1,8 @@
 version: '2.3'
 services:
   allinone:
-    image: 
+    image: ghcr.io/wy580477/leech-aio-app-ex:latest
+    # 更轻量的无pyLoad版本: ghcr.io/wy580477/leech-aio-app-ex-lite:latest
     container_name: allinone
     network_mode: host
     restart: unless-stopped
@@ -16,9 +17,9 @@ services:
       # 数据存放目录。将~/data换成你在host上想指定的目录。
     environment:
       GLOBAL_USER: admin
-      # 用户名，适用于所有需要输入用户名的Web服务。
+      # 用户名，适用于除qBittorrent外所有需要输入用户名的Web服务。
       GLOBAL_PASSWORD: password
-      # 务必设置为强密码。同样适用于所有需要输入密码的Web服务，同时也是Aria2的RPC密钥。
+      # 务必设置为强密码。同样适用于除qBittorrent外所有需要输入密码的Web服务，同时也是Aria2的RPC密钥。
       GLOBAL_LANGUAGE: chs
       # 设置导航页、qBittorrent和Filebrowser界面语言为中文，可选en（英文）。
       GLOBAL_PORTAL_PATH: /portal
