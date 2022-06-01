@@ -18,8 +18,7 @@ sed -i "s|^rpc-secret=.*||g;s|^rpc-listen-port=.*|rpc-listen-port=61800|g" /mnt/
 
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 ln -s /mnt/data/config/aria2.conf /tmp/2${EXEC}.conf
-mv /workdir/2* /workdir/2${EXEC}
 
 # Run aria2
 exec 2>&1
-exec /workdir/2${EXEC} --conf-path="/tmp/2${EXEC}.conf"
+exec /workdir/2* --conf-path="/tmp/2${EXEC}.conf"

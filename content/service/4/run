@@ -4,8 +4,6 @@ if [ ! -f "/mnt/data/config/rclone_options.conf" ]; then
     cp /workdir/rclone_options.conf /mnt/data/config/rclone_options.conf
 fi
 
-EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-mv /workdir/4* /workdir/4${EXEC}
 source /mnt/data/config/rclone_options.conf
 export $(sed '/^#/d' /mnt/data/config/rclone_options.conf | cut -d= -f1)
 export RCLONE_RC_SERVE=true
@@ -17,4 +15,4 @@ export RCLONE_RC_ADDR=localhost:61802
 
 # Run rclone
 exec 2>&1
-exec /workdir/4${EXEC} rcd
+exec /workdir/4* rcd

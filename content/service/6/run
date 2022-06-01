@@ -15,11 +15,9 @@ fi
 
 sed -i "s|str\ prefix\ :\ \"Path prefix\"\ =.*|str\ prefix\ :\ \"Path prefix\"\ =\ ${GLOBAL_PORTAL_PATH}/pyload|g" /workdir/.pyload/settings/pyload.cfg
 sed -i 's|delete\"\ =.*|delete"\ =\ False|g' /workdir/.pyload/settings/plugins.cfg 2>/dev/null
-EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-mv /usr/local/bin/1* /usr/local/bin/1${EXEC}
 export HOME=/workdir
 cd
 
 # Run pyload
 exec 2>&1
-exec /usr/local/bin/1${EXEC}
+exec /usr/local/bin/1*
