@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Write start time
+echo $(date +%s) > /workdir/dyno_start_time
+
 DIR_TMP="$(mktemp -d)"
 source /etc/env
 export $(sed '/^#/d' /etc/env | cut -d= -f1)
@@ -11,8 +14,9 @@ else
 fi
 
 # Install jq & runit
+rm -rf /etc/apt/sources.list.d
 CODE_NAME=$(lsb_release -c | sed 's/.*:\s*//')
-echo "deb http://us.archive.ubuntu.com/ubuntu/ ${CODE_NAME} main universe" >>/etc/apt/sources.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ ${CODE_NAME} main universe" >/etc/apt/sources.list
 apt-get -qq update >/dev/null && apt-get -qq install -y jq runit >/dev/null
 rm -rf /var/lib/apt/lists/*
 
