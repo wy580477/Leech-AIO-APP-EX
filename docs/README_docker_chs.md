@@ -21,7 +21,7 @@
 
 ## 部署方式
 
- 1. 下载[docker-compose文件](https://raw.githubusercontent.com/wy580477/Leech-AIO-APP-EX/container/docker-compose.yml). Lite版本无pyLoad，容器体积更小。
+ 1. 下载[docker-compose文件](https://github.com/wy580477/Leech-AIO-APP-EX/blob/docker/docker-compose.yml). Lite版本无pyLoad，容器体积更小。
  2. 按说明设置好变量，用如下命令运行容器。
 
         ```

@@ -19,7 +19,7 @@ This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittor
 
 ## <a id="Deployment"></a>Deployment
 
- 1. Download [docker-compose file](https://raw.githubusercontent.com/wy580477/Leech-AIO-APP-EX/container/docker-compose_en.yml). Lite version without pyLoad has smaller image size.
+ 1. Download [docker-compose file](https://github.com/wy580477/Leech-AIO-APP-EX/blob/docker/docker-compose_en.yml). Lite version without pyLoad has smaller image size.
  2. Set envs and run container with following command:
 
             ```
