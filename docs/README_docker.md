@@ -38,29 +38,29 @@ This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittor
 
  1. How to use yt-dlp via command line：  
 
-            ```
+
             docker exec allinone yt-dlp
             # Built-in script：ytdlpup.sh
             # Download videos to videos folder, then send job to Rclone.
             docker exec allinone ytdlpup.sh https://www.youtube.com/watch?v=rbDzVzBsbGM
-            ```
+
  2. For apps which don't support custom path for qBittorrent such as Radarr, uncomment followings line in Caddyfile under config/caddy folder:
 
-            ```
+
             handle /api* {       
                     reverse_proxy * localhost:61804
             }
-            ```
+
     Then run following command for change to take effect:
 
-            ```
+
             docker exec allinone sv restart caddy
-            ```
- 3. Aria2 JSON-RPC path： ${GLOBAL_PORTAL_PATH}/jsonrpc
-    Aria2 XML-RPC path： ${GLOBAL_PORTAL_PATH}/rpc
+
+ 3. Aria2 JSON-RPC path： \${GLOBAL_PORTAL_PATH}/jsonrpc      
+    Aria2 XML-RPC path： \${GLOBAL_PORTAL_PATH}/rpc
  4. Considering security reasons, the initial user of Filebrowser doesn't have administrator privileges. If administrator privileges are wanted, run following commands:  
 
-            ```
+
             docker exec -it allinone sh
             # enter container shell
             sv stop filebrowser
@@ -69,17 +69,17 @@ This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittor
             # add new account with admin privileges
             sv start filebrowser
             # start filebrowser service
-            ```
+
  5. Known pyLoad bugs：
     - Redirect to http after login，solution: close the pyLoad page and reopen it.
     - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.
  6. After adding following content to rclone.conf file, you can use local storage as a Rclone remote for manually uploading via Rclone Web UI.
 
-            ```
+
             [local]
             type = alias
             remote = /mnt/data
-            ```
+
 
  7. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
 

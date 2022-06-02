@@ -91,7 +91,7 @@
        }
        ```
 
- 5. Aria2 JSON-RPC 路径为： \${GLOBAL_PORTAL_PATH}/jsonrpc   
-    Aria2 XML-RPC 路径为： \${GLOBAL_PORTAL_PATH}/rpc
+ 5. Aria2 JSON-RPC 路径为： \$\{GLOBAL_PORTAL_PATH\}/jsonrpc   
+    Aria2 XML-RPC 路径为： \$\{GLOBAL_PORTAL_PATH\}/rpc
  6. 无法通过Rclone Web前端建立需要网页认证的存储配置。
  7. Vmess协议AlterID为0，可用Vmess WS 80端口或者Vmess WS tls 443端口连接。Xray设置可以通过content/xray.yaml文件修改。Heroku国内直连可能需要使用Cloudflare或其它方式中转。
