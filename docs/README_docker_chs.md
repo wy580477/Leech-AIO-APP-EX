@@ -24,17 +24,15 @@
  1. 下载[docker-compose文件](https://github.com/wy580477/Leech-AIO-APP-EX/blob/docker/docker-compose.yml). Lite版本无pyLoad，容器体积更小。
  2. 按说明设置好变量，用如下命令运行容器。
 
-        ```
         docker-compose up -d
-        ```
 
 ### 初次使用
 
-    1. 访问ip地址或域名+基础URL即可打开导航页。
-    2. 点击AriaNg，这时会弹出认证失败警告，按下图把之前部署时设置的密码填入RPC密钥即可。
-          <img src="https://user-images.githubusercontent.com/98247050/163184113-d0f09e78-01f9-4d4a-87b9-f4a9c1218253.png"  width="700"/>
-    3. 点击qBittorrent或者VueTorrent，输入默认用户名admin和默认密码adminadmin登陆。然后更改用户名和密码，务必设置为强密码。
-    4. 通过Filebrowse将rclone.conf文件上传到config目录，可以通过编辑script.conf文件更改Rclone自动上传设置。
+1. 访问ip地址或域名+基础URL即可打开导航页。
+2. 点击AriaNg，这时会弹出认证失败警告，按下图把之前部署时设置的密码填入RPC密钥即可。
+       <img src="https://user-images.githubusercontent.com/98247050/163184113-d0f09e78-01f9-4d4a-87b9-f4a9c1218253.png"  width="700"/>
+3. 点击qBittorrent或者VueTorrent，输入默认用户名admin和默认密码adminadmin登陆。然后更改用户名和密码，务必设置为强密码。
+4. 通过Filebrowse将rclone.conf文件上传到config目录，可以通过编辑script.conf文件更改Rclone自动上传设置。
 
 ### 更多用法和注意事项
 
@@ -44,7 +42,7 @@
         docker exec allinone yt-dlp
         # 内置快捷脚本：ytdlpup.sh  
         docker exec allinone yt-dlpup.sh https://www.youtube.com/watch?v=rbDzVzBsbGM
-        # 下载到/mnt/data/videos目录并与rclone联动。注意要用容器内部路径，不是主机路径。
+        # 下载到videos目录并与rclone联动。
         ```
  2. 对于不支持qBittorrent自定义路径的应用比如Radarr, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
 

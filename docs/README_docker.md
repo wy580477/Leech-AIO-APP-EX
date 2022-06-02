@@ -22,9 +22,7 @@ This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittor
  1. Download [docker-compose file](https://github.com/wy580477/Leech-AIO-APP-EX/blob/docker/docker-compose_en.yml). Lite version without pyLoad has smaller image size.
  2. Set envs and run container with following command:
 
-            ```
             docker-compose -f docker-compose_en.yml up -d
-            ```
 
 ## <a id="first"></a>First run
 
@@ -43,7 +41,7 @@ This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittor
             ```
             docker exec allinone yt-dlp
             # Built-in script：ytdlpup.sh
-            # Download videos to /mnt/data/videos folder, then send job to Rclone.
+            # Download videos to videos folder, then send job to Rclone.
             docker exec allinone ytdlpup.sh https://www.youtube.com/watch?v=rbDzVzBsbGM
             ```
  2. For apps which don't support custom path for qBittorrent such as Radarr, uncomment followings line in Caddyfile under config/caddy folder:
