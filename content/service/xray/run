@@ -1,0 +1,30 @@
+#!/bin/sh
+
+get_current_version() {
+  # Get the CURRENT_VERSION
+  if [[ -f '/usr/bin/xray' ]]; then
+    CURRENT_VERSION="$(/usr/bin/xray -version | awk 'NR==1 {print $2}')"
+    CURRENT_VERSION="v${CURRENT_VERSION#v}"
+  else
+    CURRENT_VERSION=""
+  fi
+}
+
+
+
+DIR_TMP="$(mktemp -d)"
+
+# Get Ray executable release
+wget -qO - https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip | busybox unzip -qd ${DIR_TMP} -
+
+# Install Xray
+install -m 755 ${DIR_TMP}/xray /usr/bin/xray
+rm -rf ${DIR_TMP}
+wget -qO /usr/bin/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+wget -qO /usr/bin/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
+
+# Run Xray
+sed -i "s|VmessUUID|${VmessUUID}|g;s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/xray.yaml
+
+exec 2>&1
+exec xray -config=/mnt/data/config/xray.yaml

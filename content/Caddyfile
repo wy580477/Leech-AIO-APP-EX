@@ -8,15 +8,15 @@
 {$CADDY_DOMAIN}:{$CADDY_WEB_PORT}
 tls {$CADDY_EMAIL}
 encode gzip
-# Example v2ray/Xray websocket reverse proxy config
-#@websockets {
-#        header Connection *Upgrade*
-#        header Upgrade websocket
-#        path {$GLOBAL_PORTAL_PATH}/vm*
-#}
-#handle @websockets {
-#        reverse_proxy * localhost:61807
-#}
+# Xray websocket reverse proxy config
+@websockets {
+        header Connection *Upgrade*
+        header Upgrade websocket
+        path {$GLOBAL_PORTAL_PATH}/vm*
+}
+handle @websockets {
+        reverse_proxy * localhost:61807
+}
 # Configure AriaNg
 handle {$GLOBAL_PORTAL_PATH}/ariang* {
         redir {$GLOBAL_PORTAL_PATH}/ariang {$GLOBAL_PORTAL_PATH}/ariang/         
