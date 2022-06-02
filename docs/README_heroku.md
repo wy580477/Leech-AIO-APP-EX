@@ -63,7 +63,7 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
       remote = /mnt/data
       ```
 
- 4. For apps which don't support custom path for qBittorrent such as Radarr, uncomment followings line in Caddyfile under config/caddy folder:
+ 4. For apps which don't support custom path for qBittorrent such as Radarr, uncomment followings line in Caddyfile under config/caddy folder before deployment:
 
             handle /api* {       
                     reverse_proxy * localhost:61804
