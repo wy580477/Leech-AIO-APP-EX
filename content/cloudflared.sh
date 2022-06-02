@@ -15,3 +15,4 @@ else
 fi
 
 echo $(grep -oP "https://.*trycloudflare.com" nohup.out)${GLOBAL_PORTAL_PATH}
+tail -f
