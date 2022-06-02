@@ -79,10 +79,7 @@
        type = alias
        remote = /mnt/data
        ```
-    然后在宿主机终端中运行如下命令以生效:
-
-            docker exec allinone sv restart caddy
-
+       
  4. 对于不支持qBittorrent自定义路径的应用比如Radarr, 部署前在content目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
 
        ```

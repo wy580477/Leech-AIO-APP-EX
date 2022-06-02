@@ -69,10 +69,6 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
                     reverse_proxy * localhost:61804
             }
 
-    Then run following command for change to take effect:
-
-            docker exec allinone sv restart caddy
-
  5. Aria2 JSON-RPC path： \${GLOBAL_PORTAL_PATH}/jsonrpc
     Aria2 XML-RPC path： \${GLOBAL_PORTAL_PATH}/rpc
  6. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
