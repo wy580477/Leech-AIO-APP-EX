@@ -2,8 +2,6 @@ FROM alexta69/metube:latest
 
 COPY ./content /workdir/
 
-ARG PYLOAD_INSTALL=Disable
-
 RUN apk add --no-cache curl caddy jq runit tzdata fuse \
     && wget -O - https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip | busybox unzip -qd /workdir/ariang - \
     && sed -i 's|6800|443|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js \
@@ -14,6 +12,7 @@ RUN apk add --no-cache curl caddy jq runit tzdata fuse \
     && /workdir/install.sh \
     && rm -f /workdir/install.sh \
     && mv /workdir/ytdlp*.sh /usr/bin/ \
+    && rm -rf /workdir/service/pyLoad /workdir/homer_conf/pyload.png \
     && ln -s /workdir/service/* /etc/service/
 
 VOLUME /mnt/data

@@ -4,14 +4,14 @@ if [ ! -f "/mnt/data/config/rclone_options.conf" ]; then
     cp /workdir/rclone_options.conf /mnt/data/config/rclone_options.conf
 fi
 
-source /mnt/data/config/rclone_options.conf
-export $(sed '/^#/d' /mnt/data/config/rclone_options.conf | cut -d= -f1)
 export RCLONE_RC_SERVE=true
 export RCLONE_RC_WEB_GUI_NO_OPEN_BROWSER=true
 export RCLONE_RC_USER=${GLOBAL_USER}
 export RCLONE_RC_PASS=${GLOBAL_PASSWORD}
 export RCLONE_CONFIG=/mnt/data/config/rclone.conf
 export RCLONE_RC_ADDR=localhost:61802
+source /mnt/data/config/rclone_options.conf
+export $(sed '/^#/d' /mnt/data/config/rclone_options.conf | cut -d= -f1)
 
 # Run rclone
 exec 2>&1
