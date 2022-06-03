@@ -8,7 +8,7 @@
 
 ## <a id="Overview"></a>Overview
 
-This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, Filebrowser.
+This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, Filebrowser, Xray proxy service.
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. AMD64/Arm64 multi-architecture support, Lite version has additional Armv7 support.

@@ -8,7 +8,7 @@
 
 ## 概述
 
-本项目集成了yt-dlp和其Web前端metube、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘。
+本项目集成了yt-dlp和其Web前端metube、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘、Xray代理服务。
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. AMD64/Arm64架构支持，Lite版本增加Armv7支持。
