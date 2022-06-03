@@ -31,3 +31,6 @@ services:
       # Port for web services. If you want to disable auto-https from caddy, set to non-443 port.
       TZ: UTC
       # Timezone
+      VmessUUID: 77f8e2e6-279b-4093-94d7-6c6703ff24b8
+      # Vmess UUID for Xray proxy protocol. Use UUID tools to generate you own UUID.
+      # Leave blank to disable Xray service.

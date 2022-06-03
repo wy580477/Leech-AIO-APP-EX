@@ -42,9 +42,7 @@ wget -O - https://github.com/filebrowser/filebrowser/releases/latest/download/li
 # Install Aria2
 wget -O - https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-amd64.tar.gz | tar -zxf - -C /usr/bin
 
-rm -rf ${DIR_TMP}
+# Install Xray
+/workdir/xray_install.sh
 
-# Remove pyLoad related files
-if [ "${PYLOAD_INSTALL}" = "Disable" ]; then
-  rm -rf /workdir/service/pyLoad /workdir/homer_conf/pyload.png
-fi
+rm -rf ${DIR_TMP}

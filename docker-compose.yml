@@ -35,3 +35,6 @@ services:
       # 提供Web服务的端口，如果要关闭caddy自动https功能，需设置为非443端口。
       TZ: Asia/Shanghai
       # 指定时区。UTC为标准时间。
+      VmessUUID: 77f8e2e6-279b-4093-94d7-6c6703ff24b8
+      # Xray Vmess代理协议UUID，务必修改，建议使用UUID工具生成。
+      # 留空可禁用Xray服务。
