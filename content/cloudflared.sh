@@ -3,16 +3,22 @@
 source /etc/env
 export $(sed '/^#/d' /etc/env | cut -d= -f1)
 
-killall argo 2>/dev/null
-rm -f nohup.out
-nohup argo tunnel --url http://localhost:8880 &
-sleep 5
-
 if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
     echo "Cloudflared Argo 隧道将于 10 秒至 1 分钟后准备好"
 else
     echo "Cloudflared Argo Tunnel will be ready in one minute"
 fi
 
-echo $(grep -oP "https://.*trycloudflare.com" nohup.out)${GLOBAL_PORTAL_PATH}
+killall argo 2>/dev/null
+rm -f nohup.out
+nohup argo tunnel --url http://localhost:8880 &
+sleep 5
+URL=$(grep -oP "https://.*trycloudflare.com" nohup.out)
+
+while [[ "${HTTP_CODE}" -ne 200 ]]; do
+    sleep 5
+    HTTP_CODE=$(curl -I -s -w %{http_code} ${URL} -o /dev/null)
+done
+
+echo ${URL}${GLOBAL_PORTAL_PATH}
 tail -f
