@@ -2,7 +2,9 @@ log:
   loglevel: info
 inbounds:
 # This outbound is behind Caddy reverse proxy
+# 此项出站由Caddy进行反向代理
 # VmessUUID & GLOBAL_PORTAL_PATH are placeholders for container environment variables
+# VmessUUID & GLOBAL_PORTAL_PATH 是容器同名环境变量的占位符
 - port: 61807
   protocol: vmess
   settings:
