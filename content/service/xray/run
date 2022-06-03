@@ -4,7 +4,7 @@ if [ ! -f "/mnt/data/config/xray.yaml" ]; then
     cp /workdir/xray.yaml /mnt/data/config/xray.yaml
 fi
 
-sed -i "s|VmessUUID|${VmessUUID}|g;s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/xray.yaml
+sed -i "s|VmessUUID|${VmessUUID}|g;s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /mnt/data/config/xray.yaml
 
 # Run Xray
 exec 2>&1
