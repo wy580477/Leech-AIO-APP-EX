@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Update Xray
+/workdir/xray_install.sh
+
+# Configure Xray
 if [ ! -f "/mnt/data/config/xray.yaml" ]; then
     cp /workdir/xray.yaml /mnt/data/config/xray.yaml
 fi
