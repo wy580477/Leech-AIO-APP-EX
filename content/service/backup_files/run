@@ -4,23 +4,13 @@ source /etc/env
 export $(sed '/^#/d' /etc/env | cut -d= -f1)
 
 # Update homer message
-cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config.yml
-sed -i "s|GLOBAL_PORTAL_PATH|"${GLOBAL_PORTAL_PATH}"|g" /workdir/homer/assets/config.yml
-
-UPTIME=$(($(date +%s) - $(cat /workdir/dyno_start_time)))
+UPTIME=$(uptime -p | sed 's/up //')
+UPTIME_CHS=$(echo "${UPTIME}" | sed 's/hours\?/小时/g;s/minutes\?/分钟/g')
 
 if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
-    TIME_FORMAT="$((UPTIME /60/60)) 小时 $(((UPTIME/60) % 60)) 分钟"
-    sed -i "s|运行时间: |运行时间: ${TIME_FORMAT}|g" /workdir/homer/assets/config.yml
+    sed -i "s|运行时间:.*<|运行时间: ${UPTIME_CHS}<|g" /workdir/homer/assets/config.yml
 else
-    TIME_FORMAT="$((UPTIME /60/60)) hours $(((UPTIME/60) % 60)) minutes"
-    sed -i "s|Uptime: |Uptime: ${TIME_FORMAT}|g" /workdir/homer/assets/config.yml
-fi
-
-if [ "${PYLOAD_INSTALL}" = "Disable" ]; then
-    LINE=$(sed -n -e '/pyLoad/=' /workdir/homer/assets/config.yml)
-    LINE2=$((LINE + 5))
-    sed -i "${LINE},${LINE2}d" /workdir/homer/assets/config.yml
+    sed -i "s|Uptime:.*<|Uptime: ${UPTIME}<|g" /workdir/homer/assets/config.yml
 fi
 
 sleep 600

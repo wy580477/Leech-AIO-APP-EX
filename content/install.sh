@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Write start time
-echo $(date +%s) > /workdir/dyno_start_time
-
 DIR_TMP="$(mktemp -d)"
 source /etc/env
 export $(sed '/^#/d' /etc/env | cut -d= -f1)
