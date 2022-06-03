@@ -48,6 +48,9 @@ chmod +x /usr/bin/yt-dlp
 wget -qO /usr/bin/ffmpeg https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
 chmod +x /usr/bin/ffmpeg
 
+# Install Xray
+/workdir/install_2.sh
+
 # Install pyload
 apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev
 pip install --no-cache-dir --pre pyload-ng[plugins] --quiet
