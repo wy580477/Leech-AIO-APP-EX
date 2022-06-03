@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # https://github.com/P3TERX/aria2.conf
 # File name：clean.sh

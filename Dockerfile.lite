@@ -2,7 +2,7 @@ FROM alexta69/metube:latest
 
 COPY ./content /workdir/
 
-RUN apk add --no-cache curl caddy jq runit tzdata fuse \
+RUN apk add --no-cache curl caddy jq runit tzdata fuse bash findutils \
     && wget -O - https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip | busybox unzip -qd /workdir/ariang - \
     && sed -i 's|6800|443|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js \
     && wget -O - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip | busybox unzip -qd /workdir/rcloneweb - \

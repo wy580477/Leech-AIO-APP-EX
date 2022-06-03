@@ -232,8 +232,7 @@ DELETE_EMPTY_DIR() {
         #        if [[ "${DOWNLOAD_DIR}" =~ "${ARIA2_DOWNLOAD_DIR}" ]]; then
         #            find "${ARIA2_DOWNLOAD_DIR}" ! -path "${ARIA2_DOWNLOAD_DIR}" -depth -type d -empty -exec rm -vrf {} \;
         #        else
-        find /mnt/data/downloads -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
-        find /mnt/data/finished -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
+        find /mnt/data/aria2_downloads -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
         #        fi
     fi
 }
