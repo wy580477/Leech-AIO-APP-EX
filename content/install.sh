@@ -10,22 +10,37 @@ else
     echo "Install process will take 1-2 minutes"
 fi
 
+# Configure scripts
+chmod +x /workdir/*.sh /workdir/aria2/*.sh /workdir/service/*/run /workdir/service/*/log/run
+sed -i 's/\r$//' /workdir/*.sh /workdir/aria2/*.sh /workdir/aria2/core /workdir/service/*/run /workdir/service/*/log/run /workdir/rclone_options.conf /workdir/bashrc
+mv /workdir/ytdlp*.sh /usr/bin/
+mkdir -p /mnt/data/.cache /mnt/data/config /mnt/data/qbit_downloads /mnt/data/aria2_downloads /mnt/data/videos /mnt/data/gallery_dl_downloads
+
 # Install jq & runit
 rm -rf /etc/apt/sources.list.d
 CODE_NAME=$(lsb_release -c | sed 's/.*:\s*//')
 echo "deb http://us.archive.ubuntu.com/ubuntu/ ${CODE_NAME} main universe" >/etc/apt/sources.list
 apt-get -qq update >/dev/null && apt-get -qq install -y jq runit >/dev/null
-rm -rf /var/lib/apt/lists/*
 
 # Install pyload
 if [ "${PYLOAD_INSTALL}" = "Enable" ]; then
-    pip install --no-cache-dir --pre pyload-ng[plugins] --quiet 2>&1 >/dev/null
+    pip install --no-cache-dir --pre pyload-ng[plugins] --quiet >/dev/null
     EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
     mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
+    mkdir -p /mnt/data/pyload_downloads /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
+    mv /workdir/pyload_to_rclone.sh /workdir/.pyload/scripts/download_finished/
+    mv /workdir/pyload_to_rclone_package_extracted.sh /workdir/.pyload/scripts/package_extracted/
 else
-    rm -rf /workdir/service/6
+    rm -rf /workdir/service/6 /workdir/pyload*
 fi
     
+# Install gallery-dl
+python3 -m pip install --no-cache-dir -U gallery-dl --quiet >/dev/null
+
+if [ ! -f "/mnt/data/config/gallery-dl.conf" ]; then
+    cp /workdir/gallery-dl.conf /mnt/data/config/gallery-dl.conf
+fi
+
 # Install OliveTin
 VERSION="$(curl --retry 5 https://api.github.com/repos/OliveTin/OliveTin/releases/latest | jq .tag_name | sed 's/\"//g')"
 curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/download/${VERSION}/OliveTin-${VERSION}-Linux-amd64.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
@@ -44,7 +59,7 @@ chmod +x /usr/bin/caddy
 # Install AriaNg
 wget -qP ${DIR_TMP} https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip
 unzip -qd /workdir/ariang ${DIR_TMP}/AriaNg-1.2.4.zip
-sed -i 's|6800|443|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js
+sed -i 's|6800|443|g;s|protocol:"http"|protocol:"https"|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js
 
 # Install Rclone WebUI
 wget -qP ${DIR_TMP} - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip
@@ -94,17 +109,10 @@ rm -rf ${DIR_TMP}
 PORTAL_PATH=$(echo ${RANDOM} | md5sum | head -c 6; echo)
 echo GLOBAL_PORTAL_PATH=/${PORTAL_PATH} >>/etc/env
 
-# Configure scripts
-chmod +x /workdir/*.sh /workdir/aria2/*.sh /workdir/service/*/run /workdir/service/*/log/run
-sed -i 's/\r$//' /workdir/*.sh /workdir/aria2/*.sh /workdir/aria2/core /workdir/service/*/run /workdir/service/*/log/run /workdir/rclone_options.conf /workdir/bashrc
-mv /workdir/ytdlp*.sh /usr/bin/
-mkdir -p /mnt/data/config /mnt/data/qbit_downloads /mnt/data/aria2_downloads /mnt/data/pyload_downloads /mnt/data/videos /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
-mv /workdir/pyload_to_rclone.sh /workdir/.pyload/scripts/download_finished/
-mv /workdir/pyload_to_rclone_package_extracted.sh /workdir/.pyload/scripts/package_extracted/
-
 # restore backup
 tar -zxf /content/drive/*/AIO_FILES/backup.tar.gz -C /mnt/data 2>/dev/null
 mv /mnt/data/config/settings /workdir/.pyload 2>/dev/null
+mv /mnt/data/config/gallery-dl /mnt/data/.cache 2>/dev/null
 
 if [ ! -f "/mnt/data/config/script.conf" ]; then
     cp /workdir/script.conf /mnt/data/config/script.conf
