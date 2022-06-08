@@ -16,9 +16,10 @@ sleep 5
 URL=$(grep -oP "https://.*trycloudflare.com" nohup.out)
 
 while [[ "${HTTP_CODE}" -ne 200 ]]; do
-    sleep 5
     HTTP_CODE=$(curl -I -s -w %{http_code} ${URL} -o /dev/null)
+    sleep 5
 done
+
 
 echo ${URL}${GLOBAL_PORTAL_PATH}
 tail -f
