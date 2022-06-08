@@ -64,6 +64,3 @@ actions:
         type: very_dangerous_raw_string
       - name: destination
         type: very_dangerous_raw_string
-
-
-
