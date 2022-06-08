@@ -106,16 +106,15 @@ UPLOAD_FILE() {
 
 CHECK_CORE_FILE "$@"
 CHECK_SCRIPT_CONF
-if [ "${UPLOAD_MODE}" = "disable" ]; then
-    echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
-    exit 0
-fi
 CHECK_FILE_NUM
 GET_TASK_INFO
 GET_DOWNLOAD_DIR
 CONVERSION_PATH
 DEFINITION_PATH
 CLEAN_UP
-LOAD_RCLONE_ENV
+if [ "${UPLOAD_MODE}" = "disable" ]; then
+    echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
+    exit 0
+fi
 UPLOAD_FILE
 exit 0

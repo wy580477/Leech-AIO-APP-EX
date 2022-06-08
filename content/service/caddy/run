@@ -6,8 +6,6 @@ sed -i 's|ipAddress:a|ipAddress:`${window.location.protocol}//${window.location.
 
 # Configure homer
 cp /workdir/homer_conf/* /workdir/homer/assets/tools/
-cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config.yml
-sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g;s|VmessUUID|${VmessUUID}|g" /workdir/homer/assets/config.yml
 
 # Configure Caddyfile
 HASH="$(caddy hash-password --plaintext ${GLOBAL_PASSWORD})"
