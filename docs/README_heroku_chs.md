@@ -23,7 +23,7 @@
  2. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
  3. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板和flexget/Radarr/Sonarr等应用。
  4. 自动备份相关配置文件到Cloudflare Workers KV，dyno重启时尝试恢复，实现了配置文件持久化。
- 5. 可以从OliveTin网页端执行预定义yt-dlp和Rclone指令。
+ 5. 可以从OliveTin网页端执行yt-dlp、gallery-dl和Rclone指令。
  6. ttyd网页终端，可命令行执行yt-dlp下载工具和其它命令。
  7. log目录下有每个服务独立日志。
 

@@ -18,7 +18,7 @@
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
  3. 自动备份相关配置文件到Google Drive，实现了配置文件持久化。
- 4. 可以从OliveTin网页端执行预定义yt-dlp和Rclone指令。
+ 4. 可以从OliveTin网页端执行预定义yt-dlp、gallery-dl和Rclone指令。
  5. ttyd网页终端，可从命令行执行yt-dlp下载工具和其它命令。
  6. log目录下有每个服务独立日志。
 

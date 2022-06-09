@@ -18,7 +18,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
  3. Auto-backup configuration files to Google Drive, and try to restore when dyno restarts.
- 4. Execute predefined yt-dlp & Rclone commands from OliveTin WebUI.
+ 4. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
  5. ttyd web terminal, which can execute yt-dlp and other commands on the command line.
  6. There are independent logs for each service in the log directory.
 
