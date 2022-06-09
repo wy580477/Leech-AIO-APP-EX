@@ -8,12 +8,12 @@
 {$CADDY_DOMAIN}:{$CADDY_WEB_PORT}
 tls {$CADDY_EMAIL}
 encode gzip
-# Xray websocket reverse proxy config
-@websockets {
-        header Connection *Upgrade*
-        header Upgrade websocket
-        path {$GLOBAL_PORTAL_PATH}/vm*
-}
+# Xray/v2ray websocket reverse proxy config example
+#@websockets {
+#        header Connection *Upgrade*
+#        header Upgrade websocket
+#        path {$GLOBAL_PORTAL_PATH}/vm*
+#}
 handle @websockets {
         reverse_proxy * localhost:61807
 }
