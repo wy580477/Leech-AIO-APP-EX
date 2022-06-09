@@ -51,9 +51,10 @@ chmod +x /usr/bin/ffmpeg
 # Install Xray
 /workdir/install_2.sh
 
-# Install pyload
+# Install pyload & gallery-dl
 apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev
-pip install --no-cache-dir --pre pyload-ng[plugins] --quiet
+pip install --no-cache-dir --pre pyload-ng[plugins] --quiet >/dev/null
+python3 -m pip install --no-cache-dir -U gallery-dl --quiet >/dev/null
 apk del .build-deps
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
