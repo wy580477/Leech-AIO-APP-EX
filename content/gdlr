@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gallery-dl -c /mnt/data/config/gallery-dl.conf --exec-after '/workdir/gdltorclone.sh {}' "$@"
