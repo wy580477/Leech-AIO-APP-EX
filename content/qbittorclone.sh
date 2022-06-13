@@ -1,8 +1,8 @@
 #!/bin/bash
 
 UPLOAD_MODE="$(grep ^qbit-upload-mode /mnt/data/config/script.conf | cut -d= -f2-)"
+DELETE_EMPTY_DIR="$(grep ^delete-empty-dir /mnt/data/config/script.conf | cut -d= -f2-)"
 DRIVE_NAME="$(grep ^drive-name /mnt/data/config/script.conf | cut -d= -f2-)"
-DRIVE_DIR="$(grep ^drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
 
 DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g;s/\r$//")"
 if [ "${DRIVE_NAME}" = "auto" ]; then
@@ -42,4 +42,8 @@ else
     else
         echo "[ERROR] Failed to send job to rclone: $1"
     fi
+fi
+
+if [[ "${DELETE_EMPTY_DIR}" = "true" ]]; then
+    find /mnt/data/qbit_downloads -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
 fi
