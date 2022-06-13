@@ -6,4 +6,8 @@ if [ ! -f "/mnt/data/config/script.conf" ]; then
        cp /workdir/script.conf /mnt/data/config/script.conf
 fi
 
+if [ ! -f "/mnt/data/config/gallery-dl.conf" ]; then
+       cp /workdir/gallery-dl.conf /mnt/data/config/gallery-dl.conf
+fi
+
 exec runsvdir -P /etc/service
