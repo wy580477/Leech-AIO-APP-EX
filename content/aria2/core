@@ -235,11 +235,7 @@ DELETE_DOT_TORRENT() {
 DELETE_EMPTY_DIR() {
     if [[ "${DELETE_EMPTY_DIR}" = "true" ]]; then
         echo -e "$(DATE_TIME) ${INFO} Deleting empty directory ..."
-        #        if [[ "${DOWNLOAD_DIR}" =~ "${ARIA2_DOWNLOAD_DIR}" ]]; then
-        #            find "${ARIA2_DOWNLOAD_DIR}" ! -path "${ARIA2_DOWNLOAD_DIR}" -depth -type d -empty -exec rm -vrf {} \;
-        #        else
         find /mnt/data/aria2_downloads -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
-        #        fi
     fi
 }
 
