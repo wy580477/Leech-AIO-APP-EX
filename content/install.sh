@@ -66,7 +66,7 @@ wget -qP ${DIR_TMP} - https://github.com/rclone/rclone-webui-react/releases/down
 unzip -qd /workdir/rcloneweb ${DIR_TMP}/currentbuild.zip
 
 # Install Homer
-wget -qP ${DIR_TMP} https://github.com/wy580477/homer/releases/latest/download/homer.zip
+wget -qP ${DIR_TMP} https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip
 unzip -qd /workdir/homer ${DIR_TMP}/homer.zip
 
 # Install Filebrowser
