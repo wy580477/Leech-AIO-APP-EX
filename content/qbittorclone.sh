@@ -11,6 +11,15 @@ else
     DRIVENAME=${DRIVE_NAME}
 fi
 
+GLOBAL_DRIVE_DIR="$(grep ^drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
+QBIT_DRIVE_DIR="$(grep ^qbit-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
+
+if [ "${QBIT_DRIVE_DIR}" = "" ]; then
+    DRIVE_DIR=${GLOBAL_DRIVE_DIR}/qBittorrent
+else
+    DRIVE_DIR=${QBIT_DRIVE_DIR}
+fi
+
 REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}"
 FILE_NAME="$(basename "$1")"
 FILE_PATH="$(echo $1 | sed 's:[^/]*$::')"

@@ -6,7 +6,6 @@ DATE_TIME() {
 
 UPLOAD_MODE="$(grep ^gallery-dl-upload-mode /mnt/data/config/script.conf | cut -d= -f2-)"
 DRIVE_NAME="$(grep ^drive-name /mnt/data/config/script.conf | cut -d= -f2-)"
-DRIVE_DIR="$(grep ^drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
 
 DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g;s/\r$//")"
 if [ "${DRIVE_NAME}" = "auto" ]; then
@@ -15,9 +14,18 @@ else
     DRIVENAME=${DRIVE_NAME}
 fi
 
+GLOBAL_DRIVE_DIR="$(grep ^drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
+GDL_DRIVE_DIR="$(grep ^gdl-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
+
+if [ "${GDL_DRIVE_DIR}" = "" ]; then
+    DRIVE_DIR=${GLOBAL_DRIVE_DIR}/gallery-dl
+else
+    DRIVE_DIR=${GDL_DRIVE_DIR}
+fi
+
 DL_PATH="$1"
 BASE_PATH="${DL_PATH/\/mnt\/data\/gallery_dl_downloads}"
-REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}/gallery-dl${BASE_PATH}"
+REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${BASE_PATH}"
 
 if [ "${UPLOAD_MODE}" = "disable" ]; then
     echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"

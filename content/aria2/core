@@ -79,7 +79,13 @@ LOAD_SCRIPT_CONF() {
         DRIVENAME=${DRIVE_NAME}
     fi
     UPLOAD_MODE="$(grep ^aria2-upload-mode /mnt/data/config/script.conf | cut -d= -f2-)"
-    DRIVE_DIR="$(grep ^drive-dir "${SCRIPT_CONF}" | cut -d= -f2-)"
+    GLOBAL_DRIVE_DIR="$(grep ^drive-dir "${SCRIPT_CONF}" | cut -d= -f2-)"
+    ARIA_DRIVE_DIR="$(grep ^aria2-drive-dir "${SCRIPT_CONF}" | cut -d= -f2-)"
+    if [ "${ARIA_DRIVE_DIR}" = "" ]; then
+        DRIVE_DIR=${GLOBAL_DRIVE_DIR}/aria2
+    else
+        DRIVE_DIR=${ARIA_DRIVE_DIR}
+    fi
     UPLOAD_LOG_PATH="$(grep ^upload-log "${SCRIPT_CONF}" | cut -d= -f2-)"
     DEST_DIR="$(grep ^dest-dir "${SCRIPT_CONF}" | cut -d= -f2-)"
     MOVE_LOG_PATH="$(grep ^move-log "${SCRIPT_CONF}" | cut -d= -f2-)"
