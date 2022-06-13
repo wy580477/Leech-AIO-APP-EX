@@ -21,9 +21,10 @@ if [ ! -f "/mnt/data/config/caddy/Caddyfile" ]; then
     cp /workdir/Caddyfile /mnt/data/config/caddy/
 fi
 
+cp -f /mnt/data/config/caddy/Caddyfile /tmp/Caddyfile
 HASH="$(caddy hash-password --plaintext ${GLOBAL_PASSWORD})"
-sed -i "s|HASH|${HASH}|g" /mnt/data/config/caddy/Caddyfile
+sed -i "s|HASH|${HASH}|g" /tmp/Caddyfile
 
 # Run caddy
 exec 2>&1
-exec caddy run --config /mnt/data/config/caddy/Caddyfile --adapter caddyfile
+exec caddy run --config /tmp/Caddyfile --adapter caddyfile
