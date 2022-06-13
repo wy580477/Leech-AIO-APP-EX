@@ -25,7 +25,7 @@ RUN apk add --no-cache curl caddy jq runit tzdata fuse bash findutils \
     && wget -O - https://github.com/WDaan/VueTorrent/releases/latest/download/vuetorrent.zip | busybox unzip -qd /workdir - \
     && chmod +x /workdir/service/*/run /workdir/service/*/log/run /workdir/aria2/*.sh /workdir/*.sh /workdir/dlpr /workdir/gdlr \
     && /workdir/install.sh \
-    && rm -f /workdir/install.sh /tmp/* ${HOME}/.cache \
+    && rm -rf /workdir/install.sh /tmp/* ${HOME}/.cache \
     && mv /workdir/ytdlp*.sh /workdir/dlpr /workdir/gdlr /usr/bin/ \
     && rm -rf /workdir/service/pyLoad /workdir/homer_conf/pyload.png \
     && ln -s /workdir/service/* /etc/service/
