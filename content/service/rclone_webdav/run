@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sleep 3
+
 export RCLONE_USER=${GLOBAL_USER}
 export RCLONE_PASS=${GLOBAL_PASSWORD}
 export RCLONE_CONFIG=/mnt/data/config/rclone.conf
