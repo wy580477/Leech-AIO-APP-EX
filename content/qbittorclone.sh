@@ -47,5 +47,5 @@ else
 fi
 
 if [[ "${DELETE_EMPTY_DIR}" = "true" ]]; then
-    find /mnt/data/qbit_downloads -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
+    find ${QBIT_DOWNLOAD_DIR} -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
 fi
