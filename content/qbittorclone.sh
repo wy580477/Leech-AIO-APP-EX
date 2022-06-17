@@ -3,6 +3,7 @@
 UPLOAD_MODE="$(grep ^qbit-upload-mode /mnt/data/config/script.conf | cut -d= -f2-)"
 DELETE_EMPTY_DIR="$(grep ^delete-empty-dir /mnt/data/config/script.conf | cut -d= -f2-)"
 DRIVE_NAME="$(grep ^drive-name /mnt/data/config/script.conf | cut -d= -f2-)"
+QBIT_DOWNLOAD_DIR="$(grep ^'Session\\\DefaultSavePath' /mnt/data/config/qBittorrent/config/qBittorrent.conf | cut -d= -f2- | sed "s/\r$//")"
 
 DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g;s/\r$//")"
 if [ "${DRIVE_NAME}" = "auto" ]; then
@@ -20,9 +21,10 @@ else
     DRIVE_DIR=${QBIT_DRIVE_DIR}
 fi
 
-REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}"
 FILE_NAME="$(basename "$1")"
 FILE_PATH="$(echo $1 | sed 's:[^/]*$::')"
+DEST_PATH_SUFFIX="${FILE_PATH#"${QBIT_DOWNLOAD_DIR%/}"}"
+REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${DEST_PATH_SUFFIX}"
 
 if [ "${UPLOAD_MODE}" = "disable" ]; then
     echo "[INFO] Auto-upload to Rclone remote disabled"
@@ -45,5 +47,5 @@ else
 fi
 
 if [[ "${DELETE_EMPTY_DIR}" = "true" ]]; then
-    find /mnt/data/qbit_downloads -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
+    find ${QBIT_DOWNLOAD_DIR} -depth -mindepth 1 -type d -empty -exec rm -vrf {} \; 2>/dev/null
 fi
