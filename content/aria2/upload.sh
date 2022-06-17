@@ -63,10 +63,12 @@ OUTPUT_UPLOAD_LOG() {
 
 DEFINITION_PATH() {
     LOCAL_PATH="${TASK_PATH}"
+    D_PATH="$(echo ${ARIA2_DOWNLOAD_DIR} | sed 's/\r$//')"    
+    PATH_SUFFIX="${DOWNLOAD_DIR#"${D_PATH}"}"
     if [[ -f "${TASK_PATH}" ]]; then
-        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}"
+        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${PATH_SUFFIX}"
     else
-        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}/${TASK_FILE_NAME}"
+        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${PATH_SUFFIX}/${TASK_FILE_NAME}"
     fi
 }
 
