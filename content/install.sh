@@ -40,6 +40,6 @@ chmod +x /usr/bin/qbit
 wget -O - https://github.com/filebrowser/filebrowser/releases/latest/download/linux-${OS_type3}-filebrowser.tar.gz | tar -zxf - -C /usr/bin
 
 # Install Aria2
-wget -O - https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-amd64.tar.gz | tar -zxf - -C /usr/bin
+wget -O - https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-${OS_type4}.tar.gz | tar -zxf - -C /usr/bin
 
 rm -rf ${DIR_TMP}
