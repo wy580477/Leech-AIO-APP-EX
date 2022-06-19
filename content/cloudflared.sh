@@ -13,13 +13,16 @@ killall argo 2>/dev/null
 rm -f nohup.out
 nohup argo tunnel --url http://localhost:8880 &
 sleep 5
-URL=$(grep -oP "https://.*trycloudflare.com" nohup.out)
+
+while [[ "${URL}" = "" ]]; do
+    URL=$(grep -oP "https://.*trycloudflare.com" nohup.out)
+    sleep 3
+done
 
 while [[ "${HTTP_CODE}" -ne 200 ]]; do
     HTTP_CODE=$(curl -I -s -w %{http_code} ${URL} -o /dev/null)
     sleep 5
 done
-
 
 echo ${URL}${GLOBAL_PORTAL_PATH}
 tail -f
