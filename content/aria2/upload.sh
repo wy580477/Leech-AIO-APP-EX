@@ -63,7 +63,7 @@ OUTPUT_UPLOAD_LOG() {
 
 DEFINITION_PATH() {
     LOCAL_PATH="${TASK_PATH}"
-    D_PATH="$(echo ${ARIA2_DOWNLOAD_DIR} | sed 's/\r$//')"    
+    D_PATH="$(echo ${ARIA2_DOWNLOAD_DIR} | sed 's/\r$//')"
     PATH_SUFFIX="${DOWNLOAD_DIR#"${D_PATH}"}"
     if [[ -f "${TASK_PATH}" ]]; then
         REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${PATH_SUFFIX}"
@@ -73,6 +73,16 @@ DEFINITION_PATH() {
 }
 
 UPLOAD_FILE() {
+    if [ "${UPLOAD_MODE}" = "disable" ]; then
+        echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
+        exit 0
+    elif [[ -f "${LOCAL_PATH}" ]] && [[ "${EXCLUDE_FILE_EXTENSION}" != "" ]] && [[ "${TASK_FILE_NAME}" =~ \.(${EXCLUDE_FILE_EXTENSION})$ ]]; then
+        echo "$(DATE_TIME) [INFO] File is excluded from auto-upload"
+        exit 0
+    elif [[ -f "${LOCAL_PATH}" ]] && [[ "${INCLUDE_FILE_EXTENSION}" != "" ]] && [[ ! "${TASK_FILE_NAME}" =~ \.(${INCLUDE_FILE_EXTENSION})$ ]]; then
+        echo "$(DATE_TIME) [INFO] File is excluded from auto-upload"
+        exit 0
+    fi
     echo -e "$(DATE_TIME) ${INFO} Start upload files..."
     TASK_INFO
     RETRY=0
@@ -114,9 +124,5 @@ GET_DOWNLOAD_DIR
 CONVERSION_PATH
 DEFINITION_PATH
 CLEAN_UP
-if [ "${UPLOAD_MODE}" = "disable" ]; then
-    echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
-    exit 0
-fi
 UPLOAD_FILE
 exit 0
