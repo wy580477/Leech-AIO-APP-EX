@@ -13,7 +13,7 @@ actions:
   - title: yt-dlp
     icon: "&#9654;"
     shell: ytdlp.sh {{ urls }} {{ options }}
-    timeout: 36000
+    timeout: 86400
     arguments:
       - name: urls
         type: very_dangerous_raw_string
@@ -22,7 +22,7 @@ actions:
   - title: yt-dlp & auto-upload to Rclone remote
     icon: "&#128316;"
     shell: ytdlpup.sh {{ urls }} {{ options }} 
-    timeout: 36000
+    timeout: 86400
     arguments:
       - name: urls
         type: very_dangerous_raw_string
@@ -31,7 +31,7 @@ actions:
   - title: gallery-dl
     icon: "&#128444;"
     shell: gallery-dl -c /mnt/data/config/gallery-dl.conf --exec-after '/workdir/gdltorclone.sh {}' {{ urls }} {{ options }} 
-    timeout: 36000
+    timeout: 86400
     arguments:
       - name: urls
         type: very_dangerous_raw_string
@@ -40,7 +40,7 @@ actions:
   - title: Rclone Copy
     icon: "&#10145;"
     shell: /workdir/callapi.sh copy {{ source }} {{ destination }}  
-    timeout: 36000
+    timeout: 86400
     arguments:
       - name: source
         type: very_dangerous_raw_string
@@ -49,7 +49,7 @@ actions:
   - title: Rclone Move
     icon: "&#10145;"
     shell: /workdir/callapi.sh move {{ source }} {{ destination }}  
-    timeout: 36000
+    timeout: 86400
     arguments:
       - name: source
         type: very_dangerous_raw_string
@@ -58,9 +58,16 @@ actions:
   - title: Rclone Sync
     icon: "&#8596;"
     shell: /workdir/callapi.sh sync {{ source }} {{ destination }} 
-    timeout: 36000
+    timeout: 86400
     arguments:
       - name: source
         type: very_dangerous_raw_string
       - name: destination
         type: very_dangerous_raw_string
+  - title: Rclone Job Status
+    icon: "&#8505;"
+    shell: /workdir/rclonejobstatus.sh {{ jobid }}
+    timeout: 60
+    arguments:
+      - name: jobid
+        type: int

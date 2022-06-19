@@ -63,7 +63,7 @@ OUTPUT_UPLOAD_LOG() {
 
 DEFINITION_PATH() {
     LOCAL_PATH="${TASK_PATH}"
-    D_PATH="$(echo ${ARIA2_DOWNLOAD_DIR} | sed 's/\r$//')"    
+    D_PATH="$(echo ${ARIA2_DOWNLOAD_DIR} | sed 's/\r$//')"
     PATH_SUFFIX="${DOWNLOAD_DIR#"${D_PATH}"}"
     if [[ -f "${TASK_PATH}" ]]; then
         REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${PATH_SUFFIX}"
@@ -73,6 +73,16 @@ DEFINITION_PATH() {
 }
 
 UPLOAD_FILE() {
+    if [ "${UPLOAD_MODE}" = "disable" ]; then
+        echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
+        exit 0
+    elif [[ -f "${LOCAL_PATH}" ]] && [[ "${EXCLUDE_FILE_EXTENSION}" != "" ]] && [[ "${TASK_FILE_NAME}" =~ \.(${EXCLUDE_FILE_EXTENSION})$ ]]; then
+        echo "$(DATE_TIME) [INFO] File is excluded from auto-upload"
+        exit 0
+    elif [[ -f "${LOCAL_PATH}" ]] && [[ "${INCLUDE_FILE_EXTENSION}" != "" ]] && [[ ! "${TASK_FILE_NAME}" =~ \.(${INCLUDE_FILE_EXTENSION})$ ]]; then
+        echo "$(DATE_TIME) [INFO] File is excluded from auto-upload"
+        exit 0
+    fi
     echo -e "$(DATE_TIME) ${INFO} Start upload files..."
     TASK_INFO
     RETRY=0
@@ -84,14 +94,14 @@ UPLOAD_FILE() {
             echo
         )
         if [ -f "${LOCAL_PATH}" ]; then
-            curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${DOWNLOAD_DIR}"'","srcRemote":"'"${TASK_FILE_NAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file'
+            JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${DOWNLOAD_DIR}"'","srcRemote":"'"${TASK_FILE_NAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file' | jq .jobid | sed 's/\"//g')"
         else
-            curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'","_async":"true"}' 'localhost:61802/sync/'${UPLOAD_MODE}''
+            JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'","_async":"true"}' 'localhost:61802/sync/'${UPLOAD_MODE}'' | jq .jobid | sed 's/\"//g')"
         fi
-        RCLONE_EXIT_CODE=$?
-        if [ ${RCLONE_EXIT_CODE} -eq 0 ]; then
+        if [ "${JOB_ID}" != "" ]; then
             UPLOAD_LOG="$(DATE_TIME) ${INFO} Successfully send job to rclone: ${LOCAL_PATH} -> ${REMOTE_PATH}"
             OUTPUT_UPLOAD_LOG
+            curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status'
             DELETE_EMPTY_DIR
             break
         else
@@ -114,9 +124,5 @@ GET_DOWNLOAD_DIR
 CONVERSION_PATH
 DEFINITION_PATH
 CLEAN_UP
-if [ "${UPLOAD_MODE}" = "disable" ]; then
-    echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
-    exit 0
-fi
 UPLOAD_FILE
 exit 0
