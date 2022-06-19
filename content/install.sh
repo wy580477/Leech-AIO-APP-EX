@@ -53,7 +53,7 @@ chmod +x /usr/bin/ffmpeg
 
 # Install pyload & gallery-dl
 apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev
-pip install --no-cache-dir --pre pyload-ng[plugins] --quiet >/dev/null
+pip install --no-cache-dir pyload-ng[plugins] --quiet >/dev/null
 python3 -m pip install --no-cache-dir -U gallery-dl --quiet >/dev/null
 apk del .build-deps
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
