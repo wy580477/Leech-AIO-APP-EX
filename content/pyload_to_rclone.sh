@@ -32,10 +32,10 @@ REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${DEST_PATH_SUFFIX}"
 if [ "${UPLOAD_MODE}" = "disable" ]; then
     echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
 else
-    curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${FILE_PATH}"'","srcRemote":"'"$2"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"$2"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file'
-    EXIT_CODE=$?
-    if [ ${EXIT_CODE} -eq 0 ]; then
+    JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${FILE_PATH}"'","srcRemote":"'"$2"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"$2"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file' | jq .jobid | sed 's/\"//g')"
+    if [ "${JOB_ID}" != "" ]; then
         echo "$(DATE_TIME) [INFO] Successfully send job to rclone: $3 -> ${REMOTE_PATH}"
+        curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status'
     else
         echo "$(DATE_TIME) [ERROR] Failed to send job to rclone: $3"
     fi
