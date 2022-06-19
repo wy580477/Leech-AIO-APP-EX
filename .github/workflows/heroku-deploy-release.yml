@@ -15,13 +15,3 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
-          env_file: ".env"
-        env:
-          HD_GLOBAL_USER: ${{secrets.GLOBAL_USER}}
-          HD_GLOBAL_PASSWORD: ${{secrets.GLOBAL_PASSWORD}}
-          HD_GLOBAL_LANGUAGE: ${{secrets.GLOBAL_LANGUAGE}}
-          HD_GLOBAL_PORTAL_PATH: ${{secrets.GLOBAL_PORTAL_PATH}}
-          HD_CLOUDFLARE_WORKERS_HOST: ${{secrets.CLOUDFLARE_WORKERS_HOST}}
-          HD_CLOUDFLARE_WORKERS_KEY: ${{secrets.CLOUDFLARE_WORKERS_KEY}}
-          HD_VmessUUID: ${{secrets.VmessUUID}}
-          HD_TZ: ${{secrets.TZ}}
