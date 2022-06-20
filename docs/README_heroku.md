@@ -30,7 +30,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  **Do not deploy directly from this repository** 
 
 ###### NOTICE##### 
-# KV is used as data storage. If some updates Dont show-up. GO to kv worker and delte the data. [CLICK HERE FOR IMAGE](https://user-images.githubusercontent.com/98247050/174501970-d22eac74-f2f1-496c-a100-8188832e4da7.png)
+# KV is used as data storage. If some updates Dont show-up. GO to kv worker and delete the data. [CLICK HERE FOR IMAGE](https://user-images.githubusercontent.com/98247050/174501970-d22eac74-f2f1-496c-a100-8188832e4da7.png)
 ######/NOTICE#####
  1. [Set up your Cloudflare workers KV service](https://github.com/wy580477/PaaS-Related/blob/main/SET_CLOUDFLARE_KV.md)
  2. Fork this this repository, then click Setting on fork repository page and check Template repository.
