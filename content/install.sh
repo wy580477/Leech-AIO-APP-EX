@@ -4,13 +4,13 @@ DIR_TMP="$(mktemp -d)"
 
 # Install AriaNg
 wget -qO - https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip | busybox unzip -qd /workdir/ariang -
-sed -i 's|6800|443|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js
+sed -i 's|6800|443|g;s|protocol:"http"|protocol:"https"|g' /workdir/ariang/js/aria-ng-a87a79b0e7.min.js
 
 # Install Rclone WebUI
 wget -qO - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip | busybox unzip -qd /workdir/rcloneweb -
 
 # Install Homer
-wget -qO - https://github.com/wy580477/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer -
+wget -qO - https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer -
 
 # Install Filebrowser
 wget -qO - https://github.com/filebrowser/filebrowser/releases/latest/download/linux-amd64-filebrowser.tar.gz | tar -zxf - -C /usr/bin
@@ -51,9 +51,10 @@ chmod +x /usr/bin/ffmpeg
 # Install Xray
 /workdir/install_2.sh
 
-# Install pyload
+# Install pyload & gallery-dl
 apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev
-pip install --no-cache-dir --pre pyload-ng[plugins] --quiet
+pip install --no-cache-dir pyload-ng[plugins] --quiet >/dev/null
+python3 -m pip install --no-cache-dir -U gallery-dl --quiet >/dev/null
 apk del .build-deps
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}

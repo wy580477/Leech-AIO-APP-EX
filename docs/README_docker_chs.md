@@ -8,7 +8,7 @@
 
 ## 概述
 
-本项目集成了yt-dlp和其Web前端metube、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘、Xray代理服务。
+本项目集成了yt-dlp和其Web前端metube、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘。
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. AMD64/Arm64架构支持，Lite版本增加Armv7支持。
@@ -34,13 +34,17 @@
 
 ### 更多用法和注意事项
 
- 1. 命令行调用yt-dlp方法：
-
+ 1. 命令行调用yt-dlp和gallery-dl方法：
 
         docker exec allinone yt-dlp
-        # 内置快捷脚本：ytdlpup.sh  
-        docker exec allinone yt-dlpup.sh https://www.youtube.com/watch?v=rbDzVzBsbGM
-        # 下载到videos目录并与rclone联动。
+        # 内置快捷脚本：dlpr  
+        docker exec allinone dlpr https://www.youtube.com/watch?v=rbDzVzBsbGM
+        # 下载到videos目录并与rclone联动
+
+        docker exec allinone gallery-dl
+        # 内置快捷脚本：gdlr
+        docker exec allinone gdlr https://www.reddit.com/r/aww/comments/vb14vy/urgent_baby_flamingo_doing_flamingo_leg/
+        # 下载到gallery_dl_downloads目录并与rclone联动
 
  2. 对于不支持qBittorrent自定义路径的应用比如Radarr, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
 

@@ -17,13 +17,13 @@
 
 ## 概述
 
-本项目集成了yt-dlp、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端、Xray Vmess协议。
+本项目集成了yt-dlp、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端、Xray Vmess协议。
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
  3. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板和flexget/Radarr/Sonarr等应用。
  4. 自动备份相关配置文件到Cloudflare Workers KV，dyno重启时尝试恢复，实现了配置文件持久化。
- 5. 可以从OliveTin网页端执行预定义yt-dlp和Rclone指令。
+ 5. 可以从OliveTin网页端执行yt-dlp、gallery-dl和Rclone指令。
  6. ttyd网页终端，可命令行执行yt-dlp下载工具和其它命令。
  7. log目录下有每个服务独立日志。
 
@@ -60,9 +60,10 @@
        <img src="https://user-images.githubusercontent.com/98247050/163184113-d0f09e78-01f9-4d4a-87b9-f4a9c1218253.png"  width="700"/>
 3. 点击qBittorrent或者VueTorrent，输入默认用户名admin和默认密码adminadmin登陆。然后更改用户名和密码，务必设置为强密码。
 4. 通过Filebrowse将rclone.conf文件上传到config目录，可以通过编辑script.conf文件更改Rclone自动上传设置。
-5. yt-dlp下载工具可以通过ttyd在网页终端执行，使用方法详细见：<https://github.com/yt-dlp/yt-dlp#usage-and-options>  
+5. yt-dlp和gallery-dl下载工具可以通过ttyd在网页终端执行。   
     内置快捷指令：  
-    dlpr：使用yt-dlp下载视频到videos文件夹下，下载完成后发送任务到rclone。  
+    dlpr：使用yt-dlp下载视频到videos文件夹下，下载完成后发送任务到rclone。 
+    gdlr：使用gallery-dl下载文件到gallery_dl_downloads文件夹下，下载完成后发送任务到rclone。 
 
 ## [Cloudflare Workers反代绕过Heroku非信用卡认证账号每月550小时限制](https://github.com/wy580477/PaaS-Related/blob/main/CF_Workers_Reverse_Proxy_chs.md)
 

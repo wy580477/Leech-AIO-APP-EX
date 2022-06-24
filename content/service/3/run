@@ -3,7 +3,7 @@
 # Update Ray
 /workdir/install_2.sh
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-mv /usr/bin/ray /usr/bin/3${EXEC}
+cp /usr/bin/ray /usr/bin/3${EXEC}
 
 # Run Xray
 sed -i "s|VmessUUID|${VmessUUID}|g;s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/xray.yaml

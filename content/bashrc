@@ -7,4 +7,5 @@ alias l='ls $LS_OPTIONS -lA'
 export PS1='\w$ '
 export HOME=/mnt/data
 alias dlpr="yt-dlp --exec ytdlptorclone.sh -P /mnt/data/videos"
+alias gdlr="gallery-dl -c /mnt/data/config/gallery-dl.conf --exec-after '/workdir/gdltorclone.sh {}'"
 cd

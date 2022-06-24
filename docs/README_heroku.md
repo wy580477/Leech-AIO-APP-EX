@@ -15,13 +15,13 @@
 
 ## <a id="Overview"></a>Overview
 
-This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal, Xray Vmess proxy protocol.
+This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal, Xray Vmess proxy protocol.
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
  3. You can connect Aria2, qBittorrent and Rclone from frontends/services running on other hosts, including flexget/Radarr/Sonarr.
  4. Auto-backup configuration files to Cloudflare Workers KV, and try to restore when dyno restarts.
- 5. Execute predefined yt-dlp & Rclone commands from OliveTin WebUI.
+ 5. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
  6. ttyd web terminal, which can execute yt-dlp and other commands on the command line.
  7. There are independent logs for each service in the log directory.
 
@@ -43,9 +43,10 @@ This project integrates yt-dlp, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, p
 
    3. Click qBittorrent or VueTorrent, then login in with default user admin and default password adminadmin. Change default user/password to your own. Recommend strong password.
    4. Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
-   5. yt-dlp command can be executed through ttyd web terminal，for more information：<https://github.com/yt-dlp/yt-dlp#usage-and-options>  
+   5. yt-dlp, gallery-dl & other commands can be executed through ttyd web terminal.   
       Built-in alias：  
-      dlpr：Use yt-dlp to download videos to videos folder, then send task to Rclone after downloads completed.
+      dlpr：Use yt-dlp to download videos to videos folder, then send task to Rclone after downloads completed.   
+      gdlr: Use gallery-dl to download files to gallery_dl_downloads folder, then send task to Rclone after downloads completed.  
 
 ## [Cloudflare Workers Reverse Proxy to bypass Heroku's 550-hour monthly limit](https://github.com/wy580477/PaaS-Related/blob/main/CF_Workers_Reverse_Proxy.md)
 

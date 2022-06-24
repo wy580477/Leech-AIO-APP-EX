@@ -1,12 +1,18 @@
 #!/bin/sh
 
 mkdir -p /mnt/data/config/olivetin 2>/dev/null
+export HOME=/mnt/data
 
 if [ ! -f "/mnt/data/config/olivetin/config.yaml" ]; then
     mv /workdir/olivetin_config.yaml  /mnt/data/config/olivetin/config.yaml
 fi
 
+if [ ! -f "/mnt/data/config/gallery-dl.conf" ]; then
+    cp /workdir/gallery-dl.conf /mnt/data/config/gallery-dl.conf
+fi
+
 yt-dlp -U &
+python3 -m pip install --no-cache-dir -U gallery-dl &
 
 exec 2>&1
 exec OliveTin --configdir /mnt/data/config/olivetin

@@ -8,7 +8,7 @@
 
 ## <a id="Overview"></a>Overview
 
-This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, Filebrowser, Xray proxy service.
+This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, Filebrowser.
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. AMD64/Arm64 multi-architecture support, Lite version has additional Armv7 support.
@@ -36,13 +36,18 @@ This project integrates yt-dlp & its Web frontend metube, Aria2 + WebUI, qBittor
 
 ## <a id="more"></a>More usages and precautions
 
- 1. How to use yt-dlp via command line：  
+ 1. How to use yt-dlp & gallery-dl via command line：  
 
 
             docker exec allinone yt-dlp
-            # Built-in script：ytdlpup.sh
+            # Built-in script：dlpr
             # Download videos to videos folder, then send job to Rclone.
-            docker exec allinone ytdlpup.sh https://www.youtube.com/watch?v=rbDzVzBsbGM
+            docker exec allinone dlpr https://www.youtube.com/watch?v=rbDzVzBsbGM
+
+            docker exec allinone gallery-dl
+            # Built-in script：gdlr
+            # Download files to gallery_dl_downloads folder, then send job to Rclone.
+            docker exec allinone gdlr https://www.reddit.com/r/aww/comments/vb14vy/urgent_baby_flamingo_doing_flamingo_leg/
 
  2. For apps which don't support custom path for qBittorrent such as Radarr, uncomment followings line in Caddyfile under config/caddy folder:
 
