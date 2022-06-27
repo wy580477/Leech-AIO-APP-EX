@@ -46,7 +46,7 @@
         docker exec allinone gdlr https://www.reddit.com/r/aww/comments/vb14vy/urgent_baby_flamingo_doing_flamingo_leg/
         # 下载到gallery_dl_downloads目录并与rclone联动
 
- 2. 对于不支持qBittorrent自定义路径的应用比如Radarr, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
+ 2. 对于不支持qBittorrent自定义路径的应用, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
 
 
             handle /api* {       

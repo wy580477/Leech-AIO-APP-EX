@@ -49,7 +49,7 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
             # Download files to gallery_dl_downloads folder, then send job to Rclone.
             docker exec allinone gdlr https://www.reddit.com/r/aww/comments/vb14vy/urgent_baby_flamingo_doing_flamingo_leg/
 
- 2. For apps which don't support custom path for qBittorrent such as Radarr, uncomment followings line in Caddyfile under config/caddy folder:
+ 2. For apps which don't support custom path for qBittorrent, uncomment followings line in Caddyfile under config/caddy folder:
 
 
             handle /api* {       
@@ -87,4 +87,3 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
 
 
  7. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
-

@@ -4,7 +4,7 @@
  2. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
  3. The Heroku filesystem is ephemeral - that means that any changes to the filesystem whilst the dyno is running only last until that dyno is shut down or restarted. In addition, dynos will restart every day.
  4. To prevent Heroku dyno from auto-sleeping, use website monitoring service such as uptimerobot to http ping your heroku domain every 10 mins.
- 5. Update related to Olivetin require You to delete Kv worker data data.
+
 [Overview](#Overview)
 
 [Deployment](#Deployment)
@@ -29,10 +29,11 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 
  **Do not deploy directly from this repository** 
 
-###### NOTICE##### 
-# KV is used as data storage. If some updates Dont show-up. GO to kv worker and delete the data. [CLICK HERE FOR IMAGE](https://user-images.githubusercontent.com/98247050/174501970-d22eac74-f2f1-496c-a100-8188832e4da7.png)
-######/NOTICE#####
  1. [Set up your Cloudflare workers KV service](https://github.com/wy580477/PaaS-Related/blob/main/SET_CLOUDFLARE_KV.md)
+
+**KV is used as config files storage. Some updates needs to manully update config files.**  
+**Alternatively you can delete KV data from Cloudflare dashboard to reset config files of your deployment. [IMAGE](https://user-images.githubusercontent.com/98247050/174501970-d22eac74-f2f1-496c-a100-8188832e4da7.png)**
+
  2. Fork this this repository, then click Setting on fork repository page and check Template repository.
  3. Click new button: Use this template，create a new repository。
  4. For example, your Github username is bobby, and the new repository name is green. After logging in to heroku, visit <https://dashboard.heroku.com/new?template=https://github.com/bobby/green> to deploy.
@@ -67,7 +68,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
       remote = /mnt/data
       ```
 
- 4. For apps which don't support custom path for qBittorrent such as Radarr, uncomment followings line in Caddyfile under config/caddy folder before deployment:
+ 4. For apps which don't support custom path for qBittorrent, uncomment followings line in Caddyfile under config/caddy folder before deployment:
 
             handle /api* {       
                     reverse_proxy * localhost:61804
