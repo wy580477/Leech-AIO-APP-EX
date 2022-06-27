@@ -74,7 +74,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
                     reverse_proxy * localhost:61804
             }
 
- 5. Aria2 JSON-RPC path： \${GLOBAL_PORTAL_PATH}/jsonrpc
+ 5. Aria2 JSON-RPC path： \${GLOBAL_PORTAL_PATH}/jsonrpc   
     Aria2 XML-RPC path： \${GLOBAL_PORTAL_PATH}/rpc
  6. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
  7. Vmess proxy protocol: AlterID is 0, you can connect to either Vmess WS port 80 or Vmess WS tls port 443. Xray settings can be modified via content/xray.yaml file in repository. Heroku is difficult to connect in mainland China.
