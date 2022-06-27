@@ -24,7 +24,7 @@ apt-get -qq update >/dev/null && apt-get -qq install -y jq runit >/dev/null
 
 # Install pyload
 if [ "${PYLOAD_INSTALL}" = "Enable" ]; then
-    pip install --no-cache-dir --pre pyload-ng[plugins] --quiet >/dev/null
+    pip install --no-cache-dir pyload-ng[plugins] --quiet >/dev/null
     EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
     mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
     mkdir -p /mnt/data/pyload_downloads /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
