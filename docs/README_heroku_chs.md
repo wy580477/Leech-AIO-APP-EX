@@ -34,6 +34,10 @@
   **Heroku修复安全漏洞中，目前无法通过网页从私有库部署**  
 
  1. [设置Cloudflare Workers KV服务](https://github.com/wy580477/PaaS-Related/blob/main/SET_CLOUDFLARE_KV_chs.md)
+
+**KV服务用于存储配置文件。部分功能升级需要手动更新配置文件。**  
+**可以通过删除Cloudflare KV数据以重置配置文件。 [图示](https://user-images.githubusercontent.com/98247050/174501970-d22eac74-f2f1-496c-a100-8188832e4da7.png)**
+
  2. 点击本仓库右上角Fork，再点击Create Fork。
  3. 在Fork出来的仓库页面上点击Setting，勾选Template repository。
  4. 然后点击Code返回之前的页面，点Setting下面新出现的按钮Use this template，起个随机名字创建新库。
@@ -81,7 +85,7 @@
        remote = /mnt/data
        ```
        
- 4. 对于不支持qBittorrent自定义路径的应用比如Radarr, 部署前在content目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
+ 4. 对于不支持qBittorrent自定义路径的应用, 部署前在content目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
 
        ```
        handle /api* {
