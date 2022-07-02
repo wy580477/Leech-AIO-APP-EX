@@ -65,10 +65,10 @@ DEFINITION_PATH() {
     LOCAL_PATH="${TASK_PATH}"
     D_PATH="$(echo ${ARIA2_DOWNLOAD_DIR} | sed 's/\r$//')"
     PATH_SUFFIX="${DOWNLOAD_DIR#"${D_PATH}"}"
-    if [[ -f "${TASK_PATH}" ]]; then
-        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${PATH_SUFFIX}"
+    if [[ "${ARIA_DRIVE_DIR}" =~ :/ ]]; then
+        REMOTE_PATH="${ARIA_DRIVE_DIR}${PATH_SUFFIX}"
     else
-        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${PATH_SUFFIX}/${TASK_FILE_NAME}"
+        REMOTE_PATH="${DRIVENAME}:${DRIVE_DIR}${PATH_SUFFIX}"
     fi
 }
 
@@ -96,7 +96,7 @@ UPLOAD_FILE() {
         if [ -f "${LOCAL_PATH}" ]; then
             JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${DOWNLOAD_DIR}"'","srcRemote":"'"${TASK_FILE_NAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file' | jq .jobid | sed 's/\"//g')"
         else
-            JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'","_async":"true"}' 'localhost:61802/sync/'${UPLOAD_MODE}'' | jq .jobid | sed 's/\"//g')"
+            JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'/'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:61802/sync/'${UPLOAD_MODE}'' | jq .jobid | sed 's/\"//g')"
         fi
         if [ "${JOB_ID}" != "" ]; then
             UPLOAD_LOG="$(DATE_TIME) ${INFO} Successfully send job to rclone: ${LOCAL_PATH} -> ${REMOTE_PATH}"
