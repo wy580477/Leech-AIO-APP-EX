@@ -18,7 +18,7 @@ ENV STATE_DIR=/mnt/data/videos/.metube
 RUN apk add --no-cache curl caddy jq runit tzdata fuse p7zip bash findutils \
     && python3 -m pip install --user --no-cache-dir pipx \
     && apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev jpeg-dev \
-    && pipx install --pip-args='--pre --no-cache-dir' pyload-ng[plugins] \
+    && pipx install --pip-args='--no-cache-dir' pyload-ng[plugins] \
     && pipx install --pip-args='--no-cache-dir' gallery-dl \
     && apk del .build-deps \
     && wget -O - https://github.com/mayswind/AriaNg/releases/download/1.2.4/AriaNg-1.2.4.zip | busybox unzip -qd /workdir/ariang - \
