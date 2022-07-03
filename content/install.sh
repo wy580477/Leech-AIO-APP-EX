@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 DIR_TMP="$(mktemp -d)"
 
 OS_type="$(uname -m)"
@@ -14,7 +16,7 @@ case "$OS_type" in
     OS_type='arm64'
     OS_type2='aarch64'
     OS_type3='arm64'
-    OS_type3='arm64'
+    OS_type4='arm64'
     ;;
   arm*)
     OS_type='arm-v7'
