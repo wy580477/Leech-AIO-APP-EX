@@ -67,7 +67,7 @@
         # 进入容器shell
         sv stop filebrowser
         # 停止filebrowser服务
-        filebrowser -d /mnt/config/filebrowser.db users add 用户名 密码 --perm.admin
+        filebrowser -d /mnt/data/config/filebrowser.db users add 用户名 密码 --perm.admin
         # 新建管理员用户。也可以使用users update 用户名 --perm.admin命令赋予现有用户管理员权限。
         sv start filebrowser
         # 启动filebrowser服务

@@ -70,7 +70,7 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
             # enter container shell
             sv stop filebrowser
             # stop filebrowser service
-            filebrowser -d /mnt/config/filebrowser.db users add username password --perm.admin
+            filebrowser -d /mnt/data/config/filebrowser.db users add username password --perm.admin
             # add new account with admin privileges
             sv start filebrowser
             # start filebrowser service
