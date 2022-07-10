@@ -46,7 +46,7 @@
         docker exec allinone gdlr https://www.reddit.com/r/aww/comments/vb14vy/urgent_baby_flamingo_doing_flamingo_leg/
         # 下载到gallery_dl_downloads目录并与rclone联动
 
- 2. 对于不支持qBittorrent自定义路径的应用比如Radarr, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
+ 2. 对于不支持qBittorrent自定义路径的应用, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
 
 
             handle /api* {       
@@ -67,7 +67,7 @@
         # 进入容器shell
         sv stop filebrowser
         # 停止filebrowser服务
-        filebrowser -d /mnt/config/filebrowser.db users add 用户名 密码 --perm.admin
+        filebrowser -d /mnt/data/config/filebrowser.db users add 用户名 密码 --perm.admin
         # 新建管理员用户。也可以使用users update 用户名 --perm.admin命令赋予现有用户管理员权限。
         sv start filebrowser
         # 启动filebrowser服务
