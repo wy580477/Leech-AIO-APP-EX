@@ -4,6 +4,7 @@ if [ ! -f "/mnt/data/config/rclone_options.conf" ]; then
     cp /workdir/rclone_options.conf /mnt/data/config/rclone_options.conf
 fi
 
+sed -i 's/\r$//g' /mnt/data/config/rclone.conf
 source /mnt/data/config/rclone_options.conf
 export $(sed '/^#/d' /mnt/data/config/rclone_options.conf | cut -d= -f1)
 export RCLONE_RC_SERVE=true
