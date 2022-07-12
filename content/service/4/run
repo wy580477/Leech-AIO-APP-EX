@@ -4,6 +4,7 @@ if [ ! -f "/mnt/data/config/rclone_options.conf" ]; then
     cp /workdir/rclone_options.conf /mnt/data/config/rclone_options.conf
 fi
 
+sed -i 's/\r$//g' /mnt/data/config/rclone.conf
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv /workdir/4* /workdir/4${EXEC}
 source /mnt/data/config/rclone_options.conf
