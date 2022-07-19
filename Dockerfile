@@ -1,4 +1,4 @@
-FROM alexta69/metube:latest
+FROM alexta69/metube:2022-06-30
 
 COPY ./content /workdir/
 
