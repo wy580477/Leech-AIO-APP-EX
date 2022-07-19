@@ -1,0 +1,29 @@
+name: check docker images
+
+on:
+  push:
+    branches: [ docker ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Check if update available
+        id: check
+        uses: lucacome/docker-image-update-checker@v1
+        with:
+          base-image: alexta69/metube:2022-07-18
+          image: ghcr.io/wy580477/leech-aio-app-ex:latest
+      - 
+        name: Bump version
+        uses: remorses/bump-version@js
+        with:
+            version_file: ./VERSION
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+          
