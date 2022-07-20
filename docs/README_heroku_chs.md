@@ -31,8 +31,6 @@
 
   **请勿使用本仓库直接部署**  
 
-  **Heroku修复安全漏洞中，目前无法通过网页从私有库部署**  
-
  1. [设置Cloudflare Workers KV服务](https://github.com/wy580477/PaaS-Related/blob/main/SET_CLOUDFLARE_KV_chs.md)
 
 **KV服务用于存储配置文件。部分功能升级需要手动更新配置文件。**  
