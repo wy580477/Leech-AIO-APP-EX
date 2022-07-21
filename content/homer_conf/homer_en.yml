@@ -76,6 +76,12 @@ services:
   - name: "Applications"
     icon: "fas fa-cloud"
     items:
+      - name: "OliveTin"
+        logo: "./assets/tools/OliveTin.png"
+        subtitle: "Web UI for predefined shell commands"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/olivetin"
+        target: "_blank" # optional html a tag target attribute
       - name: "metube"
         logo: "./assets/tools/metube.png"
         subtitle: "Web GUI for yt-dlp"

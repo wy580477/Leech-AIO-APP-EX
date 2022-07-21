@@ -76,6 +76,12 @@ services:
   - name: "Web 应用"
     icon: "fas fa-cloud"
     items:
+      - name: "OliveTin"
+        logo: "./assets/tools/OliveTin.png"
+        subtitle: "在网页上执行预定义 shell 指令"
+        tag: "app"
+        url: "GLOBAL_PORTAL_PATH/olivetin"
+        target: "_blank" # optional html a tag target attribute
       - name: "metube"
         logo: "./assets/tools/metube.png"
         subtitle: "yt-dlp Web 前端"

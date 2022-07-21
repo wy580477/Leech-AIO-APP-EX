@@ -29,5 +29,8 @@ services:
       # If set to "internal", caddy will use self-signed cert.
       CADDY_WEB_PORT: 443
       # Port for web services. If you want to disable auto-https from caddy, set to non-443 port.
+      OLIVETIN: Disable
+      # You can execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI. Set value to "Enable" to enable OliveTin. 
+      # Attention: User can execute any shell command from OliveTin WebUI, so enable OliveTin at your own risk.
       TZ: UTC
       # Timezone

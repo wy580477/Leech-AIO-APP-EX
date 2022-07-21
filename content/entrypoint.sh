@@ -10,4 +10,8 @@ if [ ! -f "/mnt/data/config/gallery-dl.conf" ]; then
        cp /workdir/gallery-dl.conf /mnt/data/config/gallery-dl.conf
 fi
 
+if [ "${OLIVETIN}" != "Enable" ]; then
+       rm -rf /etc/service/olivetin
+fi
+
 exec runsvdir -P /etc/service

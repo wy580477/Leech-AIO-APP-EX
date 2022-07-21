@@ -33,5 +33,8 @@ services:
       # 默认值internal为使用caddy自签证书。
       CADDY_WEB_PORT: 443
       # 提供Web服务的端口，如果要关闭caddy自动https功能，需设置为非443端口。
+      OLIVETIN: Disable
+      # OliveTin可以在网页上执行yt-dlp、gallery-dl和rclone等预定义shell指令，设置此项值为"Enable"开启。
+      # 注意：开启后可通过OliveTin执行任意指令，不建议在安全敏感环境下使用。
       TZ: Asia/Shanghai
       # 指定时区。UTC为标准时间。

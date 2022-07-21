@@ -1,0 +1,73 @@
+# There is a built-in micro proxy that will host the webui and REST API all on
+# one port (this is called the "Single HTTP Frontend") and means you just need
+# one open port in the container/firewalls/etc.
+#
+listenAddressSingleHTTPFrontend: 127.0.0.1:61806
+
+externalRestAddress: "."
+# Choose from INFO (default), WARN and DEBUG
+logLevel: "INFO"
+
+# Actions (buttons) to show up on the WebUI:
+actions:
+  - title: yt-dlp
+    icon: "&#9654;"
+    shell: ytdlp.sh {{ urls }} {{ options }}
+    timeout: 86400
+    arguments:
+      - name: urls
+        type: very_dangerous_raw_string
+      - name: options
+        type: very_dangerous_raw_string
+  - title: yt-dlp & auto-upload to Rclone remote
+    icon: "&#128316;"
+    shell: dlpr {{ urls }} {{ options }} 
+    timeout: 86400
+    arguments:
+      - name: urls
+        type: very_dangerous_raw_string
+      - name: options
+        type: very_dangerous_raw_string
+  - title: gallery-dl
+    icon: "&#128444;"
+    shell: gallery-dl -c /mnt/data/config/gallery-dl.conf --exec-after '/workdir/gdltorclone.sh {}' {{ urls }} {{ options }} 
+    timeout: 86400
+    arguments:
+      - name: urls
+        type: very_dangerous_raw_string
+      - name: options
+        type: very_dangerous_raw_string
+  - title: Rclone Copy
+    icon: "&#10145;"
+    shell: /workdir/callapi.sh copy {{ source }} {{ destination }}  
+    timeout: 86400
+    arguments:
+      - name: source
+        type: very_dangerous_raw_string
+      - name: destination
+        type: very_dangerous_raw_string
+  - title: Rclone Move
+    icon: "&#10145;"
+    shell: /workdir/callapi.sh move {{ source }} {{ destination }}  
+    timeout: 86400
+    arguments:
+      - name: source
+        type: very_dangerous_raw_string
+      - name: destination
+        type: very_dangerous_raw_string
+  - title: Rclone Sync
+    icon: "&#8596;"
+    shell: /workdir/callapi.sh sync {{ source }} {{ destination }} 
+    timeout: 86400
+    arguments:
+      - name: source
+        type: very_dangerous_raw_string
+      - name: destination
+        type: very_dangerous_raw_string
+  - title: Rclone Job Status
+    icon: "&#8505;"
+    shell: /workdir/rclonejobstatus.sh {{ jobid }}
+    timeout: 60
+    arguments:
+      - name: jobid
+        type: int
