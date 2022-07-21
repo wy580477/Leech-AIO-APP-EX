@@ -23,4 +23,5 @@ cd
 
 # Run pyload
 exec 2>&1
+pyload --quit
 exec pyload
