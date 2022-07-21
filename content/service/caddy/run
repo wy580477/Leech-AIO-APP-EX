@@ -17,7 +17,7 @@ if [ ! -f "/workdir/homer_conf/pyload.png" ]; then
 fi
 
 if [ "${OLIVETIN}" != "Enable" ]; then
-    LINE=$(sed -n -e '/OliveTin/=' /workdir/homer/assets/config.yml)
+    LINE=$(sed -n -e '/\"OliveTin\"/=' /workdir/homer/assets/config.yml)
     LINE2=$((LINE + 5))
     sed -i "${LINE},${LINE2}d" /workdir/homer/assets/config.yml
 fi
