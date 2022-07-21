@@ -12,10 +12,11 @@
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. AMD64/Arm64架构支持，Lite版本增加Armv7支持。
- 3. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
- 4. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板和flexget/Radarr/Sonarr等应用。
- 5. 基于 [runit](http://smarden.org/runit/index.html) 的进程管理，每个服务可以独立启停。
- 6. log目录下有每个服务独立日志。
+ 3. 可以从OliveTin网页端执行预定义yt-dlp、gallery-dl和Rclone指令。
+ 4. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
+ 5. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板和flexget/Radarr/Sonarr等应用。
+ 6. 基于 [runit](http://smarden.org/runit/index.html) 的进程管理，每个服务可以独立启停。
+ 7. log目录下有每个服务独立日志。
 
 ## 部署方式
 
