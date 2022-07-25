@@ -12,10 +12,11 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. AMD64/Arm64 multi-architecture support, Lite version has additional Armv7 support.
- 3. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
- 4. You can connect to Aria2, qBittorrent and Rclone from frontends/services running on other hosts, including flexget/Radarr/Sonarr.
- 5. [runit](http://smarden.org/runit/index.html)-based process management, each service can be started and stopped independently.
- 6. There are independent logs for each service in the log directory.
+ 3. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
+ 4. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
+ 5. You can connect to Aria2, qBittorrent and Rclone from frontends/services running on other hosts, including flexget/Radarr/Sonarr.
+ 6. [runit](http://smarden.org/runit/index.html)-based process management, each service can be started and stopped independently.
+ 7. There are independent logs for each service in the log directory.
 
 ## <a id="Deployment"></a>Deployment
 

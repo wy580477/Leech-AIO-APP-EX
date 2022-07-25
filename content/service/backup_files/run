@@ -29,8 +29,9 @@ curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json"
 
 # Back config files
 DIR_TMP="$(mktemp -d)"
-mkdir -p ${DIR_TMP}/config/qBittorrent
+mkdir -p ${DIR_TMP}/config/qBittorrent/data
 cp -r /mnt/data/config/qBittorrent/config ${DIR_TMP}/config/qBittorrent 2>/dev/null
+cp -r /mnt/data/config/qBittorrent/data/nova3 ${DIR_TMP}/config/qBittorrent/data 2>/dev/null
 cp -r /mnt/data/config/olivetin ${DIR_TMP}/config
 cp -r /workdir/.pyload/settings ${DIR_TMP}/config 
 cp -r /mnt/data/.cache/gallery-dl ${DIR_TMP}/config 2>/dev/null
