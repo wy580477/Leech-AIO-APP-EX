@@ -48,8 +48,7 @@ wget -O - https://github.com/filebrowser/filebrowser/releases/latest/download/li
 wget -O - https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-${OS_type4}.tar.gz | tar -zxf - -C /usr/bin
 
 # Install OliveTin
-VERSION="$(curl --retry 5 https://api.github.com/repos/OliveTin/OliveTin/releases/latest | jq .tag_name | sed 's/\"//g')"
-curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/download/${VERSION}/OliveTin-${VERSION}-Linux-${OS_type5}.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
+curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/latest/download/OliveTin-Linux-${OS_type5}.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
 mv ${DIR_TMP}/*/OliveTin /usr/bin/
 mkdir -p /var/www/olivetin
 mv ${DIR_TMP}/*/webui/* /var/www/olivetin/
