@@ -42,8 +42,7 @@ if [ ! -f "/mnt/data/config/gallery-dl.conf" ]; then
 fi
 
 # Install OliveTin
-VERSION="$(curl --retry 5 https://api.github.com/repos/OliveTin/OliveTin/releases/latest | jq .tag_name | sed 's/\"//g')"
-curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/download/${VERSION}/OliveTin-${VERSION}-Linux-amd64.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
+curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/latest/download/OliveTin-Linux-amd64.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
 mv ${DIR_TMP}/*/OliveTin /usr/bin/
 mkdir -p /var/www/olivetin
 mv ${DIR_TMP}/*/webui/* /var/www/olivetin/
