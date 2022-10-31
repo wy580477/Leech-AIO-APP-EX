@@ -1,3 +1,5 @@
+## Heroku will stop offering free product plans and shut down free dynos starting Nov. 28, 2022.
+
 ## Attention
 
  1. **Do not abuse service from Heroku or your account could get banned. Deploy at your own risk.**

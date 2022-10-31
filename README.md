@@ -24,7 +24,7 @@ This project integrates yt-dlp, Aria2, qBittorrent, pyLoad Download Manager, rcl
 
 </details>
 
-## [Heroku Deployment](docs/README_heroku.md)
+## [~~Heroku Deployment~~ Heroku will stop offering free product plans and shut down free dynos starting Nov. 28, 2022.](docs/README_heroku.md)
 
 <details>
 <summary>Screenshot</summary>

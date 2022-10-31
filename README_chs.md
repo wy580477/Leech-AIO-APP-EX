@@ -23,7 +23,7 @@
 
 </details>
 
-## [Heroku 部署](docs/README_heroku_chs.md)
+## [~~Heroku 部署~~ Heroku将于2022年11月关闭免费服务](docs/README_heroku_chs.md)
 
 <details>
 <summary>截图</summary>
