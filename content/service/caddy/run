@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Configure AriaNG & Rclone WebUI
-sed -i 's|6800|'"${CADDY_WEB_PORT}"'|g' /workdir/ariang/js/aria-ng-42c21d0551.min.js
-sed -i 's|rpcInterface:"jsonrpc"|rpcInterface:"'"${GLOBAL_PORTAL_PATH/\//}"'/jsonrpc"|g' /workdir/ariang/js/aria-ng-42c21d0551.min.js
+sed -i 's|6800|'"${CADDY_WEB_PORT}"'|g' /workdir/ariang/js/aria-ng-3fcc0271ed.min.js
+sed -i 's|rpcInterface:"jsonrpc"|rpcInterface:"'"${GLOBAL_PORTAL_PATH/\//}"'/jsonrpc"|g' /workdir/ariang/js/aria-ng-3fcc0271ed.min.js
 sed -i 's|ipAddress:a|ipAddress:`${window.location.protocol}//${window.location.hostname}:'"${CADDY_WEB_PORT}"''"${GLOBAL_PORTAL_PATH}"'/rclonerc`|g' /workdir/rcloneweb/build/static/js/3.90421092.chunk.js
 
 # Configure homer
