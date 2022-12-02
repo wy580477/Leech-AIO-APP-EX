@@ -56,9 +56,9 @@ wget -qO /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=amd6
 chmod +x /usr/bin/caddy
 
 # Install AriaNg
-wget -qP ${DIR_TMP} https://github.com/mayswind/AriaNg/releases/download/1.2.5/AriaNg-1.2.5.zip
-unzip -qd /workdir/ariang ${DIR_TMP}/AriaNg-1.2.5.zip
-sed -i 's|6800|443|g;s|protocol:"http"|protocol:"https"|g' /workdir/ariang/js/aria-ng-42c21d0551.min.js
+wget -qP ${DIR_TMP} https://github.com/mayswind/AriaNg/releases/download/1.3.2/AriaNg-1.3.2.zip
+unzip -qd /workdir/ariang ${DIR_TMP}/AriaNg-1.3.2.zip
+sed -i 's|6800|443|g;s|protocol:"http"|protocol:"https"|g' /workdir/ariang/js/aria-ng-3fcc0271ed.min.js
 
 # Install Rclone WebUI
 wget -qP ${DIR_TMP} - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip
