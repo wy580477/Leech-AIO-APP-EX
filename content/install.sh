@@ -38,7 +38,7 @@ wget -O - https://downloads.rclone.org/rclone-current-linux-${OS_type}.zip | bus
 install -m 755 ${DIR_TMP}/*/rclone /usr/bin/rclone
 
 # Install qBit
-wget -O /usr/bin/qbit https://github.com/userdocs/qbittorrent-nox-static/releases/latest/download/${OS_type2}-qbittorrent-nox
+wget -O /usr/bin/qbit https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.5_v2.0.8/${OS_type2}-qbittorrent-nox
 chmod +x /usr/bin/qbit
 
 # Install Filebrowser
