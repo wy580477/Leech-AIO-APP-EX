@@ -6,15 +6,6 @@
 }
 :{$PORT}
 encode gzip
-# Configure xray
-@websockets {
-        header Connection *Upgrade*
-        header Upgrade websocket
-        path {$GLOBAL_PORTAL_PATH}/vm*
-}
-handle @websockets {
-        reverse_proxy * localhost:61807
-}
 # Configure ttyd
 handle {$GLOBAL_PORTAL_PATH}/ttyd* {
         redir {$GLOBAL_PORTAL_PATH}/ttyd {$GLOBAL_PORTAL_PATH}/ttyd/

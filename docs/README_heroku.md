@@ -17,7 +17,7 @@
 
 ## <a id="Overview"></a>Overview
 
-This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal, Xray Vmess proxy protocol.
+This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal.
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
@@ -79,13 +79,3 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  5. Aria2 JSON-RPC path： \${GLOBAL_PORTAL_PATH}/jsonrpc   
     Aria2 XML-RPC path： \${GLOBAL_PORTAL_PATH}/rpc
  6. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
- 7. Vmess proxy protocol: AlterID is 0, you can connect to either Vmess WS port 80 or Vmess WS tls port 443. Xray settings can be modified via content/xray.yaml file in repository. Heroku is difficult to connect in mainland China.
-
-      <details>
-      <summary>Example client setting</summary>
-      <img src="https://user-images.githubusercontent.com/98247050/169536721-4b4fc824-454a-4bec-9342-40978b1d99a4.png"/>
-      </details>
-      <details>
-      <summary>Example client setting with tls</summary>
-      <img src="https://user-images.githubusercontent.com/98247050/169670311-1bf05652-8b5c-459a-9c24-41eef341006a.png"/>
-      </details>

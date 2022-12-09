@@ -19,7 +19,7 @@
 
 ## 概述
 
-本项目集成了yt-dlp、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端、Xray Vmess协议。
+本项目集成了yt-dlp、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端。
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
@@ -55,7 +55,6 @@
 | `TZ` | 时区，Asia/Shanghai为中国时区 |
 | `CLOUDFLARE_WORKERS_HOST` | Cloudflare Workers 服务域名 |
 | `CLOUDFLARE_WORKERS_KEY` | Cloudflare Workers 服务密钥 |
-| `VMESS_UUID` | Vmess协议UUID，务必修改，建议使用UUID工具生成 |
 
 ### 初次使用
 
@@ -96,4 +95,3 @@
  5. Aria2 JSON-RPC 路径为： \$\{GLOBAL_PORTAL_PATH\}/jsonrpc   
     Aria2 XML-RPC 路径为： \$\{GLOBAL_PORTAL_PATH\}/rpc
  6. 无法通过Rclone Web前端建立需要网页认证的存储配置。
- 7. Vmess协议AlterID为0，可用Vmess WS 80端口或者Vmess WS tls 443端口连接。Xray设置可以通过content/xray.yaml文件修改。Heroku国内直连可能需要使用Cloudflare或其它方式中转。

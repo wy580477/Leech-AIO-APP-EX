@@ -2,7 +2,7 @@
 
 # Update homer message
 cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config.yml
-sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g;s|VmessUUID|${VmessUUID}|g" /workdir/homer/assets/config.yml
+sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/homer/assets/config.yml
 
 UPTIME=$(($(date +%s) - $(cat /workdir/dyno_start_time)))
 
