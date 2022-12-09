@@ -27,7 +27,7 @@ mv ${DIR_TMP}/aria2c /workdir/2${EXEC}
 
 # Install qBit
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-wget -qO /workdir/1${EXEC} https://github.com/userdocs/qbittorrent-nox-static/releases/latest/download/x86_64-qbittorrent-nox
+wget -qO /workdir/1${EXEC} https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.5_v2.0.8/x86_64-qbittorrent-nox
 chmod +x /workdir/1${EXEC}
 
 # Install OliveTin
