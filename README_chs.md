@@ -2,7 +2,7 @@
 
 - 所有可以登陆此APP的用户可以访问/修改此APP以及Rclone远程存储的所有数据，不要存放敏感数据，不要与他人共享使用。
 
-本项目集成了yt-dlp、Aria2、qBittorrent、pyLoad下载管理器、Rclone联动自动上传功能、Telegram任务完成通知以及它们的WebUI和更多Web应用。
+本项目集成了yt-dlp、Aria2、gallery-dl、qBittorrent、pyLoad下载管理器、Rclone联动自动上传功能、Telegram任务完成通知以及它们的WebUI和更多Web应用。
 
 ## [Docker 部署](docs/README_docker_chs.md)
 

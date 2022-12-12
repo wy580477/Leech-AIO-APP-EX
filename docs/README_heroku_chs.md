@@ -19,7 +19,7 @@
 
 ## 概述
 
-本项目集成了yt-dlp、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端。
+本项目集成了yt-dlp、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘、OliveTin网页执行shell命令、ttyd Web终端、Telegram任务完成通知。
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。

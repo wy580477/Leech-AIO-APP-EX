@@ -17,7 +17,7 @@
 
 ## <a id="Overview"></a>Overview
 
-This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal.
+This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, customizable portal page, OliveTin WebUI for shell commands, Filebrowser, ttyd web terminal, Telegram notification.
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
  2. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.

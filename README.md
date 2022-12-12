@@ -3,7 +3,7 @@
 ## Attention
  - Anyone who can login into this app has full access to data in this app and Rclone remotes. Do not share with other ppl, and do not store sensitive information with this app.
 
-This project integrates yt-dlp, Aria2, qBittorrent, pyLoad Download Manager, rclone auto-upload, Telegram notification and their WebUI plus other Web Apps into a single package which is easy to deploy.
+This project integrates yt-dlp, Aria2, gallery-dl, qBittorrent, pyLoad Download Manager, rclone auto-upload, Telegram notification and their WebUI plus other Web Apps into a single package which is easy to deploy.
 
 ## [Docker Deployment](docs/README_docker.md)
 
