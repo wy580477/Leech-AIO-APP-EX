@@ -5,6 +5,8 @@
 
 LOCAL_PATH="$3"
 PACKAGE_NAME="$2"
+FOLDER_NAME="$2"
+APP=pyload
 source /workdir/script_core.sh
 
 DEFINITION_PATH() {
@@ -25,8 +27,10 @@ DEFINITION_PATH() {
 
 UPLOAD_TASK() {
     if [ "${UPLOAD_MODE}" = "disable" ]; then
+        SEND_TG_FINISHED
         echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
     else
+        SEND_TG_FINISHED_TO_RCLONE
         UPLOAD_FOLDER
     fi
 }
