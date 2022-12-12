@@ -8,7 +8,7 @@
 
 ## 概述
 
-本项目集成了yt-dlp和其Web前端metube、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘。
+本项目集成了yt-dlp和其Web前端metube、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘。支持 Telegram 任务完成通知。
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
  2. AMD64/Arm64架构支持，Lite版本增加Armv7支持。
@@ -35,7 +35,12 @@
 
 ### 更多用法和注意事项
 
- 1. 命令行调用yt-dlp和gallery-dl方法：
+ 1. Telegram通知功能，需要在Telegram内与@BotFather对话注册bot，然后将bot加入你建立的频道，并获取频道的ChatID。具体详细步骤请Google。
+ 
+    然后编辑config/script.conf文件，将botid:token和ChatID填入对应选项，通知功能即生效。
+    
+
+ 2. 命令行调用yt-dlp和gallery-dl方法：
 
         docker exec allinone yt-dlp
         # 内置快捷脚本：dlpr  
@@ -47,7 +52,7 @@
         docker exec allinone gdlr https://www.reddit.com/r/aww/comments/vb14vy/urgent_baby_flamingo_doing_flamingo_leg/
         # 下载到gallery_dl_downloads目录并与rclone联动
 
- 2. 对于不支持qBittorrent自定义路径的应用, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
+ 3. 对于不支持qBittorrent自定义路径的应用, 在config/caddy目录下的Caddyfile文件中找到下列内容，去除每行开头的注释符号“#”:
 
 
             handle /api* {       
@@ -56,12 +61,11 @@
 
     然后在宿主机终端执行如下命令即可生效:
 
-
             docker exec allinone sv restart caddy
 
- 3. Aria2 JSON-RPC 路径为： \${GLOBAL_PORTAL_PATH}/jsonrpc     
+ 4. Aria2 JSON-RPC 路径为： \${GLOBAL_PORTAL_PATH}/jsonrpc     
     Aria2 XML-RPC 路径为： \${GLOBAL_PORTAL_PATH}/rpc
- 4. 考虑安全原因Filebrowser初始用户无管理员权限，如需要管理员权限，执行下列命令：
+ 5. 考虑安全原因Filebrowser初始用户无管理员权限，如需要管理员权限，执行下列命令：
 
 
         docker exec -it allinone sh
@@ -73,15 +77,13 @@
         sv start filebrowser
         # 启动filebrowser服务
 
- 5. pyLoad已知Bug：
+ 6. pyLoad已知Bug：
     - 登陆后重定向到http，解决方法：关闭当前pyLoad页面，重新打开。
     - 解压后不能删除原文件，解决方法：Settings--Plugins--ExtractArchive，将"Move to trash instead delete"项设置为off。
  6. 将下列内容添加到rclone.conf文件，可以将本地存储作为Rclone的远程存储，便于在Rclone WebUI上手动上传。
 
-
         [local]
         type = alias
         remote = /mnt/data
-
 
  7. 无法通过Rclone Web前端建立需要网页认证的存储配置。

@@ -72,7 +72,9 @@
 
 ### 更多用法和注意事项
 
- 1. 如果网页访问APP出现故障，按下shift+F5强制刷新，如果还不行，从浏览器中清除app对应的heroku域名缓存和cookie。
+ 1. Telegram通知功能，需要在Telegram内与@BotFather对话注册bot，然后将bot加入你建立的频道，并获取频道的ChatID。具体详细步骤请Google。
+ 
+    然后编辑config/script.conf文件，将botid:token和ChatID填入对应选项，通知功能即生效。
  2. pyLoad已知Bug：
     - 登陆后重定向到http，解决方法：关闭当前pyLoad页面，重新打开。
     - 解压后不能删除原文件，解决方法：Settings--Plugins--ExtractArchive，将"Move to trash instead delete"项设置为off。

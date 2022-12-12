@@ -58,7 +58,9 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 
 ## <a id="more"></a>More usages and precautions
 
- 1. Hit shift+F5 to force refresh if web services don't work properly. If app still doesn't work, clear cache and cookie of your heroku domain from browser.
+ 1. To enable Telegram notification function, you need to talk to @BotFather in Telegram to register a bot. Add the bot to a channel you created, and get ChatID of the channel. Please Google for detailed steps.
+ 
+    Edit the config/script.conf file. Fill in the corresponding options for botid:token and ChatID, then the notification function will take effect.
  2. Known pyLoad bugs：
     - Redirect to http after login，solution: close the pyLoad page and reopen it.
     - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.

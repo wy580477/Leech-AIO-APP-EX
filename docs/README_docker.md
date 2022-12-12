@@ -36,8 +36,12 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
    4. Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
 
 ## <a id="more"></a>More usages and precautions
+ 
+ 1. To enable Telegram notification function, you need to talk to @BotFather in Telegram to register a bot. Add the bot to a channel you created, and get ChatID of the channel. Please Google for detailed steps.
+ 
+    Edit the config/script.conf file. Fill in the corresponding options for botid:token and ChatID, then the notification function will take effect.
 
- 1. How to use yt-dlp & gallery-dl via command line：  
+ 2. How to use yt-dlp & gallery-dl via command line：  
 
 
             docker exec allinone yt-dlp
@@ -50,7 +54,7 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
             # Download files to gallery_dl_downloads folder, then send job to Rclone.
             docker exec allinone gdlr https://www.reddit.com/r/aww/comments/vb14vy/urgent_baby_flamingo_doing_flamingo_leg/
 
- 2. For apps which don't support custom path for qBittorrent, uncomment followings line in Caddyfile under config/caddy folder:
+ 3. For apps which don't support custom path for qBittorrent, uncomment followings line in Caddyfile under config/caddy folder:
 
 
             handle /api* {       
@@ -62,9 +66,9 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
 
             docker exec allinone sv restart caddy
 
- 3. Aria2 JSON-RPC path： \${GLOBAL_PORTAL_PATH}/jsonrpc      
+ 4. Aria2 JSON-RPC path： \${GLOBAL_PORTAL_PATH}/jsonrpc      
     Aria2 XML-RPC path： \${GLOBAL_PORTAL_PATH}/rpc
- 4. Considering security reasons, the initial user of Filebrowser doesn't have administrator privileges. If administrator privileges are wanted, run following commands:  
+ 5. Considering security reasons, the initial user of Filebrowser doesn't have administrator privileges. If administrator privileges are wanted, run following commands:  
 
 
             docker exec -it allinone sh
@@ -76,10 +80,10 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
             sv start filebrowser
             # start filebrowser service
 
- 5. Known pyLoad bugs：
+ 6. Known pyLoad bugs：
     - Redirect to http after login，solution: close the pyLoad page and reopen it.
     - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.
- 6. After adding following content to rclone.conf file, you can use local storage as a Rclone remote for manually uploading via Rclone Web UI.
+ 7. After adding following content to rclone.conf file, you can use local storage as a Rclone remote for manually uploading via Rclone Web UI.
 
 
             [local]
@@ -87,4 +91,4 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
             remote = /mnt/data
 
 
- 7. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
+ 8. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
