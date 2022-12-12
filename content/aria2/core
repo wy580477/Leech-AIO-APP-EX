@@ -71,6 +71,8 @@ CHECK_SCRIPT_CONF() {
 }
 
 LOAD_SCRIPT_CONF() {
+    TELEGRAM_BOT_TOKEN="$(grep ^telegram-bot-token /mnt/data/config/script.conf | cut -d= -f2-)"
+    TELEGRAM_CHAT_ID="$(grep ^telegram-chat-id /mnt/data/config/script.conf | cut -d= -f2-)"
     DRIVE_NAME="$(grep ^drive-name "${SCRIPT_CONF}" | cut -d= -f2-)"
     DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g;s/\r$//")"
     if [ "${DRIVE_NAME}" = "auto" ]; then
@@ -257,4 +259,25 @@ CLEAN_UP() {
     DELETE_DOT_TORRENT
     DELETE_EXCLUDE_FILE
     DELETE_EMPTY_DIR
+}
+
+TG_DL_FINISHED() {
+    if [ "${TELEGRAM_CHAT_ID}" != "" ]; then
+        if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
+            SEND_TG_MSG Aria2 "${TASK_FILE_NAME} 下载已完成"
+        else
+            SEND_TG_MSG Aria2 "${TASK_FILE_NAME} download completed"
+        fi
+    fi
+}
+
+SEND_TG_MSG() {
+    if [ "${TELEGRAM_CHAT_ID}" != "" ]; then
+        title="$1"
+        timestamp="$(DATE_TIME)"
+        msg="$title $timestamp\n$(echo "$2" | sed -e 's|\\|\\\\|g' -e 's|\n|\\n|g' -e 's|\t|\\t|g' -e 's|\"|\\"|g')"
+        entities="[{\"offset\":0,\"length\":${#title},\"type\":\"bold\"},{\"offset\":$((${#title} + 1)),\"length\":${#timestamp},\"type\":\"italic\"}]"
+        data="{\"chat_id\":\"$TELEGRAM_CHAT_ID\",\"text\":\"$msg\",\"entities\":$entities,\"disable_notification\": true}"
+        curl -s -o /dev/null -H 'Content-Type: application/json' -X POST -d "$data" https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage
+    fi
 }

@@ -4,6 +4,7 @@
 #
 
 LOCAL_PATH="$1"
+APP=yt-dlp
 source /workdir/script_core.sh
 
 DEFINITION_PATH() {
@@ -11,6 +12,7 @@ DEFINITION_PATH() {
     YTDLP_DRIVE_DIR="$(grep ^ytdlp-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
     FILE_PATH=$(echo ${LOCAL_PATH} | sed 's:[^/]*$::')
     FILE_NAME=$(basename "${LOCAL_PATH}")
+    FOLDER_NAME="${FILE_NAME}"
     mv "${LOCAL_PATH}" "${FILE_PATH}""${FILE_NAME}"
     if [[ "${YTDLP_DRIVE_DIR}" =~ :/ ]]; then
         REMOTE_PATH="${YTDLP_DRIVE_DIR}"
@@ -27,7 +29,9 @@ DEFINITION_PATH() {
 UPLOAD_TASK() {
     if [ "${UPLOAD_MODE}" = "disable" ]; then
         echo "$(DATE_TIME) [INFO] Auto-upload to Rclone remote disabled"
+        SEND_TG_FINISHED
     else
+        SEND_TG_FINISHED_TO_RCLONE
         UPLOAD_FILE
     fi
     if [ "${JOB_ID}" = "" ]; then
