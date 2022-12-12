@@ -13,6 +13,7 @@ fi
 
 yt-dlp -U &
 python3 -m pip install --no-cache-dir -U gallery-dl &
+pip install --no-cache-dir -U telegram-upload &
 
 exec 2>&1
 exec OliveTin --configdir /mnt/data/config/olivetin

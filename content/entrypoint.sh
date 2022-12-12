@@ -12,6 +12,7 @@ echo ${BACKUP} | base64 -d >${DIR_TMP}/backup.tar.gz
 tar -zxf ${DIR_TMP}/backup.tar.gz -C /mnt/data
 mv /mnt/data/config/settings /workdir/.pyload 2>/dev/null
 mv /mnt/data/config/gallery-dl /mnt/data/.cache 2>/dev/null
+mv /mnt/data/config/.config /mnt/data 2>/dev/null
 rm -rf ${DIR_TMP}
 
 if [ ! -f "/mnt/data/config/script.conf" ]; then

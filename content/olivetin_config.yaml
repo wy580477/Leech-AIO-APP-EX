@@ -37,6 +37,22 @@ actions:
         type: very_dangerous_raw_string
       - name: options
         type: very_dangerous_raw_string
+  - title: telgram-download
+    icon: "&#8481;"
+    shell: telegram-download
+    timeout: 86400
+    arguments:
+      - name: options
+        type: very_dangerous_raw_string
+  - title: telegram-upload
+    icon: "&#8481;"
+    shell: telegram-upload
+    timeout: 86400
+    arguments:
+      - name: file-path
+        type: very_dangerous_raw_string
+      - name: options
+        type: very_dangerous_raw_string
   - title: Rclone Copy
     icon: "&#10145;"
     shell: /workdir/callapi.sh copy {{ source }} {{ destination }}  

@@ -36,6 +36,7 @@ cp -r /mnt/data/config/olivetin ${DIR_TMP}/config
 cp -r /workdir/.pyload/settings ${DIR_TMP}/config 
 cp -r /mnt/data/.cache/gallery-dl ${DIR_TMP}/config 2>/dev/null
 cp /mnt/data/config/* ${DIR_TMP}/config 2>/dev/null
+cp -r /mnt/data/.config ${DIR_TMP}/config 2>/dev/null
 tar -zcf ${DIR_TMP}/backup.tar.gz -C ${DIR_TMP} config
 VALUE=$(base64 -w 0 ${DIR_TMP}/backup.tar.gz)
 echo \{\"_id\":\"backup\",\"value\":\"${VALUE}\"\} >./body
