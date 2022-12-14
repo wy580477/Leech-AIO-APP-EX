@@ -11,6 +11,7 @@ DEFINITION_PATH() {
     DOWNLOAD_DIR="$(jq '."base-directory"' /mnt/data/config/gallery-dl.conf | sed 's/\"//g;s/\r$//')"
     GDL_DRIVE_DIR="$(grep ^gdl-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
     BASE_PATH="${LOCAL_PATH#"${DOWNLOAD_DIR%/}"}"
+    MSG_PATH="${LOCAL_PATH}"
     FOLDER_NAME="${BASE_PATH}"
     if [[ "${GDL_DRIVE_DIR}" =~ :/ ]]; then
         REMOTE_PATH="${GDL_DRIVE_DIR}${BASE_PATH}"
