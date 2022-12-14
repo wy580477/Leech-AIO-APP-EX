@@ -13,6 +13,7 @@ DEFINITION_PATH() {
     UPLOAD_MODE="$(grep ^pyload-package-extracted-upload-mode /mnt/data/config/script.conf | cut -d= -f2-)"
     DOWNLOAD_DIR="$(grep ^'.*folder storage_folder' /workdir/.pyload/settings/pyload.cfg | cut -d= -f2- | sed "s/\r$//")"
     PYLOAD_DRIVE_DIR="$(grep ^pyload-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
+    MSG_PATH="${LOCAL_PATH}"
     if [[ "${PYLOAD_DRIVE_DIR}" =~ :/ ]]; then
         REMOTE_PATH="${PYLOAD_DRIVE_DIR}/${PACKAGE_NAME}"
     else
