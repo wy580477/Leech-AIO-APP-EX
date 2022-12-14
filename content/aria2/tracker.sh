@@ -43,6 +43,8 @@ FONT_COLOR_SUFFIX="\033[0m"
 INFO="[${GREEN_FONT_PREFIX}INFO${FONT_COLOR_SUFFIX}]"
 ERROR="[${RED_FONT_PREFIX}ERROR${FONT_COLOR_SUFFIX}]"
 ARIA2_CONF=${1:-aria2*.conf}
+SCRIPT_CONF="/mnt/data/config/script.conf"
+ARIA2_AUTO_TRACKER="$(grep ^aria2-auto-tracker-update "${SCRIPT_CONF}" | cut -d= -f2-)"
 DOWNLOADER="curl -fsSL --connect-timeout 3 --max-time 3 --retry 2"
 NL=$'\n'
 
@@ -136,7 +138,10 @@ ADD_TRACKERS_LOCAL_RPC() {
     exit 1
 }
 
-if [ "$1" = "cat" ]; then
+
+if [ "${ARIA2_AUTO_TRACKER}" != "enable" ]; then
+    exit 0
+elif [ "$1" = "cat" ]; then
     GET_TRACKERS
     ECHO_TRACKERS
 elif [ "$1" = "RPC" ]; then

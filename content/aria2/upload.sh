@@ -86,11 +86,7 @@ UPLOAD_FILE() {
         TG_DL_FINISHED
         exit 0
     else
-        if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
-            SEND_TG_MSG Aria2 "${TASK_FILE_NAME} 下载已完成并发送上传任务至 Rclone"
-        else
-            SEND_TG_MSG Aria2 "${TASK_FILE_NAME} download completed and send upload job to Rclone"
-        fi
+        TG_DL_FINISHED_RCLONE
     fi
     echo -e "$(DATE_TIME) ${INFO} Start upload files..."
     TASK_INFO
@@ -99,9 +95,24 @@ UPLOAD_FILE() {
     else
         JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'/'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:61802/sync/'${UPLOAD_MODE}'' | jq .jobid | sed 's/\"//g')"
     fi
+    if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
+        RCLONE_SEND_MSG="已成功发生任务至 Rclone"
+        RCLONE_NO_STATUS_MSG="无法获取 Rclone 任务状态"
+        RCLONE_SUCCESS_MSG="Rclone 任务已成功完成"
+        RCLONE_UNSUCCESS_MSG="Rclone 任务已完成，但出现错误"
+        RCLONE_ERROR_MSG="Rclone 错误"
+        RCLONE_FAIL_MSG="无法发送任务至 Rclone"
+    else
+        RCLONE_SEND_MSG="Successfully send job to Rclone"
+        RCLONE_NO_STATUS_MSG="Faile to get Rclone job status"
+        RCLONE_SUCCESS_MSG="Rclone job successfully finished"
+        RCLONE_UNSUCCESS_MSG="Rclone job unsuccessfully finished"
+        RCLONE_ERROR_MSG="Rclone Error"
+        RCLONE_FAIL_MSG="Failed to send job to Rclone"
+    fi
     RCLONE_ERROR="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .error | sed 's/\"//g')"
     if [ "${JOB_ID}" != "" ] && [ "${RCLONE_ERROR}" = "" ]; then
-        UPLOAD_LOG="$(DATE_TIME) ${INFO} Successfully send job to rclone: ${LOCAL_PATH} -> ${REMOTE_PATH}"
+        UPLOAD_LOG="$(DATE_TIME) ${INFO} ${RCLONE_SEND_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
         OUTPUT_UPLOAD_LOG
         RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .finished)"
         while [[ "${RCLONE_FINISHED}" != "true" ]]; do
@@ -113,25 +124,25 @@ UPLOAD_FILE() {
         done
         RCLONE_SUCCESS="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .success)"
         if [ "${RCLONE_FINISHED}" = "" ]; then
-            echo "[INFO] Fail to get Rclone job status: ${LOCAL_PATH} -> ${REMOTE_PATH}"
-            SEND_TG_MSG Rclone "[INFO] Faile to get Rclone job status: ${LOCAL_PATH} -> ${REMOTE_PATH}"
+            echo "[INFO] ${RCLONE_NO_STATUS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
+            SEND_TG_MSG Rclone "[INFO] ${RCLONE_NO_STATUS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
         elif [ "${RCLONE_SUCCESS}" = "true" ]; then
-            echo "[INFO] Rclone job successfully finished: ${LOCAL_PATH} -> ${REMOTE_PATH}"
-            SEND_TG_MSG Rclone "[INFO] Rclone job successfully finished: ${LOCAL_PATH} -> ${REMOTE_PATH}"
+            echo "[INFO] ${RCLONE_SUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
+            SEND_TG_MSG Rclone "[INFO] ${RCLONE_SUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
         else
-            echo "[INFO] Rclone job unsuccessfully finished: ${LOCAL_PATH} -> ${REMOTE_PATH}"
-            SEND_TG_MSG Rclone "[INFO] Rclone job unsuccessfully finished: ${LOCAL_PATH} -> ${REMOTE_PATH}"
+            echo "[INFO] ${RCLONE_UNSUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
+            SEND_TG_MSG Rclone "[INFO] ${RCLONE_UNSUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
         fi
         DELETE_EMPTY_DIR
     elif [ "${RCLONE_ERROR}" != "" ]; then
-        UPLOAD_LOG="$(DATE_TIME) [ERROR] Rclone Error: ${RCLONE_ERROR}, ${LOCAL_PATH} -> ${REMOTE_PATH}"
+        UPLOAD_LOG="$(DATE_TIME) [ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${LOCAL_PATH} -> ${REMOTE_PATH}"
         OUTPUT_UPLOAD_LOG
-        SEND_TG_MSG Rclone "[ERROR] Rclone Error: ${RCLONE_ERROR}, ${LOCAL_PATH} -> ${REMOTE_PATH}"
+        SEND_TG_MSG Rclone "[ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${LOCAL_PATH} -> ${REMOTE_PATH}"
     else
         curl -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status'
-        UPLOAD_LOG="$(DATE_TIME) [ERROR] Failed to send job to rclone: ${LOCAL_PATH}"
+        UPLOAD_LOG="$(DATE_TIME) [ERROR] ${RCLONE_FAIL_MSG}: ${LOCAL_PATH}"
         OUTPUT_UPLOAD_LOG
-        SEND_TG_MSG Rclone "[ERROR] Failed to send job to rclone: ${LOCAL_PATH}"
+        SEND_TG_MSG Rclone "[ERROR] ${RCLONE_FAIL_MSG}: ${LOCAL_PATH}"
     fi
 }
 

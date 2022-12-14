@@ -14,6 +14,7 @@ DEFINITION_PATH() {
     DOWNLOAD_DIR="$(grep ^'.*folder storage_folder' /workdir/.pyload/settings/pyload.cfg | cut -d= -f2- | sed "s/\r$//")"
     PYLOAD_DRIVE_DIR="$(grep ^pyload-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
     FILE_PATH=$(echo ${LOCAL_PATH} | sed 's:[^/]*$::')
+    MSG_PATH="${FILE_PATH}${FILE_NAME}"
     DEST_PATH_SUFFIX="${FILE_PATH#"${DOWNLOAD_DIR%/}"}"
     if [[ "${PYLOAD_DRIVE_DIR}" =~ :/ ]]; then
         REMOTE_PATH="${PYLOAD_DRIVE_DIR}${DEST_PATH_SUFFIX}"

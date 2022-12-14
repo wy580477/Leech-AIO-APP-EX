@@ -12,6 +12,7 @@ DEFINITION_PATH() {
     YTDLP_DRIVE_DIR="$(grep ^ytdlp-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
     FILE_PATH=$(echo ${LOCAL_PATH} | sed 's:[^/]*$::')
     FILE_NAME=$(basename "${LOCAL_PATH}")
+    MSG_PATH="${FILE_PATH}${FILE_NAME}"
     FOLDER_NAME="${FILE_NAME}"
     mv "${LOCAL_PATH}" "${FILE_PATH}""${FILE_NAME}"
     if [[ "${YTDLP_DRIVE_DIR}" =~ :/ ]]; then
