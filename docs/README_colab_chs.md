@@ -43,6 +43,8 @@
     dlpr：使用yt-dlp下载视频到videos文件夹下，下载完成后发送任务到rclone。 
     gdlr：使用gallery-dl下载文件到gallery_dl_downloads文件夹下，下载完成后发送任务到rclone。  
 
+- 如果升级版本后在script.conf文件中没有找到相关新增功能设置，参考最新版 [script.conf](https://github.com/wy580477/Leech-AIO-APP-EX/blob/Colab/content/script.conf) 文件，自行添加缺失的设置选项。
+
 ### 更多用法和注意事项
 
  1. pyLoad已知Bug：

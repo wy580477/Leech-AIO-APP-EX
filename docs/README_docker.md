@@ -34,6 +34,7 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
 
    3. Click qBittorrent or VueTorrent, then login in with default user admin and default password adminadmin. Change default user/password to your own. Recommend strong password.
    4. Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
+   5. If you can't find function settings added in new version in script.conf after upgrading, refer to the latest [script.conf](https://github.com/wy580477/Leech-AIO-APP-EX/blob/docker/content/script.conf) file，and add missing setting options by yourself.
 
 ## <a id="more"></a>More usages and precautions
  

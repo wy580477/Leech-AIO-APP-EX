@@ -28,6 +28,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  2. Upload [main.zip](https://github.com/wy580477/Leech-AIO-APP-EX/archive/refs/heads/Colab.zip) to <code>AIO_FILES</code> folder.
  3. Upload [AIO.ipynb](https://github.com/wy580477/Heroku-AIO-APP-EX/raw/Colab/AIO.ipynb) to Google Drive.
  4. Run AIO.ipynb.
+ 5. If you can't find function settings added in new version in script.conf after upgrading, refer to the latest [script.conf](https://github.com/wy580477/Leech-AIO-APP-EX/blob/Colab/content/script.conf) file，and add missing setting options by yourself.
 
 ## <a id="first"></a>First run
 
