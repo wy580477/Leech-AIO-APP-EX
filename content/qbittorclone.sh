@@ -13,6 +13,7 @@ DEFINITION_PATH() {
     QBIT_DRIVE_DIR="$(grep ^qbit-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
     FILE_NAME="$(basename "${LOCAL_PATH}")"
     FOLDER_NAME="${FILE_NAME}"
+    MSG_PATH="${LOCAL_PATH}"
     FILE_PATH="$(echo ${LOCAL_PATH} | sed 's:[^/]*$::')"
     DEST_PATH_SUFFIX="${FILE_PATH#"${DOWNLOAD_DIR%/}"}"
     if [[ "${QBIT_DRIVE_DIR}" =~ :/ ]]; then
