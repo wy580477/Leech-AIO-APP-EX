@@ -26,9 +26,9 @@ EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv ${DIR_TMP}/aria2c /workdir/2${EXEC}
 
 # Install qBit
+wget -qO - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.5.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip | busybox unzip -qd ${DIR_TMP} -
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-wget -qO /workdir/1${EXEC} https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.5_v2.0.8/x86_64-qbittorrent-nox
-chmod +x /workdir/1${EXEC}
+install -m 755 ${DIR_TMP}/qbittorrent-nox /workdir/1${EXEC}
 
 # Install OliveTin
 curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/latest/download/OliveTin-Linux-amd64.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
