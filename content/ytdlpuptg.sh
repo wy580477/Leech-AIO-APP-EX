@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source /workdir/script_core.sh
-TELEGRAM_DEST="$(grep ^telegram-dest "${SCRIPT_CONF}" | cut -d= -f2-)"
 FILE_NAME="$(basename "$1")"
 
 SEND_TO_TG() {
@@ -12,13 +11,20 @@ SEND_TO_TG() {
     fi
 }
 
+GET_PATH
+if [ "${TG_PROXY}" != "" ]; then
+    PROXY_PARAM="-p ${TG_PROXY}"
+fi
+TELEGRAM_DEST="$(grep ^telegram-dest ${SCRIPT_CONF} | cut -d= -f2-)"
+TELEGRAM_MODE="$(grep ^telegram-auto-upload-mode ${SCRIPT_CONF} | cut -d= -f2-)"
 if [ "${TELEGRAM_DEST}" != "" ]; then
     DEST_PARAM="--to ${TELEGRAM_DEST}"
 fi
-
-GET_PATH
+if [ "${TELEGRAM_MODE}" = "move" ]; then
+    UP_MODE_PARAM="-d"
+fi
 SEND_TO_TG
-telegram-upload ${DEST_PARAM} -d "$1"
+telegram-upload ${DEST_PARAM} ${PROXY_PARAM} ${UP_MODE_PARAM} "$1"
 EXIT_CODE=$?
 if [ ${EXIT_CODE} -eq 0 ]; then
     echo "[INFO] Successfully upload file to Telegram: $1"
