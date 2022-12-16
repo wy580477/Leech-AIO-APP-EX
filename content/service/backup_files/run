@@ -1,5 +1,7 @@
 #!/bin/sh
 
+exec 2>&1
+
 # Update homer message
 cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config.yml
 sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/homer/assets/config.yml
