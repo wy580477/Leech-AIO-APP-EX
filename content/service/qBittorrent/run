@@ -16,4 +16,4 @@ export QBT_WEBUI_PORT=61804
 export QBT_PROFILE=/mnt/data/config
 
 exec 2>&1
-exec qbit
+exec qbittorrent-nox
