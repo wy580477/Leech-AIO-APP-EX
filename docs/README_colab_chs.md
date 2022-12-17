@@ -47,7 +47,11 @@
 
 ### 更多用法和注意事项
 
- 1. pyLoad已知Bug：
+1. Telegram通知功能，需要在Telegram内与@BotFather对话注册bot，然后将bot加入你建立的频道，并获取频道的ChatID。具体详细步骤请Google。
+ 
+    然后编辑config/script.conf文件，将botid:token和ChatID填入对应选项，通知功能即生效。
+
+ 2. pyLoad已知Bug：
     - 登陆后重定向到http，解决方法：关闭当前pyLoad页面，重新打开。
     - 解压后不能删除原文件，解决方法：Settings--Plugins--ExtractArchive，将"Move to trash instead delete"项设置为off。
- 2. 无法通过Rclone Web前端建立需要网页认证的存储配置。
+ 3. 无法通过Rclone Web前端建立需要网页认证的存储配置。
