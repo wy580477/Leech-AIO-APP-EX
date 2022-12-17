@@ -99,14 +99,12 @@ UPLOAD_FILE() {
         RCLONE_SEND_MSG="已成功发生任务至 Rclone"
         RCLONE_NO_STATUS_MSG="无法获取 Rclone 任务状态"
         RCLONE_SUCCESS_MSG="Rclone 任务已成功完成"
-        RCLONE_UNSUCCESS_MSG="Rclone 任务已完成，但出现错误"
         RCLONE_ERROR_MSG="Rclone 错误"
         RCLONE_FAIL_MSG="无法发送任务至 Rclone"
     else
         RCLONE_SEND_MSG="Successfully send job to Rclone"
         RCLONE_NO_STATUS_MSG="Faile to get Rclone job status"
         RCLONE_SUCCESS_MSG="Rclone job successfully finished"
-        RCLONE_UNSUCCESS_MSG="Rclone job unsuccessfully finished"
         RCLONE_ERROR_MSG="Rclone Error"
         RCLONE_FAIL_MSG="Failed to send job to Rclone"
     fi
@@ -129,9 +127,6 @@ UPLOAD_FILE() {
         elif [ "${RCLONE_SUCCESS}" = "true" ]; then
             echo "[INFO] ${RCLONE_SUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
             SEND_TG_MSG Rclone "[INFO] ${RCLONE_SUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
-        else
-            echo "[INFO] ${RCLONE_UNSUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
-            SEND_TG_MSG Rclone "[INFO] ${RCLONE_UNSUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
         fi
         DELETE_EMPTY_DIR
     elif [ "${RCLONE_ERROR}" != "" ]; then
