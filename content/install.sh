@@ -83,9 +83,10 @@ EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv ${DIR_TMP}/aria2c /workdir/2${EXEC}
 
 # Install qBit
+wget -qP ${DIR_TMP} https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.5.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
+unzip ${DIR_TMP}/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-wget -qO  /workdir/1${EXEC} https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.5_v2.0.8/x86_64-qbittorrent-nox
-chmod +x /workdir/1${EXEC}
+install -m 755 ./qbittorrent-nox /workdir/1${EXEC}
 
 # Install Vuetorrent
 wget -qP ${DIR_TMP} https://github.com/WDaan/VueTorrent/releases/latest/download/vuetorrent.zip
