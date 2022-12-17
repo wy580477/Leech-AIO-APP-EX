@@ -6,31 +6,31 @@ DIR_TMP="$(mktemp -d)"
 
 OS_type="$(uname -m)"
 case "$OS_type" in
-  x86_64|amd64)
-    OS_type='amd64'
-    OS_type2='x86_64-linux-musl_static'
-    OS_type3='amd64'
-    OS_type4='amd64'
-    OS_type5='amd64'
-    ;;
-  aarch64|arm64)
-    OS_type='arm64'
-    OS_type2='aarch64-linux-musl_static'
-    OS_type3='arm64'
-    OS_type4='arm64'
-    OS_type5='arm64'
-    ;;
-  arm*)
-    OS_type='arm-v7'
-    OS_type2='arm-linux-musleabi_static'
-    OS_type3='armv7'
-    OS_type4='armhf'
-    OS_type5='arm32v7'
-    ;;
-  *)
-    echo 'OS type not supported'
-    exit 2
-    ;;
+x86_64 | amd64)
+  OS_type='amd64'
+  OS_type2='x86_64-linux-musl_static'
+  OS_type3='amd64'
+  OS_type4='amd64'
+  OS_type5='amd64'
+  ;;
+aarch64 | arm64)
+  OS_type='arm64'
+  OS_type2='aarch64-linux-musl_static'
+  OS_type3='arm64'
+  OS_type4='arm64'
+  OS_type5='arm64'
+  ;;
+arm*)
+  OS_type='arm-v7'
+  OS_type2='arm'
+  OS_type3='armv7'
+  OS_type4='armhf'
+  OS_type5='arm32v7'
+  ;;
+*)
+  echo 'OS type not supported'
+  exit 2
+  ;;
 esac
 
 # Install Rclone
@@ -38,8 +38,13 @@ wget -O - https://downloads.rclone.org/rclone-current-linux-${OS_type}.zip | bus
 install -m 755 ${DIR_TMP}/*/rclone /usr/bin/rclone
 
 # Install qBit
-wget -qO - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.5.10/qbittorrent-enhanced-nox_${OS_type2}.zip | busybox unzip -qd ${DIR_TMP} -
-install -m 755 ${DIR_TMP}/qbittorrent-nox /usr/bin/qbittorrent-nox
+if [ "${OS_type2}" = "arm" ]; then
+  wget -O /usr/bin/qbittorrent-nox https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.5_v2.0.8/armv7-qbittorrent-nox
+  chmod +x /usr/bin/qbittorrent-nox
+else
+  wget -O - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.5.10/qbittorrent-enhanced-nox_${OS_type2}.zip | busybox unzip -qd ${DIR_TMP} -
+  install -m 755 ${DIR_TMP}/qbittorrent-nox /usr/bin/qbittorrent-nox
+fi
 
 # Install Filebrowser
 wget -O - https://github.com/filebrowser/filebrowser/releases/latest/download/linux-${OS_type3}-filebrowser.tar.gz | tar -zxf - -C /usr/bin
