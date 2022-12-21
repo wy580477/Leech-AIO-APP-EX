@@ -12,6 +12,7 @@ x86_64 | amd64)
   OS_type3='amd64'
   OS_type4='amd64'
   OS_type5='amd64'
+  OS_type6='amd64'
   ;;
 aarch64 | arm64)
   OS_type='arm64'
@@ -19,6 +20,7 @@ aarch64 | arm64)
   OS_type3='arm64'
   OS_type4='arm64'
   OS_type5='arm64'
+  OS_type6='arm64'
   ;;
 arm*)
   OS_type='arm-v7'
@@ -26,6 +28,7 @@ arm*)
   OS_type3='armv7'
   OS_type4='armhf'
   OS_type5='arm32v7'
+  OS_type6='arm&arm=7'
   ;;
 *)
   echo 'OS type not supported'
@@ -57,5 +60,9 @@ curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTi
 mv ${DIR_TMP}/*/OliveTin /usr/bin/
 mkdir -p /var/www/olivetin
 mv ${DIR_TMP}/*/webui/* /var/www/olivetin/
+
+# Install Caddy
+wget -O /usr/bin/caddy https://caddyserver.com/api/download?os=linux&arch=${OS_type6}&p=github.com%2Fcaddy-dns%2Fcloudflare
+chmod +x caddy
 
 rm -rf ${DIR_TMP}
