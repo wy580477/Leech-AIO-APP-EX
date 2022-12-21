@@ -21,7 +21,9 @@ services:
       GLOBAL_PORTAL_PATH: /portal
       # Portal page & base URL for all web services. Do not set to blank or '/'.
       CADDY_DOMAIN: 
-      # If value is set to a valid domain name (it can be resolved to your host) and port 80 is open to internet, caddy's auto-https function will be enabled.
+      # If value is set to a valid domain name (it can be resolved to your host) and port 80/443 is open to internet, caddy's auto-https function will be enabled.
+      # For advanced users, you can edit Caddyfile under config/caddy folder after container started to use Cloudflare api for SSL certificate. This way you don't need 80/443 ports.
+      # See https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148 for more information.
       # Set value to http://localhost, http service is provided at local loopback address.
       # If you set value to blank, http service will open to external IP.This is not recommended other than using in home LAN.
       CADDY_EMAIL: internal
