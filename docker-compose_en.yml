@@ -22,12 +22,12 @@ services:
       # Portal page & base URL for all web services. Do not set to blank or '/'.
       CADDY_DOMAIN: 
       # If value is set to a valid domain name (it can be resolved to your host) and port 80/443 is open to internet, caddy's auto-https function will be enabled.
-      # For advanced users, you can edit Caddyfile under config/caddy folder after container started to use Cloudflare api for SSL certificate. This way you don't need 80/443 ports.
-      # See https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148 for more information.
+      # For advanced users, you can use Cloudflare api in CADDY_EMAIL env for SSL certificate instead of Email address. This way you don't need 80/443 ports.
       # Set value to http://localhost, http service is provided at local loopback address.
       # If you set value to blank, http service will open to external IP.This is not recommended other than using in home LAN.
       CADDY_EMAIL: internal
       # Email address for receiving notification emails from certification authority, you can use fake address.
+      # Set to "{\n dns cloudflare your_cloudflare_api_key \n}", Caddy will use Cloudflare api for SSL certificate.
       # If set to "internal", caddy will use self-signed cert.
       CADDY_WEB_PORT: 443
       # Port for web services. If you want to disable auto-https from caddy, set to non-443 port.
