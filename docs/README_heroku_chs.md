@@ -6,6 +6,7 @@
  2. Heroku的文件系统是临时性的，每24小时强制重启一次后会恢复到部署时状态。不适合长期下载和共享文件用途。
  3. Aria2和qBittorrent配置文件默认限速5MB/s。
  4. 免费Heroku dyno半小时无Web访问会休眠，可以使用uptimerobot、hetrixtools等免费VPS/网站监测服务定时http ping，保持持续运行。
+ 5. 无法通过Rclone Web前端建立需要网页认证的存储配置。
 
 [概述](#概述)
 
@@ -73,7 +74,7 @@
 
 ### 更多用法和注意事项
 
- 1. Telegram通知功能，需要在Telegram内与@BotFather对话注册bot，然后将bot加入你建立的频道，并获取频道的ChatID。具体详细步骤请Google。
+ 1. Telegram通知功能，需要在Telegram内与@BotFather对话注册bot。然后获取自己账户的ChatID或者bot加入的频道ChatID。具体详细步骤请Google。
  
     然后编辑config/script.conf文件，将botid:token和ChatID填入对应选项，通知功能即生效。
  2. pyLoad已知Bug：
@@ -97,4 +98,4 @@
 
  5. Aria2 JSON-RPC 路径为： \$\{GLOBAL_PORTAL_PATH\}/jsonrpc   
     Aria2 XML-RPC 路径为： \$\{GLOBAL_PORTAL_PATH\}/rpc
- 6. 无法通过Rclone Web前端建立需要网页认证的存储配置。
+

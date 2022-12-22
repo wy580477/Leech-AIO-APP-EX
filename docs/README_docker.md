@@ -14,7 +14,7 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
  2. AMD64/Arm64 multi-architecture support, Lite version has additional Armv7 support.
  3. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
  4. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
- 5. You can connect to Aria2, qBittorrent and Rclone from frontends/services running on other hosts, including flexget/Radarr/Sonarr.
+ 5. You can connect to Aria2, qBittorrent from other frontends/services，including Telegram bot/flexget/Radarr/Sonarr.
  6. [runit](http://smarden.org/runit/index.html)-based process management, each service can be started and stopped independently.
  7. There are independent logs for each service in the log directory.
 
@@ -28,17 +28,22 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
 ## <a id="first"></a>First run
 
    1. visit your_domain/ip_address + \${GLOBAL_PORTAL_PATH} to reach portal page.
-   2. Click AriaNg, then authentication failure warning will pop up, fill in Aria2 secret RPC token with password set during deployment.  
+   2. Click AriaNg, then authentication failure warning will pop up, fill in Aria2 secret RPC token with password set during deployment and check whether protocol and port settings match what is displayed in the browser address bar.  
 
          <img src="https://user-images.githubusercontent.com/98247050/165651080-b1b79ba6-7cc0-4c7c-b65b-fbc4256f59f9.png"  width="700"/>
 
    3. Click qBittorrent or VueTorrent, then login in with default user admin and default password adminadmin. Change default user/password to your own. Recommend strong password.
-   4. Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
+
+      If you can't log in qBittorrent with the default account/password. Delete config/qBittorrent/config/qBittorrent.conf file via Filebrowser, then run the following command in host terminal:
+```
+       docker exec allinone sv restart qBittorrent
+```  
+   4. It's not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app. You need to upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
    5. If you can't find function settings added in new version in script.conf after upgrading, refer to the latest [script.conf](https://github.com/wy580477/Leech-AIO-APP-EX/blob/docker/content/script.conf) file，and add missing setting options by yourself.
 
 ## <a id="more"></a>More usages and precautions
  
- 1. To enable Telegram notification function, you need to talk to @BotFather in Telegram to register a bot. Add the bot to a channel you created, and get ChatID of the channel. Please Google for detailed steps.
+ 1. To enable Telegram notification function, you need to talk to @BotFather in Telegram to register a bot. Get ChatID of your Telegram account or ChatID of the channel which bot joined. Please Google for detailed steps.
  
     Edit the config/script.conf file. Fill in the corresponding options for botid:token and ChatID, then the notification function will take effect.
  2. You can set up proxy for metube in config/metube.conf:
@@ -95,4 +100,4 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
             remote = /mnt/data
 
 
- 9. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
+ 

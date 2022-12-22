@@ -6,6 +6,8 @@
  2. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
  3. The Heroku filesystem is ephemeral - that means that any changes to the filesystem whilst the dyno is running only last until that dyno is shut down or restarted. In addition, dynos will restart every day.
  4. To prevent Heroku dyno from auto-sleeping, use website monitoring service such as uptimerobot to http ping your heroku domain every 10 mins.
+ 5. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
+
 
 [Overview](#Overview)
 
@@ -59,7 +61,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 
 ## <a id="more"></a>More usages and precautions
 
- 1. To enable Telegram notification function, you need to talk to @BotFather in Telegram to register a bot. Add the bot to a channel you created, and get ChatID of the channel. Please Google for detailed steps.
+ 1. To enable Telegram notification function, you need to talk to @BotFather in Telegram to register a bot. Get ChatID of your Telegram account or ChatID of the channel which bot joined. Please Google for detailed steps.
  
     Edit the config/script.conf file. Fill in the corresponding options for botid:token and ChatID, then the notification function will take effect.
  2. Known pyLoad bugs：
@@ -81,4 +83,3 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 
  5. Aria2 JSON-RPC path： \${GLOBAL_PORTAL_PATH}/jsonrpc   
     Aria2 XML-RPC path： \${GLOBAL_PORTAL_PATH}/rpc
- 6. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.

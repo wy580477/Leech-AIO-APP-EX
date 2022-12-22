@@ -14,7 +14,7 @@
  2. AMD64/Arm64架构支持，Lite版本增加Armv7支持。
  3. 可以从OliveTin网页端执行预定义yt-dlp、gallery-dl和Rclone指令。
  4. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
- 5. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板和flexget/Radarr/Sonarr等应用。
+ 5. Aria2、qBittorrent和Rclone可以接入AriaNg/RcloneNg等前端面板、Aria2/qBit 电报机器人以及flexget/Radarr/Sonarr等应用。
  6. 基于 [runit](http://smarden.org/runit/index.html) 的进程管理，每个服务可以独立启停。
  7. log目录下有每个服务独立日志。
 
@@ -28,15 +28,20 @@
 ### 初次使用
 
 1. 访问ip地址或域名+基础URL即可打开导航页。
-2. 点击AriaNg，这时会弹出认证失败警告，按下图把之前部署时设置的密码填入RPC密钥即可。
+2. 点击AriaNg，这时会弹出认证失败警告，按下图把之前部署时设置的密码填入RPC密钥，并检查协议和端口是否与浏览器地址栏显示的相符。
        <img src="https://user-images.githubusercontent.com/98247050/163184113-d0f09e78-01f9-4d4a-87b9-f4a9c1218253.png"  width="700"/>
 3. 点击qBittorrent或者VueTorrent，输入默认用户名admin和默认密码adminadmin登陆。然后更改用户名和密码，务必设置为强密码。
-4. 通过Filebrowse将rclone.conf文件上传到config目录，可以通过编辑script.conf文件更改Rclone自动上传设置。
+
+   如果qBittorrent无法使用默认账户密码登陆，通过Filebrowser删除config/qBittorrent/config/qBittorrent.conf文件，然后在宿主机终端下执行下面命令：
+```
+       docker exec allinone sv restart qBittorrent
+```  
+4. 注意，无法通过Rclone Web前端建立需要网页认证的存储配置。需要通过Filebrowse将rclone.conf文件上传到config目录，可以通过编辑script.conf文件更改Rclone自动上传设置。
 5. 如果升级版本后在script.conf文件中没有找到相关新增功能设置，参考最新版 [script.conf](https://github.com/wy580477/Leech-AIO-APP-EX/blob/docker/content/script.conf) 文件，自行添加缺失的设置选项。
 
 ### 更多用法和注意事项
 
- 1. Telegram通知功能，需要在Telegram内与@BotFather对话注册bot，然后将bot加入你建立的频道，并获取频道的ChatID。具体详细步骤请Google。
+ 1. Telegram通知功能，需要在Telegram内与@BotFather对话注册bot。然后获取自己账户的ChatID或者bot加入的频道ChatID。具体详细步骤请Google。
  
     然后编辑config/script.conf文件，将botid:token和ChatID填入对应选项，通知功能即生效。
     
@@ -89,5 +94,3 @@
         [local]
         type = alias
         remote = /mnt/data
-
- 9. 无法通过Rclone Web前端建立需要网页认证的存储配置。
