@@ -30,10 +30,6 @@
         "TZ": {
             "description": "Timezone",
             "value": "UTC"
-        },
-        "VmessUUID": {
-            "description": "Vmess proxy protocol UUID. Use UUID tools to generate you own UUID.",
-            "value": "ad2c9acd-3afb-4fae-aff2-954c532020bd"
         }
     },
     "stack": "container"
