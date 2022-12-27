@@ -8,13 +8,9 @@ if [ ! -f "${CONF_PATH}/settings/pyload.cfg" ]; then
     cp /workdir/pyload.cfg ${CONF_PATH}/settings/pyload.cfg
 fi
 
-if [ ! -f "${CONF_PATH}/scripts/download_finished/pyload_to_rclone.sh" ]; then
-    cp /workdir/pyload_to_rclone.sh ${CONF_PATH}/scripts/download_finished/
-fi
+cp -f /workdir/pyload_to_rclone.sh ${CONF_PATH}/scripts/download_finished/
+cp -f /workdir/pyload_to_rclone_package_extracted.sh ${CONF_PATH}/scripts/package_extracted/
 
-if [ ! -f "${CONF_PATH}/scripts/package_extracted/pyload_to_rclone_package_extracted.sh" ]; then
-    cp /workdir/pyload_to_rclone_package_extracted.sh ${CONF_PATH}/scripts/package_extracted/
-fi
 
 sed -i "s|str\ prefix\ :\ \"Path prefix\"\ =.*|str\ prefix\ :\ \"Path prefix\"\ =\ ${GLOBAL_PORTAL_PATH}/pyload|g" ${CONF_PATH}/settings/pyload.cfg
 sed -i 's|delete\"\ =.*|delete"\ =\ False|g' ${CONF_PATH}/settings/plugins.cfg 2>/dev/null
