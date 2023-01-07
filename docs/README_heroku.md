@@ -50,6 +50,12 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
          <img src="https://user-images.githubusercontent.com/98247050/165651080-b1b79ba6-7cc0-4c7c-b65b-fbc4256f59f9.png"  width="700"/>
 
    3. Click qBittorrent or VueTorrent, then login in with default user admin and default password adminadmin. Change default user/password to your own. Recommend strong password.
+
+      If you can't log in qBittorrent with the default account/password. Delete config/qBittorrent/config/qBittorrent.conf file via Filebrowser, then run the following command via ttyd:
+
+```
+      sv restart 1
+```  
    4. Upload rclone.conf file to config folder via Filebrowser, you can edit script.conf file to change Rclone auto-upload settings.
    5. yt-dlp, gallery-dl & other commands can be executed through ttyd web terminal.   
       Built-in alias：  
