@@ -1,5 +1,7 @@
 #!/bin/sh
 
+exec 2>&1
+
 # Configure filebrowser
 if [ ! -f "/mnt/data/config/filebrowser.db" ]; then
     filebrowser -d /mnt/data/config/filebrowser.db config init
@@ -19,5 +21,4 @@ fi
 filebrowser -d /mnt/data/config/filebrowser.db config set -r /mnt/data -b ${GLOBAL_PORTAL_PATH}/files -p 61801
 
 # Run filebrowser
-exec 2>&1
 exec filebrowser -d /mnt/data/config/filebrowser.db
