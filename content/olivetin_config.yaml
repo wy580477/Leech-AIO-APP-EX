@@ -28,15 +28,6 @@ actions:
         type: very_dangerous_raw_string
       - name: options
         type: very_dangerous_raw_string
-  - title: yt-dlp & auto-upload to Telegram
-    icon: "&#8481;"
-    shell: ytdlptotg.sh {{ urls }} {{ options }}
-    timeout: 86400
-    arguments:
-      - name: urls
-        type: very_dangerous_raw_string
-      - name: options
-        type: very_dangerous_raw_string
   - title: gallery-dl
     icon: "&#128444;"
     shell: gallery-dl -c /mnt/data/config/gallery-dl.conf --exec-after '/workdir/gdltorclone.sh {}' {{ urls }} {{ options }}

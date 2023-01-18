@@ -48,10 +48,9 @@ wget -qO /usr/bin/ffmpeg https://github.com/eugeneware/ffmpeg-static/releases/la
 chmod +x /usr/bin/ffmpeg
 
 # Install pyload & gallery-dl & telegram-upload
-apk add --no-cache --virtual .build-deps cargo curl-dev libffi-dev
+apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev jpeg-dev
 pip install --no-cache-dir pyload-ng[plugins] --quiet >/dev/null
 python3 -m pip install --no-cache-dir -U gallery-dl --quiet >/dev/null
-pip install --no-cache-dir -U telegram-upload --quiet >/dev/null
 apk del .build-deps
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
@@ -59,7 +58,7 @@ mv /usr/local/bin/pyload /usr/local/bin/1${EXEC}
 rm -rf ${DIR_TMP}
 chmod +x /workdir/aria2/*.sh
 mv /workdir/ytdlp*.sh /usr/bin/
-mkdir -p /workdir/.pyload/scripts/download_finished /workdir/.pyload/scripts/package_extracted
-mv /workdir/pyload_to_rclone.sh /workdir/.pyload/scripts/download_finished/
-mv /workdir/pyload_to_rclone_package_extracted.sh /workdir/.pyload/scripts/package_extracted/
+mkdir -p /mnt/data/config/.pyload/scripts/download_finished /mnt/data/config/.pyload/scripts/package_extracted
+mv /workdir/pyload_to_rclone.sh /mnt/data/config/.pyload/scripts/download_finished/
+mv /workdir/pyload_to_rclone_package_extracted.sh /mnt/data/config/.pyload/scripts/package_extracted/
 ln -s /workdir/service/* /etc/service/

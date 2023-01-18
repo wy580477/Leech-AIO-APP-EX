@@ -1,7 +1,9 @@
 #!/bin/sh
 
+exec 2>&1
+
 mkdir -p /mnt/data/config/olivetin 2>/dev/null
-export HOME=/mnt/data
+export HOME=/mnt/data/config
 
 if [ ! -f "/mnt/data/config/olivetin/config.yaml" ]; then
     mv /workdir/olivetin_config.yaml  /mnt/data/config/olivetin/config.yaml
@@ -13,7 +15,5 @@ fi
 
 yt-dlp -U &
 python3 -m pip install --no-cache-dir -U gallery-dl &
-pip install --no-cache-dir -U telegram-upload &
 
-exec 2>&1
 exec OliveTin --configdir /mnt/data/config/olivetin
