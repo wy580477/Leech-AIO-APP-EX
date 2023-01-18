@@ -3,7 +3,7 @@
 # one open port in the container/firewalls/etc.
 #
 listenAddressSingleHTTPFrontend: 127.0.0.1:61806
-
+checkForUpdates: false
 externalRestAddress: "."
 # Choose from INFO (default), WARN and DEBUG
 logLevel: "INFO"
@@ -71,5 +71,3 @@ actions:
     arguments:
       - name: jobid
         type: int
-
-
