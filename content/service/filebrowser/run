@@ -1,5 +1,6 @@
 #!/bin/bash
 
+exec 2>&1
 source /etc/env
 export $(sed '/^#/d' /etc/env | cut -d= -f1)
 
@@ -17,5 +18,4 @@ fi
 filebrowser -d /mnt/data/config/filebrowser.db config set -r /mnt/data --auth.method=noauth -b ${GLOBAL_PORTAL_PATH}/files -p 61801
 
 # Run filebrowser
-exec 2>&1
 exec filebrowser -d /mnt/data/config/filebrowser.db
