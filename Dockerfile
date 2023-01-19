@@ -7,4 +7,8 @@ RUN apk add --no-cache curl caddy jq bash runit tzdata ttyd p7zip findutils \
     && /workdir/install.sh \
     && rm -rf /workdir/install.sh /tmp/* ${HOME}/.cache ${HOME}/.cargo
 
+ENV PORT=3000
+
+EXPOSE 3000
+
 ENTRYPOINT ["sh","/workdir/entrypoint.sh"]
