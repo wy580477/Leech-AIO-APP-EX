@@ -33,6 +33,15 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 
  1. Fork this this repository, then click Setting on fork repository page and check Template repository.
  2. Click new button: Use this template，create a new repository。
+ 3. Go to Setting tab on your new repo，Click "Branches"，set default branch to "doprax".
+ 
+    <details>
+    <summary>Screenshot</summary>
+
+    ![avatar](/screenshots/branch.png)
+
+    </details>
+
  3. Go to Doprax Dashboard page, click "Account",  then connect your github account.
  4. Click "Dashboard", creat a new app and click it.
  5. Click your newly created app, click "Import from my Github account" button, then import your new github repository.
