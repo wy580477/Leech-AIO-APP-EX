@@ -1,6 +1,7 @@
 #!/bin/sh
 
-pip install --no-cache-dir --pre pyload-ng[plugins] -U
+exec 2>&1
+pip install --no-cache-dir pyload-ng[plugins] -U
 mkdir -p /workdir/.pyload/settings /workdir/Downloads/pyLoad  2>/dev/null
 
 if [ ! -f "/workdir/.pyload/settings/pyload.cfg" ]; then
@@ -20,5 +21,4 @@ export HOME=/workdir
 cd
 
 # Run pyload
-exec 2>&1
 exec /usr/local/bin/1${EXEC}
