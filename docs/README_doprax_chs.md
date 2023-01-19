@@ -30,7 +30,7 @@
 
   **请勿使用本仓库直接部署**  
 
- 1. 点击本仓库右上角Fork，再点击Create Fork。
+ 1. 点击本仓库右上角Fork，取消选择"Copy the main branch only"，再点击Create Fork。
  2. 在Fork出来的仓库页面上点击Setting，勾选Template repository。
  3. 然后点击Code返回之前的页面，点Setting下面新出现的按钮Use this template，起个随机名字创建新库。
  4. 在你新建立的Github仓库页面上点击Setting，再点击Branches，将默认分支改为doprax。

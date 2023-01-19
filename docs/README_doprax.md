@@ -2,7 +2,7 @@
 
  1. **Do not abuse service from Doprax or your account could get banned. Deploy at your own risk.**
  2. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
- 3. Container filesystem is ephemeral - that means that any changes to the filesystem except volume mounted on /mnt/data/config whilst the dyno is running only last until that dyno is shut down or restarted.
+ 3. Container filesystem is ephemeral - that means that any changes to the filesystem except volume mounted on /mnt/data/config whilst the dyno is running only last until that container is shut down or restarted.
  4. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
 
 
@@ -31,7 +31,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 
  **Do not deploy directly from this repository** 
 
- 1. Fork this this repository, then click Setting on fork repository page and check Template repository.
+ 1. Fork this this repository (uncheck "Copy the main branch only"), then click Setting on fork repository page and check Template repository.
  2. Click new button: Use this template，create a new repository。
  3. Go to Setting tab on your new repo，Click "Branches"，set default branch to "doprax".
  

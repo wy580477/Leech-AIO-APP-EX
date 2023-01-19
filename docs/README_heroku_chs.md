@@ -44,7 +44,7 @@
  4. 然后点击Code返回之前的页面，点Setting下面新出现的按钮Use this template，起个随机名字创建新库。
  5. 比如你的Github用户名是bobby，新库名称是green。浏览器登陆heroku后，访问<https://dashboard.heroku.com/new?template=https://github.com/bobby/green> 即可部署。
 
- **Heroku部署变量设置**
+## 变量设置
 
 对部署时可设定的变量做如下说明。
 | 变量| 说明 |
@@ -57,7 +57,7 @@
 | `CLOUDFLARE_WORKERS_HOST` | Cloudflare Workers 服务域名 |
 | `CLOUDFLARE_WORKERS_KEY` | Cloudflare Workers 服务密钥 |
 
-### 初次使用
+## 初次使用
 
 1. 比如你的heroku域名是bobby.herokuapp.com，导航页路径是/portal，访问bobby.herokuapp.com/portal 即可到达导航页。
 2. 点击AriaNg，这时会弹出认证失败警告，按下图把之前部署时设置的密码填入RPC密钥即可。
@@ -78,7 +78,7 @@
 
 ## [Cloudflare Workers反代绕过Heroku非信用卡认证账号每月550小时限制](https://github.com/wy580477/PaaS-Related/blob/main/CF_Workers_Reverse_Proxy_chs.md)
 
-### 更多用法和注意事项
+## 更多用法和注意事项
 
  1. Telegram通知功能，需要在Telegram内与@BotFather对话注册bot。然后获取自己账户的ChatID或者bot加入的频道ChatID。具体详细步骤请Google。
  
