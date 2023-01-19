@@ -34,9 +34,9 @@
  2. 在Fork出来的仓库页面上点击Setting，勾选Template repository。
  3. 然后点击Code返回之前的页面，点Setting下面新出现的按钮Use this template，起个随机名字创建新库。
  4. 在你新建立的Github仓库页面上点击Setting，再点击Branches，将默认分支改为doprax。
- 
+
      <details>
-    <summary>Screenshot</summary>
+    <summary>截图</summary>
 
     ![avatar](/screenshots/branch.png)
 
@@ -49,14 +49,14 @@
  8. 点击"Volume", 建立一个新的数据卷（volume）并将其挂载到 /mnt/data/config.
  
     <details>
-    <summary>Screenshot</summary>
+    <summary>截图</summary>
 
     ![avatar](screenshots/volume.png)
 
     </details>
  9. 点击"Deploy", 再点击"Resources". 将 RAM 设置为 512MB, 点击 "Submit". 然后点击开始按钮并等待部署完成。
     <details>
-    <summary>Screenshot</summary>
+    <summary>截图</summary>
 
     ![avatar](screenshots/deploy.png)
 
