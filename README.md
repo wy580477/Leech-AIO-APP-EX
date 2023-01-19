@@ -14,7 +14,6 @@ This project integrates yt-dlp, Aria2, gallery-dl, qBittorrent, pyLoad Download 
 
 </details>
 
-
 ## [Colab Deployment](docs/README_colab.md)
 
 <details>
@@ -24,12 +23,23 @@ This project integrates yt-dlp, Aria2, gallery-dl, qBittorrent, pyLoad Download 
 
 </details>
 
-## [~~Heroku Deployment~~ Heroku will stop offering free product plans and shut down free dynos starting Nov. 28, 2022.](docs/README_heroku.md)
+## [Heroku Deployment](docs/README_heroku.md)
+
+Heroku stopped offering free product plans and shut down free dynos starting Nov. 28, 2022.
 
 <details>
 <summary>Screenshot</summary>
 
 ![avatar](screenshots/heroku.jpeg)
+
+</details>
+
+## [Doprax Deployment](docs/README_doprax.md)
+
+<details>
+<summary>Screenshot</summary>
+
+![avatar](screenshots/doprax.jpeg)
 
 </details>
 

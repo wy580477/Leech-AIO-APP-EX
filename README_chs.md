@@ -13,7 +13,6 @@
 
 </details>
 
-
 ## [Colab 部署](docs/README_colab_chs.md)
 
 <details>
@@ -23,12 +22,23 @@
 
 </details>
 
-## [~~Heroku 部署~~ Heroku将于2022年11月关闭免费服务](docs/README_heroku_chs.md)
+## [Heroku 部署](docs/README_heroku_chs.md)
+
+Heroku已于2022年11月关闭免费服务
 
 <details>
 <summary>截图</summary>
 
 ![avatar](screenshots/heroku_chs.jpeg)
+
+</details>
+
+## [Doprax 部署](docs/README_doprax_chs.md)
+
+<details>
+<summary>截图</summary>
+
+![avatar](screenshots/doprax_chs.jpeg)
 
 </details>
 

@@ -27,7 +27,7 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
 
 ## <a id="first"></a>First run
 
-   1. visit your_domain/ip_address + \${GLOBAL_PORTAL_PATH} to reach portal page.
+   1. visit your_domain/ip_address + ${GLOBAL_PORTAL_PATH} to reach portal page.
    2. Click AriaNg, then authentication failure warning will pop up, fill in Aria2 secret RPC token with password set during deployment and check whether protocol and port settings match what is displayed in the browser address bar.  
 
          <img src="https://user-images.githubusercontent.com/98247050/165651080-b1b79ba6-7cc0-4c7c-b65b-fbc4256f59f9.png"  width="700"/>

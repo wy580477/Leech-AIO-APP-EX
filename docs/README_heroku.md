@@ -1,4 +1,4 @@
-## Heroku will stop offering free product plans and shut down free dynos starting Nov. 28, 2022.
+## Heroku stopped offering free product plans and shut down free dynos starting Nov. 28, 2022.
 
 ## Attention
 
@@ -44,7 +44,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 
 ## <a id="first"></a>First run
 
-   1. Visit your_heroku_domain + \${GLOBAL_PORTAL_PATH} to reach portal page.
+   1. Visit your_heroku_domain + ${GLOBAL_PORTAL_PATH} to reach portal page.
    2. Click AriaNg, then authentication failure warning will pop up, fill in Aria2 secret RPC token with password set during deployment.  
 
          <img src="https://user-images.githubusercontent.com/98247050/165651080-b1b79ba6-7cc0-4c7c-b65b-fbc4256f59f9.png"  width="700"/>
@@ -63,7 +63,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
       gdlr: Use gallery-dl to download files to gallery_dl_downloads folder, then send task to Rclone after downloads completed.  
    6. If you can't find function settings added in new version in script.conf after upgrading, refer to the latest [script.conf](https://github.com/wy580477/Leech-AIO-APP-EX/blob/main/content/script.conf) file，and add missing setting options by yourself.
 
-## [Cloudflare Workers Reverse Proxy to bypass Heroku's 550-hour monthly limit](https://github.com/wy580477/PaaS-Related/blob/main/CF_Workers_Reverse_Proxy.md)
+## [Cloudflare Workers Reverse Proxy](https://github.com/wy580477/PaaS-Related/blob/main/CF_Workers_Reverse_Proxy.md)
 
 ## <a id="more"></a>More usages and precautions
 
