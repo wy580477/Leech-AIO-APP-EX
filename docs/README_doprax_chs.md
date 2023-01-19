@@ -51,14 +51,14 @@
     <details>
     <summary>截图</summary>
 
-    ![avatar](screenshots/volume.png)
+    ![avatar](/screenshots/volume.png)
 
     </details>
  9. 点击"Deploy", 再点击"Resources". 将 RAM 设置为 512MB, 点击 "Submit". 然后点击开始按钮并等待部署完成。
     <details>
     <summary>截图</summary>
 
-    ![avatar](screenshots/deploy.png)
+    ![avatar](/screenshots/deploy.png)
 
     </details>
 
