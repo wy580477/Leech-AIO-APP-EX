@@ -10,6 +10,7 @@ source /workdir/script_core.sh
 DEFINITION_PATH() {
     UPLOAD_MODE="$(grep ^ytdlp-upload-mode /mnt/data/config/script.conf | cut -d= -f2-)"
     YTDLP_DRIVE_DIR="$(grep ^ytdlp-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
+    DOWNLOAD_DIR=/mnt/data/videos
     FILE_PATH=$(echo ${LOCAL_PATH} | sed 's:[^/]*$::')
     FILE_NAME=$(basename "${LOCAL_PATH}")
     MSG_PATH="${LOCAL_PATH}"
