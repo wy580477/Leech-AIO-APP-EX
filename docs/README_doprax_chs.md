@@ -65,13 +65,13 @@
 ## 变量设置
 
 对部署时可设定的变量做如下说明。
-| 变量| 说明 |
-| :--- | :--- |
-| `GLOBAL_USER` | 用户名，适用于除qBittorrent外所有需要输入用户名的Web服务 |
-| `GLOBAL_PASSWORD` | 务必修改为强密码，同样适用于除qBittorrent外所有需要输入密码的Web服务，同时也是Aria2 RPC密钥。 |
-| `GLOBAL_LANGUAGE` | 设置导航页、qBittorrent和Filebrowser界面语言，chs为中文 |
-| `GLOBAL_PORTAL_PATH` | 导航页路径和所有Web服务的基础URL，务必设置为不常见路径。不能为“/"和空值，结尾不能加“/" |
-| `TZ` | 时区，Asia/Shanghai为中国时区 |
+| 变量 | 默认值 | 说明 |
+| :--- | :--- | :--- |
+| `GLOBAL_USER` | admin | 用户名，适用于除qBittorrent外所有需要输入用户名的Web服务 |
+| `GLOBAL_PASSWORD` | password | 务必修改为强密码，同样适用于除qBittorrent外所有需要输入密码的Web服务，同时也是Aria2 RPC密钥。 |
+| `GLOBAL_LANGUAGE` | en | 设置导航页、qBittorrent和Filebrowser界面语言，chs为中文 |
+| `GLOBAL_PORTAL_PATH` | /mypath | 导航页路径和所有Web服务的基础URL，务必设置为不常见路径。不能为“/"和空值，结尾不能加“/" |
+| `TZ` | UTC | 时区，Asia/Shanghai为中国时区 |
 
 ## 初次使用
 
