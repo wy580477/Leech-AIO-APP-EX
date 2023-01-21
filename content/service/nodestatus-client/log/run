@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "${NodeStatus_DSN}" = "" ]; then
+    sleep infinity
+else
+    mkdir -p /mnt/data/log/nodestatus-client 2>/dev/null
+    exec svlogd /mnt/data/log/nodestatus-client
+fi

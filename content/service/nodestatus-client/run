@@ -1,0 +1,11 @@
+#!/bin/sh
+
+exec 2>&1
+
+wget -4qO - https://github.com/cokemine/nodestatus-client-go/releases/latest/download/status-client_linux_amd64.tar.gz | tar -xzf - -C /usr/bin
+
+if [ "${NodeStatus_DSN}" = "" ]; then
+    sleep infinity
+else
+    exec status-client -dsn ${NodeStatus_DSN}
+fi
