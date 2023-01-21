@@ -4,6 +4,7 @@
  2. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
  3. Container filesystem is ephemeral - that means that any changes to the filesystem except volume mounted on /mnt/data/config whilst the dyno is running only last until that container is shut down or restarted.
  4. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
+ 5. No Rclone mount support.
 
 
 [Overview](#Overview)

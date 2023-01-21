@@ -4,6 +4,7 @@
  2. 容器的文件系统是临时性的，除挂载到数据卷的 /mnt/data/config 目录，重启后会恢复到部署时状态。
  3. Aria2和qBittorrent配置文件默认限速5MB/s。
  4. 无法通过Rclone Web前端建立需要网页认证的存储配置。
+ 5. 不支持 Rclone mount。
 
 [概述](#概述)
 
