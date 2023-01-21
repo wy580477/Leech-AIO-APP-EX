@@ -29,6 +29,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  5. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
  6. ttyd web terminal, which can execute yt-dlp and other commands on the command line.
  7. There are independent logs for each service in the log directory.
+ 8. [NodeStatus](https://github.com/cokemine/nodestatus) server monitor client.
 
 ## <a id="Deployment"></a>Deployment
 

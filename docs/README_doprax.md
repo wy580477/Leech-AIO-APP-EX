@@ -27,6 +27,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  4. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
  5. ttyd web terminal, which can execute yt-dlp and other commands on the command line.
  6. There are independent logs for each service in the log directory.
+ 7. [NodeStatus](https://github.com/cokemine/nodestatus) server monitor client.
 
 ## <a id="Deployment"></a>Deployment
 
@@ -73,7 +74,8 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 | `GLOBAL_PASSWORD` | password | Password for all web services except qbit, double as Aria2 RPC token. Recommend strong password. |
 | `GLOBAL_LANGUAGE` | en | Set language of portal page, qbit & filebrowser.(en or chs) |
 | `GLOBAL_PORTAL_PATH` | /mypath | Portal page & base URL for all web services. Set this to an uncommon path. Do not set to blank or '/' |
-| `TZ` | UTC | Timezone |
+| `NodeStatus_DSN` | | Optional. NodeStatus server connection info, default blank value will disable NodeStatus. Example: wss://username:password@status.mydomain.com |
+
 
 ## <a id="first"></a>First run
 

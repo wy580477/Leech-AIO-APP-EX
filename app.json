@@ -1,36 +1,40 @@
 {
-    "name": "Deploy",
-    "description": "Deploy",
-    "keywords": ["Deploy"],
-    "env": {
-        "GLOBAL_USER": {
-            "description": "Username for all web services except qbit",
-            "value": "admin"
-        },        
-        "GLOBAL_PASSWORD": {
-            "description": "Password for all web services except qbit, double as Aria2 RPC token. Recommend strong password.",
-            "value": "password"
-        },
-        "GLOBAL_LANGUAGE": {
-            "description": "Set language of portal page, qbit & filebrowser.(en or chs)",
-            "value": "en"
-        },
-        "GLOBAL_PORTAL_PATH": {
-            "description": "Portal page & base URL for all web services. Set this to an uncommon path. Do not set to blank or '/'",
-            "value": "/mypath"
-        },
-        "CLOUDFLARE_WORKERS_HOST": {
-            "description": "Cloudflare workers service Hostname",
-            "value": "example.example.workers.dev"
-        },
-        "CLOUDFLARE_WORKERS_KEY": {
-            "description": "Cloudflare workers service Key",
-            "value": "mykey"
-        },
-        "TZ": {
-            "description": "Timezone",
-            "value": "UTC"
-        }
+  "name": "Deploy",
+  "description": "Deploy",
+  "keywords": ["Deploy"],
+  "env": {
+    "GLOBAL_USER": {
+      "description": "Username for all web services except qbit",
+      "value": "admin"
     },
-    "stack": "container"
+    "GLOBAL_PASSWORD": {
+      "description": "Password for all web services except qbit, double as Aria2 RPC token. Recommend strong password.",
+      "value": "password"
+    },
+    "GLOBAL_LANGUAGE": {
+      "description": "Set language of portal page, qbit & filebrowser.(en or chs)",
+      "value": "en"
+    },
+    "GLOBAL_PORTAL_PATH": {
+      "description": "Portal page & base URL for all web services. Set this to an uncommon path. Do not set to blank or '/'",
+      "value": "/mypath"
+    },
+    "CLOUDFLARE_WORKERS_HOST": {
+      "description": "Cloudflare workers service Hostname",
+      "value": "example.example.workers.dev"
+    },
+    "CLOUDFLARE_WORKERS_KEY": {
+      "description": "Cloudflare workers service Key",
+      "value": "mykey"
+    },
+    "TZ": {
+      "description": "Timezone",
+      "value": "UTC"
+    },
+    "NodeStatus_DSN": {
+      "description": "Optional. NodeStatus server connection info, default blank value will disable NodeStatus. Example: wss://username:password@status.mydomain.com",
+      "value": ""
+    }
+  },
+  "stack": "container"
 }

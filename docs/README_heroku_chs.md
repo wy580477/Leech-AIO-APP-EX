@@ -30,6 +30,7 @@
  5. 可以从OliveTin网页端执行yt-dlp、gallery-dl和Rclone指令。
  6. ttyd网页终端，可命令行执行yt-dlp下载工具和其它命令。
  7. log目录下有每个服务独立日志。
+ 8. 集成 [NodeStatus](https://github.com/cokemine/nodestatus) 探针客户端。
 
 ## 部署方式
 
@@ -47,16 +48,17 @@
 
 ## 变量设置
 
-对部署时可设定的变量做如下说明。
-| 变量| 说明 |
+对部署时需设定的变量做如下说明。
+| 变量 | 说明 |
 | :--- | :--- |
 | `GLOBAL_USER` | 用户名，适用于除qBittorrent外所有需要输入用户名的Web服务 |
 | `GLOBAL_PASSWORD` | 务必修改为强密码，同样适用于除qBittorrent外所有需要输入密码的Web服务，同时也是Aria2 RPC密钥。 |
 | `GLOBAL_LANGUAGE` | 设置导航页、qBittorrent和Filebrowser界面语言，chs为中文 |
-| `GLOBAL_PORTAL_PATH` | 导航页路径和所有Web服务的基础URL，务必设置为不常见路径。不能为“/"和空值，结尾不能加“/" |
-| `TZ` | 时区，Asia/Shanghai为中国时区 |
+| `GLOBAL_PORTAL_PATH` | 导航页路径和所有Web服务的基础URL，务必设置为不常见路径。不能为“/"和空值，结尾不能加“/"。示例：/mypath |
+| `TZ` | 可选，时区，Asia/Shanghai为中国时区 |
 | `CLOUDFLARE_WORKERS_HOST` | Cloudflare Workers 服务域名 |
 | `CLOUDFLARE_WORKERS_KEY` | Cloudflare Workers 服务密钥 |
+| `NodeStatus_DSN` | 可选，NodeStatus 探针服务端连接信息，保持默认空值为禁用。示例：wss://username:password@status.mydomain.com |
 
 ## 初次使用
 
