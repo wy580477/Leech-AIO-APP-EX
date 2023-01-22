@@ -6,6 +6,11 @@
 }
 :{$PORT} {
 	encode gzip
+	# Redirect http to https
+	@http-req {
+		header X-Forwarded-Proto http
+	}
+	redir @http-req https://{host}{uri}
 	# Configure ttyd
 	handle {$GLOBAL_PORTAL_PATH}/ttyd* {
 		redir {$GLOBAL_PORTAL_PATH}/ttyd {$GLOBAL_PORTAL_PATH}/ttyd/
