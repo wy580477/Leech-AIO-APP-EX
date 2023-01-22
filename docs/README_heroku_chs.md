@@ -29,8 +29,9 @@
  4. 自动备份相关配置文件到Cloudflare Workers KV，dyno重启时尝试恢复，实现了配置文件持久化。
  5. 可以从OliveTin网页端执行yt-dlp、gallery-dl和Rclone指令。
  6. ttyd网页终端，可命令行执行yt-dlp下载工具和其它命令。
- 7. log目录下有每个服务独立日志。
- 8. 集成 [NodeStatus](https://github.com/cokemine/nodestatus) 探针客户端。
+ 7. 基于 [runit](http://smarden.org/runit/index.html) 的进程管理，每个服务可以独立启停。
+ 8. log目录下有每个服务独立日志。
+ 9. 集成 [NodeStatus](https://github.com/cokemine/nodestatus) 探针客户端。
 
 ## 部署方式
 
@@ -87,7 +88,6 @@
  
     然后编辑config/script.conf文件，将botid:token和ChatID填入对应选项，通知功能即生效。
  2. pyLoad已知Bug：
-    - 登陆后重定向到http，解决方法：关闭当前pyLoad页面，重新打开。
     - 解压后不能删除原文件，解决方法：Settings--Plugins--ExtractArchive，将"Move to trash instead delete"项设置为off。
  3. Heroku部署后，将下列内容添加到rclone.conf文件，可以将Heroku本地存储作为Rclone的远程存储，便于在Rclone WebUI上手动上传。
 

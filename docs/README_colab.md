@@ -52,5 +52,4 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
     Edit the config/script.conf file. Fill in the corresponding options for botid:token and ChatID, then the notification function will take effect.
 
  2. Known pyLoad bugs：
-    - Redirect to http after login，solution: close the pyLoad page and reopen it.
     - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.

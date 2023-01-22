@@ -28,8 +28,9 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  4. Auto-backup configuration files to Cloudflare Workers KV, and try to restore when dyno restarts.
  5. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
  6. ttyd web terminal, which can execute yt-dlp and other commands on the command line.
- 7. There are independent logs for each service in the log directory.
- 8. [NodeStatus](https://github.com/cokemine/nodestatus) server monitor client.
+ 7. [runit](http://smarden.org/runit/index.html)-based process management, each service can be started and stopped independently.
+ 8. There are independent logs for each service in the log directory.
+ 9. [NodeStatus](https://github.com/cokemine/nodestatus) server monitor client.
 
 ## <a id="Deployment"></a>Deployment
 
@@ -73,7 +74,6 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  
     Edit the config/script.conf file. Fill in the corresponding options for botid:token and ChatID, then the notification function will take effect.
  2. Known pyLoad bugs：
-    - Redirect to http after login，solution: close the pyLoad page and reopen it.
     - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.
  3. After adding following content to rclone.conf file, you can use local heroku storage as a Rclone remote for manually uploading via Rclone Web UI.
 

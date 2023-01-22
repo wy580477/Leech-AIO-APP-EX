@@ -2,6 +2,10 @@
 # one port (this is called the "Single HTTP Frontend") and means you just need
 # one open port in the container/firewalls/etc.
 #
+# Run "sv restart olivetin" in ttyd after editing for changes to take effect
+# 编辑后，在ttyd中运行"sv restart olivetin"后生效
+#
+
 listenAddressSingleHTTPFrontend: 127.0.0.1:61806
 checkForUpdates: false
 externalRestAddress: "."

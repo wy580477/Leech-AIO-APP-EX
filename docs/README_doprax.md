@@ -26,8 +26,9 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  3. You can connect Aria2, qBittorrent and Rclone from frontends/services running on other hosts, including flexget/Radarr/Sonarr.
  4. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
  5. ttyd web terminal, which can execute yt-dlp and other commands on the command line.
- 6. There are independent logs for each service in the log directory.
- 7. [NodeStatus](https://github.com/cokemine/nodestatus) server monitor client.
+ 6. [runit](http://smarden.org/runit/index.html)-based process management, each service can be started and stopped independently.
+ 7. There are independent logs for each service in the log directory.
+ 8. [NodeStatus](https://github.com/cokemine/nodestatus) server monitor client.
 
 ## <a id="Deployment"></a>Deployment
 
@@ -104,7 +105,6 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  
     Edit the config/script.conf file. Fill in the corresponding options for botid:token and ChatID, then the notification function will take effect.
  2. Known pyLoad bugs：
-    - Redirect to http after login，solution: close the pyLoad page and reopen it.
     - Fail to delete archives after extraction, solution: Settings--Plugins--ExtractArchive, set "Move to trash instead delete" to off.
  3. After adding following content to rclone.conf file, you can use local container storage as a Rclone remote for manually uploading via Rclone Web UI.
 

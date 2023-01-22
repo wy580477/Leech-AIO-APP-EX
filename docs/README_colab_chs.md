@@ -53,5 +53,4 @@
     然后编辑config/script.conf文件，将botid:token和ChatID填入对应选项，通知功能即生效。
 
  2. pyLoad已知Bug：
-    - 登陆后重定向到http，解决方法：关闭当前pyLoad页面，重新打开。
     - 解压后不能删除原文件，解决方法：Settings--Plugins--ExtractArchive，将"Move to trash instead delete"项设置为off。

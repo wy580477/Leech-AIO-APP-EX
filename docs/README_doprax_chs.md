@@ -25,8 +25,9 @@
  3. Aria2、qBittorrent和Rclone可以接入其它host上运行的AriaNg/RcloneNg等前端面板和flexget/Radarr/Sonarr等应用。
  4. 可以从OliveTin网页端执行yt-dlp、gallery-dl和Rclone指令。
  5. ttyd网页终端，可命令行执行yt-dlp下载工具和其它命令。
- 6. log目录下有每个服务独立日志。
- 7. 集成 [NodeStatus](https://github.com/cokemine/nodestatus) 探针客户端。
+ 6. 基于 [runit](http://smarden.org/runit/index.html) 的进程管理，每个服务可以独立启停。
+ 7. log目录下有每个服务独立日志。
+ 8. 集成 [NodeStatus](https://github.com/cokemine/nodestatus) 探针客户端。
 
 ## 部署方式
 
@@ -101,7 +102,6 @@
  
     然后编辑config/script.conf文件，将botid:token和ChatID填入对应选项，通知功能即生效。
  2. pyLoad已知Bug：
-    - 登陆后重定向到http，解决方法：关闭当前pyLoad页面，重新打开。
     - 解压后不能删除原文件，解决方法：Settings--Plugins--ExtractArchive，将"Move to trash instead delete"项设置为off。
  3. Doprax 部署后，将下列内容添加到 rclone.conf 文件，可以将容器本地存储作为 Rclone 的远程存储，便于在Rclone WebUI上手动上传。
 
