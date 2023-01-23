@@ -27,7 +27,7 @@
  5. ttyd网页终端，可命令行执行yt-dlp下载工具和其它命令。
  6. 基于 [runit](http://smarden.org/runit/index.html) 的进程管理，每个服务可以独立启停。
  7. log目录下有每个服务独立日志。
- 8. 集成 [NodeStatus](https://github.com/cokemine/nodestatus) 探针客户端。
+ 8. 集成 [NodeStatus](https://github.com/cokemine/nodestatus) 探针客户端。[NodeStatus 服务端](https://github.com/wy580477/NodeStatus-Docker)也可以部署在 PaaS 平台上。
 
 ## 部署方式
 
