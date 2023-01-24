@@ -99,5 +99,3 @@ This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + We
             type = alias
             remote = /mnt/data
 
-
- 

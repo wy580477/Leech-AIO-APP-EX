@@ -66,8 +66,6 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
       gdlr: Use gallery-dl to download files to gallery_dl_downloads folder, then send task to Rclone after downloads completed.  
    6. If you can't find function settings added in new version in script.conf after upgrading, refer to the latest [script.conf](https://github.com/wy580477/Leech-AIO-APP-EX/blob/main/content/script.conf) file，and add missing setting options by yourself.
 
-## [Cloudflare Workers Reverse Proxy](https://github.com/wy580477/PaaS-Related/blob/main/CF_Workers_Reverse_Proxy.md)
-
 ## <a id="more"></a>More usages and precautions
 
  1. To enable Telegram notification function, you need to talk to @BotFather in Telegram to register a bot. Get ChatID of your Telegram account or ChatID of the channel which bot joined. Please Google for detailed steps.
