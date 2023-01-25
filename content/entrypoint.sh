@@ -3,6 +3,10 @@
 # Write dyno start time
 echo $(date +%s) >/workdir/dyno_start_time
 
+if [ ! -f "/mnt/data/config/script.conf" ]; then
+    cp /workdir/script.conf /mnt/data/config/script.conf
+fi
+
 # Restore backup
 RESTORE_BACKUP() {
     BACKUP=$(curl -4 --retry 4 https://${CLOUDFLARE_WORKERS_HOST}/backup?key=${CLOUDFLARE_WORKERS_KEY} | jq .value)
@@ -51,10 +55,6 @@ else
         echo "Cloudflare Workers is not working"
     fi
     touch /workdir/workers_fail.lock
-fi
-
-if [ ! -f "/mnt/data/config/script.conf" ]; then
-    cp /workdir/script.conf /mnt/data/config/script.conf
 fi
 
 exec runsvdir -P /etc/service
