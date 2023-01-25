@@ -3,10 +3,6 @@
 # Write dyno start time
 echo $(date +%s) >/workdir/dyno_start_time
 
-if [ ! -f "/mnt/data/config/script.conf" ]; then
-    cp /workdir/script.conf /mnt/data/config/script.conf
-fi
-
 # Restore backup
 RESTORE_BACKUP() {
     BACKUP=$(curl -4 --retry 4 https://${CLOUDFLARE_WORKERS_HOST}/backup?key=${CLOUDFLARE_WORKERS_KEY} | jq .value)
@@ -42,7 +38,6 @@ SEND_TG_MSG() {
     fi
 }
 
-SEND_TG_MSG
 mkdir -p /mnt/data/config /mnt/data/qbit_downloads /mnt/data/aria2_downloads /mnt/data/videos /workdir/.pyload /mnt/data/.cache
 WORKER_STATUS=$(curl -4 --retry 4 https://${CLOUDFLARE_WORKERS_HOST} | jq .status | sed "s|\"||g")
 
@@ -56,5 +51,11 @@ else
     fi
     touch /workdir/workers_fail.lock
 fi
+
+if [ ! -f "/mnt/data/config/script.conf" ]; then
+    cp /workdir/script.conf /mnt/data/config/script.conf
+fi
+
+SEND_TG_MSG
 
 exec runsvdir -P /etc/service
