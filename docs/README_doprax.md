@@ -36,7 +36,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
  **Do not deploy directly from this repository** 
 
  1. Fork this this repository (uncheck "Copy the main branch only"), then click Setting on fork repository page and check Template repository.
- 2. Click new button: Use this template，create a new repository。
+ 2. Go back to "Code" tab. Then Click new button: Use this template，create a new repository.
  3. Go to Setting tab on your new repo，Click "Branches"，set default branch to "doprax".
  
     <details>

@@ -42,7 +42,7 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 **Alternatively you can delete KV data from Cloudflare dashboard to reset config files of your deployment. [IMAGE](https://user-images.githubusercontent.com/98247050/174501970-d22eac74-f2f1-496c-a100-8188832e4da7.png)**
 
  2. Fork this this repository, then click Setting on fork repository page and check Template repository.
- 3. Click new button: Use this template，create a new repository。
+ 3. Go back to "Code" tab. Then Click new button: Use this template，create a new repository.
  4. For example, your Github username is bobby, and the new repository name is green. After logging in to heroku, visit <https://dashboard.heroku.com/new?template=https://github.com/bobby/green> to deploy.
 
 ## <a id="first"></a>First run
