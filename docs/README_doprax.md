@@ -1,10 +1,11 @@
 ## Attention
 
  1. **Do not abuse service from Doprax or your account could get banned. Deploy at your own risk.**
- 2. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
- 3. Container filesystem is ephemeral - that means that any changes to the filesystem except volume mounted on /mnt/data/config whilst the dyno is running only last until that container is shut down or restarted.
- 4. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
- 5. No Rclone mount support.
+ 2. **High disk usage will likely get your account banned.**
+ 3. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
+ 4. Container filesystem is ephemeral - that means that any changes to the filesystem except volume mounted on /mnt/data/config whilst the dyno is running only last until that container is shut down or restarted.
+ 5. It is not possible to configure a Rclone remote which requires web authentication through Rclone Web UI in this app. You need to prepare rclone.conf file on other devices.
+ 6. No Rclone mount support.
 
 
 [Overview](#Overview)

@@ -6,7 +6,7 @@
  2. Aria2 & qBittorrent download speed is limited to 5MB/s on default.
  3. The Heroku filesystem is ephemeral - that means that any changes to the filesystem whilst the dyno is running only last until that dyno is shut down or restarted. In addition, dynos will restart every day.
  4. To prevent Heroku dyno from auto-sleeping, use website monitoring service such as uptimerobot to http ping your heroku domain every 10 mins.
- 5. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app.
+ 5. It is not possible to configure a Rclone remote which requires web authentication through Rclone web UI in this app. You need to prepare rclone.conf file on other devices.
  6. No Rclone mount support.
 
 

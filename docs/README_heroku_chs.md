@@ -6,7 +6,7 @@
  2. Heroku的文件系统是临时性的，每24小时强制重启一次后会恢复到部署时状态。不适合长期下载和共享文件用途。
  3. Aria2和qBittorrent配置文件默认限速5MB/s。
  4. 免费Heroku dyno半小时无Web访问会休眠，可以使用uptimerobot、hetrixtools等免费VPS/网站监测服务定时http ping，保持持续运行。
- 5. 无法通过Rclone Web前端建立需要网页认证的存储配置。
+ 5. 无法通过Rclone Web前端建立需要网页认证的存储配置。需要自行在其他设备上准备好rclone.conf文件。
  6. 不支持 Rclone mount。
 
 [概述](#概述)
