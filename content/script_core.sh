@@ -11,6 +11,7 @@ GET_PATH() {
     SCRIPT_CONF="/mnt/data/config/script.conf"
     TELEGRAM_BOT_TOKEN="$(grep ^telegram-bot-token "${SCRIPT_CONF}" | cut -d= -f2-)"
     TELEGRAM_CHAT_ID="$(grep ^telegram-chat-id "${SCRIPT_CONF}" | cut -d= -f2-)"
+    TELEGRAM_TITLE="$(grep ^telegram-notification-title "${SCRIPT_CONF}" | cut -d= -f2-)"
     TG_PROXY="$(grep ^telegram-proxy "${SCRIPT_CONF}" | cut -d= -f2-)"
     TG_EXCLUDE_FILE_EXTENSION="$(grep ^telegram-exclude-file-extension "${SCRIPT_CONF}" | cut -d= -f2-)"
     TG_INCLUDE_FILE_EXTENSION="$(grep ^telegram-include-file-extension "${SCRIPT_CONF}" | cut -d= -f2-)"
@@ -92,7 +93,7 @@ SEND_TG_MSG() {
         if [ "${TG_PROXY}" != "" ]; then
             PROXY_PARAM="-x ${TG_PROXY}"
         fi
-        title="$1"
+        title="$TELEGRAM_TITLE $1"
         timestamp="$(DATE_TIME)"
         msg="$title $timestamp\n$(echo "$2" | sed -e 's|\\|\\\\|g' -e 's|\n|\\n|g' -e 's|\t|\\t|g' -e 's|\"|\\"|g')"
         entities="[{\"offset\":0,\"length\":${#title},\"type\":\"bold\"},{\"offset\":$((${#title} + 1)),\"length\":${#timestamp},\"type\":\"italic\"}]"
