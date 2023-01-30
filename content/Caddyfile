@@ -1,5 +1,6 @@
 # Created by wy580477 for customized container <https://github.com/wy580477>
 {
+	admin off
 	storage file_system /mnt/data/config/caddy
 	log {
 		exclude http.handlers.reverse_proxy
