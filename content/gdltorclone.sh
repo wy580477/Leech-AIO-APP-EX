@@ -7,9 +7,9 @@ LOCAL_PATH="$1"
 source /workdir/script_core.sh
 
 DEFINITION_PATH() {
-    UPLOAD_MODE="$(grep ^gallery-dl-upload-mode /mnt/data/config/script.conf | cut -d= -f2-)"
+    UPLOAD_MODE="$(grep ^gallery-dl-upload-mode /mnt/data/config/script.conf | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     DOWNLOAD_DIR="$(jq '."base-directory"' /mnt/data/config/gallery-dl.conf | sed 's/\"//g;s/\r$//')"
-    GDL_DRIVE_DIR="$(grep ^gdl-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
+    GDL_DRIVE_DIR="$(grep ^gdl-drive-dir /mnt/data/config/script.conf | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     BASE_PATH="${LOCAL_PATH#"${DOWNLOAD_DIR%/}"}"
     MSG_PATH="${LOCAL_PATH}"
     FOLDER_NAME="${BASE_PATH}"

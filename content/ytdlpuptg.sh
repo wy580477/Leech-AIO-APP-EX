@@ -15,8 +15,8 @@ GET_PATH
 if [ "${TG_PROXY}" != "" ]; then
     PROXY_PARAM="-p ${TG_PROXY}"
 fi
-TELEGRAM_DEST="$(grep ^telegram-dest ${SCRIPT_CONF} | cut -d= -f2-)"
-TELEGRAM_MODE="$(grep ^telegram-auto-upload-mode ${SCRIPT_CONF} | cut -d= -f2-)"
+TELEGRAM_DEST="$(grep ^telegram-dest ${SCRIPT_CONF} | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+TELEGRAM_MODE="$(grep ^telegram-auto-upload-mode ${SCRIPT_CONF} | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
 if [ "${TELEGRAM_DEST}" != "" ]; then
     DEST_PARAM="--to ${TELEGRAM_DEST}"
 fi
