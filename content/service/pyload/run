@@ -1,7 +1,8 @@
 #!/bin/sh
 
+exec 2>&1
+pipx upgrade --pip-args='--no-cache-dir' pyload-ng
 CONF_PATH=/mnt/data/config/.pyload
-
 mkdir -p /mnt/data/pyload_downloads ${CONF_PATH}/settings ${CONF_PATH}/scripts/download_finished ${CONF_PATH}/scripts/package_extracted 2>/dev/null
 
 if [ ! -f "${CONF_PATH}/settings/pyload.cfg" ]; then
@@ -18,6 +19,5 @@ export HOME=/mnt/data/config
 cd
 
 # Run pyload
-exec 2>&1
 pyload --quit
 exec pyload
