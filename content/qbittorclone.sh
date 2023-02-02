@@ -8,9 +8,9 @@ APP=qBittorrent
 source /workdir/script_core.sh
 
 DEFINITION_PATH() {
-    UPLOAD_MODE="$(grep ^qbit-upload-mode /mnt/data/config/script.conf | cut -d= -f2-)"
-    DOWNLOAD_DIR="$(grep ^'Session\\\DefaultSavePath' /mnt/data/config/qBittorrent/config/qBittorrent.conf | cut -d= -f2- | sed "s/\r$//")"
-    QBIT_DRIVE_DIR="$(grep ^qbit-drive-dir /mnt/data/config/script.conf | cut -d= -f2-)"
+    UPLOAD_MODE="$(grep ^qbit-upload-mode /mnt/data/config/script.conf | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    DOWNLOAD_DIR="$(grep ^'Session\\\DefaultSavePath' /mnt/data/config/qBittorrent/config/qBittorrent.conf | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    QBIT_DRIVE_DIR="$(grep ^qbit-drive-dir /mnt/data/config/script.conf | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     FILE_NAME="$(basename "${LOCAL_PATH}")"
     FOLDER_NAME="${FILE_NAME}"
     MSG_PATH="${LOCAL_PATH}"

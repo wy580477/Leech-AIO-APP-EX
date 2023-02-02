@@ -9,15 +9,15 @@ DATE_TIME() {
 
 GET_PATH() {
     SCRIPT_CONF="/mnt/data/config/script.conf"
-    TELEGRAM_BOT_TOKEN="$(grep ^telegram-bot-token "${SCRIPT_CONF}" | cut -d= -f2-)"
-    TELEGRAM_CHAT_ID="$(grep ^telegram-chat-id "${SCRIPT_CONF}" | cut -d= -f2-)"
-    TELEGRAM_TITLE="$(grep ^telegram-notification-title "${SCRIPT_CONF}" | cut -d= -f2-)"
-    TG_PROXY="$(grep ^telegram-proxy "${SCRIPT_CONF}" | cut -d= -f2-)"
-    TG_EXCLUDE_FILE_EXTENSION="$(grep ^telegram-exclude-file-extension "${SCRIPT_CONF}" | cut -d= -f2-)"
-    TG_INCLUDE_FILE_EXTENSION="$(grep ^telegram-include-file-extension "${SCRIPT_CONF}" | cut -d= -f2-)"
-    DELETE_EMPTY_DIR="$(grep ^delete-empty-dir "${SCRIPT_CONF}" | cut -d= -f2-)"
-    DRIVE_NAME="$(grep ^drive-name "${SCRIPT_CONF}" | cut -d= -f2-)"
-    GLOBAL_DRIVE_DIR="$(grep ^drive-dir "${SCRIPT_CONF}" | cut -d= -f2-)"
+    TELEGRAM_BOT_TOKEN="$(grep ^telegram-bot-token "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    TELEGRAM_CHAT_ID="$(grep ^telegram-chat-id "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    TELEGRAM_TITLE="$(grep ^telegram-notification-title "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    TG_PROXY="$(grep ^telegram-proxy "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    TG_EXCLUDE_FILE_EXTENSION="$(grep ^telegram-exclude-file-extension "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    TG_INCLUDE_FILE_EXTENSION="$(grep ^telegram-include-file-extension "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    DELETE_EMPTY_DIR="$(grep ^delete-empty-dir "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    DRIVE_NAME="$(grep ^drive-name "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+    GLOBAL_DRIVE_DIR="$(grep ^drive-dir "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/data/config/rclone.conf | sed "s/.*\[//g;s/\].*//g;s/\r$//")"
     if [ "${DRIVE_NAME}" = "auto" ]; then
         DRIVENAME=${DRIVE_NAME_AUTO}
