@@ -23,8 +23,7 @@ services:
       CADDY_DOMAIN: 
       # If value is set to a valid domain name (it can be resolved to your host) and port 80/443 is open to internet, caddy's auto-https function will be enabled.
       # For advanced users, you can use Cloudflare api in CADDY_EMAIL env for SSL certificate instead of Email address. This way you don't need 80/443 ports.
-      # Set value to http://localhost, http service is provided at local loopback address.
-      # If you set value to blank, http service will open to external IP.This is not recommended other than using in home LAN.
+      # If you set value to blank, http service will open to external IP.
       CADDY_EMAIL: internal
       # Email address for receiving notification emails from certification authority, you can use fake address.
       # Set to "{\n dns cloudflare your_cloudflare_api_key \n}", Caddy will use Cloudflare api for SSL certificate.

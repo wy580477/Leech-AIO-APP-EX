@@ -28,8 +28,7 @@ services:
       # 域名设置为有效域名（可以解析到你的host）,并且80/443端口面向公网开放，就可启用caddy的自动申请证书开启https功能。
       # 如果在下面CADDY_EMAIL项中设置Cloudflare的DNS API申请证书，则无需占用80/443端口。
       # 如何使用Cloudflare DNS provider插件: https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148
-      # 设置为http://localhost，则监听本地回环地址提供http服务。
-      # 设置为空值，则对外部ip开放http服务，不建议在家庭局域网以外的环境使用。
+      # 设置为空值，则对外部ip开放http服务。
       CADDY_EMAIL: internal
       # 接受证书颁发机构通知邮件的地址，可以填虚假地址。
       # 可以通过Cloudflare的DNS API申请证书, 变量值需设置为"{\n dns cloudflare your_cloudflare_api_key \n}"。
