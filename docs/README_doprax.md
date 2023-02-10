@@ -82,6 +82,8 @@ This project integrates yt-dlp, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorr
 ## <a id="first"></a>First run
 
    1. Visit your "App URL" + ${GLOBAL_PORTAL_PATH} to reach portal page.
+
+      If your doprax domain gives you 503 or timeout error, here's a [workaround](https://github.com/wy580477/Leech-AIO-APP-EX/issues/67#issuecomment-1425437513) by using cloudflared tunnel.
    2. Click AriaNg, then authentication failure warning will pop up, fill in Aria2 secret RPC token with password set during deployment.  
 
          <img src="https://user-images.githubusercontent.com/98247050/165651080-b1b79ba6-7cc0-4c7c-b65b-fbc4256f59f9.png"  width="700"/>
