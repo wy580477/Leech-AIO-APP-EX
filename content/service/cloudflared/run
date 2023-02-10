@@ -10,7 +10,7 @@ else
     echo $ArgoJSON >${DIR_CONFIG}/argo.json
     ARGOID="$(jq .TunnelID ${DIR_CONFIG}/argo.json | sed 's/\"//g')"
     sed -i "s|ARGOID|${ARGOID}|g;s|ArgoDOMAIN|${ArgoDOMAIN}|;s|PORT|${PORT}|" ${DIR_CONFIG}/argo.yaml
-    wget -4qO /usr/bin/argo https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+    wget -qO /usr/bin/argo https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
     chmod +x /usr/bin/argo
     exec argo --loglevel info tunnel -config ${DIR_CONFIG}/argo.yaml run ${ARGOID}
 fi
