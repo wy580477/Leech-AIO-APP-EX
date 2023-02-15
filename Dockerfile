@@ -17,8 +17,7 @@ ENV XDG_CONFIG_HOME=/mnt/data/config
 ENV DOWNLOAD_DIR=/mnt/data/videos
 ENV STATE_DIR=/mnt/data/videos/.metube
 
-RUN apk add --no-cache curl jq runit tzdata fuse p7zip bash findutils caddy \
-    && caddy add-package 'github.com/caddy-dns/cloudflare' \
+RUN apk add --no-cache curl jq runit tzdata fuse p7zip bash findutils \
     && python3 -m pip install --user --no-cache-dir pipx \
     && apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev jpeg-dev \
     && pipx install --pip-args='--no-cache-dir' pyload-ng[plugins] \
