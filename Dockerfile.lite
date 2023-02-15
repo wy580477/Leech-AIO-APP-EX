@@ -1,4 +1,6 @@
-FROM alexta69/metube:latest
+FROM ghcr.io/wy580477/leech-aio-app-ex:1.6.13 AS builder
+
+FROM alexta69/metube:latest AS dist
 
 COPY ./content /workdir/
 
@@ -29,6 +31,8 @@ RUN apk add --no-cache curl jq runit tzdata fuse bash findutils caddy \
     && mv /workdir/ytdlp*.sh /workdir/dlpr /workdir/gdlr /usr/bin/ \
     && rm -rf /workdir/service/pyLoad /workdir/homer_conf/pyload.png \
     && ln -s /workdir/service/* /etc/service/
+
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
 VOLUME /mnt/data
 

@@ -1,4 +1,6 @@
-FROM alexta69/metube:latest
+FROM ghcr.io/wy580477/leech-aio-app-ex:1.6.13 AS builder
+
+FROM alexta69/metube:latest AS dist
 
 COPY ./content /workdir/
 
@@ -31,6 +33,8 @@ RUN apk add --no-cache curl jq runit tzdata fuse p7zip bash findutils caddy \
     && rm -rf /workdir/install.sh /tmp/* ${HOME}/.cache \
     && mv /workdir/ytdlp*.sh /workdir/dlpr /workdir/gdlr /usr/bin/ \
     && ln -s /workdir/service/* /etc/service/
+
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
 VOLUME /mnt/data
 
