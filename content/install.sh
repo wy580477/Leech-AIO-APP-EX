@@ -61,8 +61,4 @@ mv ${DIR_TMP}/*/OliveTin /usr/bin/
 mkdir -p /var/www/olivetin
 mv ${DIR_TMP}/*/webui/* /var/www/olivetin/
 
-# Install Caddy
-wget -O /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=${OS_type6}&p=github.com%2Fcaddy-dns%2Fcloudflare"
-chmod +x /usr/bin/caddy
-
 rm -rf ${DIR_TMP}
