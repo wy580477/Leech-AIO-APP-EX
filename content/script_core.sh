@@ -74,11 +74,31 @@ RCLONE_PROCESS() {
 }
 
 UPLOAD_FILE() {
+    if [ ! -f /mnt/data/config/rclone.conf ]; then
+        if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
+            echo "$(DATE_TIME) [ERROR] 未找到 Rclone 配置文件"
+            SEND_TG_MSG Rclone "[ERROR] 未找到 Rclone 配置文件"
+        else
+            echo "$(DATE_TIME) [ERROR] Rclone config file not found"
+            SEND_TG_MSG Rclone "[ERROR] Rclone config file not found"
+        fi
+        exit 1
+    fi
     JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${FILE_PATH}"'","srcRemote":"'"${FILE_NAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${FILE_NAME}"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file' | jq .jobid | sed 's/\"//g')"
     RCLONE_PROCESS
 }
 
 UPLOAD_FOLDER() {
+    if [ ! -f /mnt/data/config/rclone.conf ]; then
+        if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
+            echo "$(DATE_TIME) [ERROR] 未找到 Rclone 配置文件"
+            SEND_TG_MSG Rclone "[ERROR] 未找到 Rclone 配置文件"
+        else
+            echo "$(DATE_TIME) [ERROR] Rclone config file not found"
+            SEND_TG_MSG Rclone "[ERROR] Rclone config file not found"
+        fi
+        exit 1
+    fi
     JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'","_async":"true"}' 'localhost:61802/sync/'${UPLOAD_MODE}'' | jq .jobid | sed 's/\"//g')"
     RCLONE_PROCESS
 }
