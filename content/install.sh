@@ -26,7 +26,7 @@ EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv ${DIR_TMP}/aria2c /workdir/2${EXEC}
 
 # Install qBit
-wget -4qO - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.5.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip | busybox unzip -qd ${DIR_TMP} -
+wget -4qO - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.5.1.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip | busybox unzip -qd ${DIR_TMP} -
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 install -m 755 ${DIR_TMP}/qbittorrent-nox /workdir/1${EXEC}
 
