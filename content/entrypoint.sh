@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Write dyno start time
-echo $(date +%s) >/workdir/dyno_start_time
+echo $(date +%s) >/workdir/container_start_time
 
 # Restore backup
 RESTORE_BACKUP() {
@@ -59,4 +59,4 @@ fi
 
 SEND_TG_MSG
 
-exec runsvdir -P /etc/service
+exec runsvdir /etc/service

@@ -3,7 +3,7 @@
 # See https://fontawesome.com/icons for icons options
 # Modified by wy580477 for customized container <https://github.com/wy580477>
 
-title: "Dashboard for Heroku-AIO-APP-EX"
+title: "TELEGRAM_TITLE Dashboard"
 subtitle: "Homer"
 logo: "logo.png"
 # icon: "fas fa-skull-crossbones" # Optional icon
@@ -48,7 +48,7 @@ message:
   style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
   #title: "Demo !"
   #  icon: "fa fa-grin"
-  content: "<b>Dyno 运行时间: <br />Rclone Webdav Path: GLOBAL_PORTAL_PATH/rclonedav</b>"
+  content: "<b>容器运行时间: <br />Rclone Webdav Path: GLOBAL_PORTAL_PATH/rclonedav</b>"
 
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
