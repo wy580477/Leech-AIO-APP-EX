@@ -9,7 +9,7 @@ RUN apk add git && \
     node_modules/.bin/ng build --configuration production
 
 
-FROM ghcr.io/wy580477/leech-aio-app-ex:1.6.13 AS caddy_workaround
+FROM ghcr.io/wy580477/leech-aio-app-ex:1.6.13-lite AS caddy_workaround
 
 
 FROM python:3.8-alpine AS dist
