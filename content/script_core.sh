@@ -82,7 +82,7 @@ UPLOAD_FILE() {
             echo "$(DATE_TIME) [ERROR] Rclone config file not found"
             SEND_TG_MSG Rclone "[ERROR] Rclone config file not found"
         fi
-        exit 1
+        exit 0
     fi
     JOB_ID="$(curl --noproxy '*' -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${FILE_PATH}"'","srcRemote":"'"${FILE_NAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${FILE_NAME}"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file' | jq .jobid | sed 's/\"//g')"
     RCLONE_PROCESS
@@ -97,7 +97,7 @@ UPLOAD_FOLDER() {
             echo "$(DATE_TIME) [ERROR] Rclone config file not found"
             SEND_TG_MSG Rclone "[ERROR] Rclone config file not found"
         fi
-        exit 1
+        exit 0
     fi
     JOB_ID="$(curl --noproxy '*' -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'","_async":"true"}' 'localhost:61802/sync/'${UPLOAD_MODE}'' | jq .jobid | sed 's/\"//g')"
     RCLONE_PROCESS
