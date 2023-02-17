@@ -35,4 +35,4 @@ SEND_TG_MSG() {
 
 SEND_TG_MSG
 
-exec runsvdir -P /etc/service
+exec runsvdir /etc/service
