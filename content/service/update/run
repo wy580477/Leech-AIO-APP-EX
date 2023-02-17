@@ -4,7 +4,8 @@ exec 2>&1
 
 # Update homer message
 cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config.yml
-sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/homer/assets/config.yml
+TELEGRAM_TITLE="$(grep ^telegram-notification-title "/mnt/data/config/script.conf" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g;s|TELEGRAM_TITLE|${TELEGRAM_TITLE}|" /workdir/homer/assets/config.yml
 
 UPTIME=$(($(date +%s) - $(cat /workdir/container_start_time)))
 
