@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Update gallery-dl
+pipx upgrade --pip-args='--no-cache-dir' gallery-dl
+
 mkdir -p /mnt/data/config/olivetin 2>/dev/null
 export HOME=/mnt/data/config
 

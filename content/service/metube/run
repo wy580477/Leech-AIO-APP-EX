@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Update yt-dlp
+python3 -m pip install --no-cache-dir -U yt-dlp
+
 # Configure & run metube
 if [ ! -f "/mnt/data/config/metube_options.conf" ]; then
     cp /workdir/metube_options.conf /mnt/data/config/
