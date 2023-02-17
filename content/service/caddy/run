@@ -8,7 +8,8 @@ sed -i 's|ipAddress:a|ipAddress:`${window.location.protocol}//${window.location.
 # Configure homer
 cp /workdir/homer_conf/* /workdir/homer/assets/tools/
 cp /workdir/homer_conf/homer_${GLOBAL_LANGUAGE}.yml /workdir/homer/assets/config.yml
-sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g" /workdir/homer/assets/config.yml
+TELEGRAM_TITLE="$(grep ^telegram-notification-title "/mnt/data/config/script.conf" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+sed -i "s|GLOBAL_PORTAL_PATH|${GLOBAL_PORTAL_PATH}|g;s|TELEGRAM_TITLE|${TELEGRAM_TITLE}|" /workdir/homer/assets/config.yml
 
 if [ ! -f "/workdir/homer_conf/pyload.png" ]; then
     LINE=$(sed -n -e '/pyLoad/=' /workdir/homer/assets/config.yml)

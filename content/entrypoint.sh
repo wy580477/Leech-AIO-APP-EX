@@ -40,4 +40,4 @@ if [ "${OLIVETIN}" != "Enable" ]; then
        rm -rf /etc/service/olivetin
 fi
 
-exec runsvdir -P /etc/service
+exec runsvdir /etc/service
