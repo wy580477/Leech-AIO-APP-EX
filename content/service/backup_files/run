@@ -6,6 +6,8 @@ export $(sed '/^#/d' /etc/env | cut -d= -f1)
 # Update homer message
 UPTIME=$(uptime -p | sed 's/up //')
 UPTIME_CHS=$(echo "${UPTIME}" | sed 's/hours\?/小时/g;s/minutes\?/分钟/g')
+TELEGRAM_TITLE="$(grep ^telegram-notification-title "/mnt/data/config/script.conf" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
+sed -i "s|TELEGRAM_TITLE|${TELEGRAM_TITLE}|" /workdir/homer/assets/config.yml
 
 if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
     sed -i "s|运行时间:.*<|运行时间: ${UPTIME_CHS}<|g" /workdir/homer/assets/config.yml

@@ -122,7 +122,7 @@ sed -i 's/\r$//' /mnt/data/config/script.conf
 
 # Run services
 ln -s /workdir/service/* /etc/service
-nohup runsvdir -P /etc/service &
+nohup runsvdir /etc/service &
 
 if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
     echo "<<安装已完成, 运行下一单元格启动 Cloudflare Argo 隧道。>>"
