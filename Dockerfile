@@ -9,9 +9,6 @@ RUN apk add git && \
     node_modules/.bin/ng build --configuration production
 
 
-FROM ghcr.io/wy580477/leech-aio-app-ex:1.6.13 AS caddy_workaround
-
-
 FROM python:3.8-alpine AS dist
 
 COPY ./content /workdir/
@@ -59,7 +56,6 @@ RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse p7zip bash find
     && mv /workdir/ytdlp*.sh /workdir/dlpr /workdir/gdlr /usr/bin/ \
     && ln -s /workdir/service/* /etc/service/
 
-COPY --from=caddy_workaround /usr/bin/caddy /usr/bin/caddy
 COPY --from=builder /metube/dist/metube /app/ui/dist/metube
 
 VOLUME /mnt/data
