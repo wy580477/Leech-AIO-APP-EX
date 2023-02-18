@@ -35,3 +35,14 @@ services:
       # Attention: User can execute any shell command from OliveTin WebUI, so enable OliveTin at your own risk.
       TZ: UTC
       # Timezone
+
+      # The following envs are list of ports listened on localhost. 
+      # You don't need to change them unless you have port conflict.
+      ARIA2_PORT: 61800
+      FILEBROWSER_PORT: 61801
+      METUBE_PORT: 61802
+      OLIVETIN_PORT: 61803
+      PYLOAD_PORT: 61804
+      QBT_WEBUI_PORT: 61805
+      RCLONE_PORT: 61806
+      RCLONE_WEBDAV_PORT: 61807

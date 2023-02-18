@@ -10,5 +10,7 @@ if [ ! -f "/mnt/data/config/olivetin/config.yaml" ]; then
     mv /workdir/olivetin_config.yaml  /mnt/data/config/olivetin/config.yaml
 fi
 
+sed -i "s|listenAddressSingleHTTPFrontend:.*|listenAddressSingleHTTPFrontend: 127.0.0.1:${OLIVETIN_PORT}|g" /mnt/data/config/olivetin/config.yaml
+
 exec 2>&1
 exec OliveTin --configdir /mnt/data/config/olivetin

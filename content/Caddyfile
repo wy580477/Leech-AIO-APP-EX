@@ -24,13 +24,13 @@
 		redir {$GLOBAL_PORTAL_PATH}/qbit {$GLOBAL_PORTAL_PATH}/qbit/
 		uri strip_prefix {$GLOBAL_PORTAL_PATH}/qbit
 		reverse_proxy * {
-			to localhost:61804
-			header_up Host "127.0.0.1:61804"
+			to localhost:{$QBT_WEBUI_PORT}
+			header_up Host "127.0.0.1:{$QBT_WEBUI_PORT}"
 		}
 	}
 	# Direct /api to qBittorrent WebUI port, for connecting from services which don't support custom path.
 	#handle /api* {       
-	#        reverse_proxy * localhost:61804
+	#        reverse_proxy * localhost:{$QBT_WEBUI_PORT}
 	#}
 	# Configure Vuetorrent   
 	handle {$GLOBAL_PORTAL_PATH}/vue* {
@@ -38,8 +38,8 @@
 		uri strip_prefix {$GLOBAL_PORTAL_PATH}/vue
 		handle /api* {
 			reverse_proxy * {
-				to localhost:61804
-				header_up Host "127.0.0.1:61804"
+				to localhost:{$QBT_WEBUI_PORT}
+				header_up Host "127.0.0.1:{$QBT_WEBUI_PORT}"
 			}
 		}
 		root * /workdir/vuetorrent/public
@@ -57,30 +57,30 @@
 	}
 	# Configure Rclone RC
 	handle_path {$GLOBAL_PORTAL_PATH}/rclonerc {
-		reverse_proxy * localhost:61802
+		reverse_proxy * localhost:{$RCLONE_PORT}
 	}
 	# Configure Rclone Serve
 	handle_path {$GLOBAL_PORTAL_PATH}/rclonerc/* {
-		reverse_proxy * localhost:61802
+		reverse_proxy * localhost:{$RCLONE_PORT}
 	}
 	# Configure Rclone Serve Webdav
 	handle {$GLOBAL_PORTAL_PATH}/rclonedav* {
 		redir {$GLOBAL_PORTAL_PATH}/rclonedav {$GLOBAL_PORTAL_PATH}/rclonedav/
 		uri strip_prefix {$GLOBAL_PORTAL_PATH}/rclonedav
-		reverse_proxy * localhost:61805
+		reverse_proxy * localhost:{$RCLONE_WEBDAV_PORT}
 	}
 	# Configure Aria2 RPC
 	handle {$GLOBAL_PORTAL_PATH}/jsonrpc {
 		uri replace {$GLOBAL_PORTAL_PATH}/jsonrpc /jsonrpc
-		reverse_proxy /jsonrpc localhost:61800
+		reverse_proxy /jsonrpc localhost:{$ARIA2_PORT}
 	}
 	handle {$GLOBAL_PORTAL_PATH}/rpc {
 		uri replace {$GLOBAL_PORTAL_PATH}/rpc /rpc
-		reverse_proxy /rpc localhost:61800
+		reverse_proxy /rpc localhost:{$ARIA2_PORT}
 	}
 	# Configure Filebrowser
 	handle {$GLOBAL_PORTAL_PATH}/files* {
-		reverse_proxy {$GLOBAL_PORTAL_PATH}/files* localhost:61801
+		reverse_proxy {$GLOBAL_PORTAL_PATH}/files* localhost:{$FILEBROWSER_PORT}
 	}
 	# Configure metube
 	handle {$GLOBAL_PORTAL_PATH}/metube* {
@@ -89,7 +89,7 @@
 		basicauth {
 			{$GLOBAL_USER} HASH
 		}
-		reverse_proxy * localhost:8081
+		reverse_proxy * localhost:{$METUBE_PORT}
 	}
 	# Configure pyload
 	handle {$GLOBAL_PORTAL_PATH}/pyload* {
@@ -97,7 +97,7 @@
 		basicauth {
 			{$GLOBAL_USER} HASH
 		}
-		reverse_proxy * localhost:61808
+		reverse_proxy * localhost:{$PYLOAD_PORT}
 	}
 	# Configure OliveTin
 	handle {$GLOBAL_PORTAL_PATH}/olivetin* {
@@ -106,7 +106,7 @@
 		basicauth {
 			{$GLOBAL_USER} HASH
 		}
-		reverse_proxy * localhost:61806
+		reverse_proxy * localhost:{$OLIVETIN_PORT}
 	}
 	# Configure homer
 	handle {$GLOBAL_PORTAL_PATH}* {

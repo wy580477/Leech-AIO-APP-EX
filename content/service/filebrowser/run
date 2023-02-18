@@ -18,7 +18,7 @@ else
     filebrowser -d /mnt/data/config/filebrowser.db users update ${GLOBAL_USER} -p ${GLOBAL_PASSWORD}
 fi
 
-filebrowser -d /mnt/data/config/filebrowser.db config set -r /mnt/data -b ${GLOBAL_PORTAL_PATH}/files -p 61801
+filebrowser -d /mnt/data/config/filebrowser.db config set -r /mnt/data -b ${GLOBAL_PORTAL_PATH}/files -p ${FILEBROWSER_PORT}
 
 # Run filebrowser
 exec filebrowser -d /mnt/data/config/filebrowser.db

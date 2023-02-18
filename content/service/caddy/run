@@ -25,7 +25,14 @@ fi
 
 # Configure Caddyfile
 mkdir -p /mnt/data/config/caddy 2>/dev/null
-if [ ! -f "/mnt/data/config/caddy/Caddyfile" ]; then
+TEST_CADDYFILE="$(grep -c "ARIA2_PORT" /mnt/data/config/caddy/Caddyfile)" 2>/dev/null
+
+if [[ ${TEST_CADDYFILE} = "0" ]]; then
+    cp /mnt/data/config/caddy/Caddyfile /mnt/data/config/caddy/Caddyfile.bak 2>/dev/null
+    cp -f /workdir/Caddyfile /mnt/data/config/caddy/
+fi
+
+if [[ ! -f "/mnt/data/config/caddy/Caddyfile" ]]; then
     cp /workdir/Caddyfile /mnt/data/config/caddy/
 fi
 

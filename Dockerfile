@@ -29,6 +29,14 @@ ENV PATH="/root/.local/bin:$PATH"
 ENV XDG_CONFIG_HOME=/mnt/data/config
 ENV DOWNLOAD_DIR=/mnt/data/videos
 ENV STATE_DIR=/mnt/data/videos/.metube
+ENV ARIA2_PORT=61800
+ENV FILEBROWSER_PORT=61801
+ENV METUBE_PORT=61802
+ENV OLIVETIN_PORT=61803
+ENV PYLOAD_PORT=61804
+ENV QBT_WEBUI_PORT=61805
+ENV RCLONE_PORT=61806
+ENV RCLONE_WEBDAV_PORT=61807
 
 RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse p7zip bash findutils \
     && python3 -m pip install --user --no-cache-dir pipx \

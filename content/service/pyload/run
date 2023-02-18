@@ -14,6 +14,7 @@ cp -f /workdir/pyload_to_rclone_package_extracted.sh ${CONF_PATH}/scripts/packag
 
 
 sed -i "s|str\ prefix\ :\ \"Path prefix\"\ =.*|str\ prefix\ :\ \"Path prefix\"\ =\ ${GLOBAL_PORTAL_PATH}/pyload|g" ${CONF_PATH}/settings/pyload.cfg
+sed -i "`grep -n '.*\"Port\"' ${CONF_PATH}/settings/pyload.cfg | cut -d \: -f 1 | tail -1`s/Port.*/Port\" = ${PYLOAD_PORT}/" ${CONF_PATH}/settings/pyload.cfg
 sed -i 's|delete\"\ =.*|delete"\ =\ False|g' ${CONF_PATH}/settings/plugins.cfg 2>/dev/null
 export HOME=/mnt/data/config
 cd

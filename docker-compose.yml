@@ -40,3 +40,13 @@ services:
       # 注意：开启后可通过OliveTin执行任意指令，不建议在安全敏感环境下使用。
       TZ: Asia/Shanghai
       # 指定时区。UTC为标准时间。
+
+      # 以下环境变量为在 localhost 接口上占用的端口。除非出现端口冲突，否则保持默认值即可。
+      ARIA2_PORT: 61800
+      FILEBROWSER_PORT: 61801
+      METUBE_PORT: 61802
+      OLIVETIN_PORT: 61803
+      PYLOAD_PORT: 61804
+      QBT_WEBUI_PORT: 61805
+      RCLONE_PORT: 61806
+      RCLONE_WEBDAV_PORT: 61807

@@ -10,6 +10,8 @@ fi
 
 source /mnt/data/config/metube_options.conf
 export $(sed '/^#/d' /mnt/data/config/metube_options.conf | cut -d= -f1)
+export HOST=127.0.0.1
+export PORT=${METUBE_PORT}
 cd /app
 
 exec 2>&1
