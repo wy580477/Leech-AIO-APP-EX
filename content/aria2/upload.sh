@@ -91,9 +91,9 @@ UPLOAD_FILE() {
     echo -e "$(DATE_TIME) ${INFO} Start upload files..."
     TASK_INFO
     if [ -f "${LOCAL_PATH}" ]; then
-        JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${DOWNLOAD_DIR}"'","srcRemote":"'"${TASK_FILE_NAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:61802/operations/'${UPLOAD_MODE}'file' | jq .jobid | sed 's/\"//g')"
+        JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${DOWNLOAD_DIR}"'","srcRemote":"'"${TASK_FILE_NAME}"'","dstFs":"'"${REMOTE_PATH}"'","dstRemote":"'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:'${RCLONE_PORT}'/operations/'${UPLOAD_MODE}'file' | jq .jobid | sed 's/\"//g')"
     else
-        JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'/'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:61802/sync/'${UPLOAD_MODE}'' | jq .jobid | sed 's/\"//g')"
+        JOB_ID="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"srcFs":"'"${LOCAL_PATH}"'","dstFs":"'"${REMOTE_PATH}"'/'"${TASK_FILE_NAME}"'","_async":"true"}' 'localhost:'${RCLONE_PORT}'/sync/'${UPLOAD_MODE}'' | jq .jobid | sed 's/\"//g')"
     fi
     if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
         RCLONE_SEND_MSG="已成功发生任务至 Rclone"
@@ -108,19 +108,19 @@ UPLOAD_FILE() {
         RCLONE_ERROR_MSG="Rclone Error"
         RCLONE_FAIL_MSG="Failed to send job to Rclone"
     fi
-    RCLONE_ERROR="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .error | sed 's/\"//g')"
+    RCLONE_ERROR="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .error | sed 's/\"//g')"
     if [ "${JOB_ID}" != "" ] && [ "${RCLONE_ERROR}" = "" ]; then
         UPLOAD_LOG="$(DATE_TIME) ${INFO} ${RCLONE_SEND_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
         OUTPUT_UPLOAD_LOG
-        RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .finished)"
+        RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .finished)"
         while [[ "${RCLONE_FINISHED}" != "true" ]]; do
-            RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .finished)"
+            RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .finished)"
             if [ "${RCLONE_FINISHED}" = "" ]; then
                 break
             fi
             sleep 10
         done
-        RCLONE_SUCCESS="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .success)"
+        RCLONE_SUCCESS="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .success)"
         if [ "${RCLONE_FINISHED}" = "" ]; then
             echo "[INFO] ${RCLONE_NO_STATUS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
             SEND_TG_MSG Rclone "[INFO] ${RCLONE_NO_STATUS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
@@ -134,7 +134,7 @@ UPLOAD_FILE() {
         OUTPUT_UPLOAD_LOG
         SEND_TG_MSG Rclone "[ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${LOCAL_PATH} -> ${REMOTE_PATH}"
     else
-        curl -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status'
+        curl -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status'
         UPLOAD_LOG="$(DATE_TIME) [ERROR] ${RCLONE_FAIL_MSG}: ${LOCAL_PATH}"
         OUTPUT_UPLOAD_LOG
         SEND_TG_MSG Rclone "[ERROR] ${RCLONE_FAIL_MSG}: ${LOCAL_PATH}"
