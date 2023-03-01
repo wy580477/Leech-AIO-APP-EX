@@ -1,5 +1,7 @@
 #!/bin/sh
 
+exec 2>&1
+
 if [ ! -f "/mnt/data/config/rclone_options.conf" ]; then
     cp /workdir/rclone_options.conf /mnt/data/config/rclone_options.conf
 fi
@@ -14,5 +16,4 @@ source /mnt/data/config/rclone_options.conf
 export $(sed '/^#/d' /mnt/data/config/rclone_options.conf | cut -d= -f1)
 
 # Run rclone
-exec 2>&1
 exec rclone rcd
