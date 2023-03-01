@@ -3,6 +3,7 @@
 set -xe
 
 DIR_TMP="$(mktemp -d)"
+QBIT_VERSION="4.5.2.10"
 
 OS_type="$(uname -m)"
 case "$OS_type" in
@@ -41,7 +42,7 @@ wget -O - https://downloads.rclone.org/rclone-current-linux-${OS_type}.zip | bus
 install -m 755 ${DIR_TMP}/*/rclone /usr/bin/rclone
 
 # Install qBit
-wget -O - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.5.1.10/qbittorrent-enhanced-nox_${OS_type2}.zip | busybox unzip -qd ${DIR_TMP} -
+wget -O - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-${QBIT_VERSION}/qbittorrent-enhanced-nox_${OS_type2}.zip | busybox unzip -qd ${DIR_TMP} -
 install -m 755 ${DIR_TMP}/qbittorrent-nox /usr/bin/qbittorrent-nox
 
 # Install Filebrowser
