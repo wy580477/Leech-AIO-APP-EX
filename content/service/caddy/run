@@ -1,7 +1,9 @@
 #!/bin/bash
 
+exec 2>&1
+
 # Configure AriaNG & Rclone WebUI
-sed -i 's|rpcInterface:"jsonrpc"|rpcInterface:"'"${GLOBAL_PORTAL_PATH/\//}"'/jsonrpc"|g' /workdir/ariang/js/aria-ng-3fcc0271ed.min.js
+sed -i 's|rpcInterface:"jsonrpc"|rpcInterface:"'"${GLOBAL_PORTAL_PATH/\//}"'/jsonrpc"|g' /workdir/ariang/js/aria-ng*.min.js
 sed -i 's|ipAddress:a|ipAddress:`${window.location.protocol}//${window.location.hostname}'"${GLOBAL_PORTAL_PATH}"'/rclonerc`|g' /workdir/rcloneweb/build/static/js/3.90421092.chunk.js
 
 # Configure homer
@@ -12,5 +14,4 @@ HASH="$(caddy hash-password --plaintext ${GLOBAL_PASSWORD})"
 sed -i "s|HASH|${HASH}|g" /workdir/Caddyfile
 
 # Run caddy
-exec 2>&1
 exec caddy run --config /workdir/Caddyfile --adapter caddyfile

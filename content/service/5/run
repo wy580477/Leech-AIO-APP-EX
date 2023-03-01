@@ -1,5 +1,6 @@
 #!/bin/sh
 
+exec 2>&1
 sleep 3
 
 source /mnt/data/config/rclone_options.conf
@@ -21,5 +22,4 @@ else
 fi
 
 # Run rclone
-exec 2>&1
 exec /workdir/4* serve webdav ${WEBDAV_PATH}
