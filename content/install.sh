@@ -1,13 +1,16 @@
 #!/bin/sh
 
 DIR_TMP="$(mktemp -d)"
+QBIT_VERSION="4.5.2.10"
+ARIANG_VERSION="1.3.2"
+RCLONEWEB_VERSION="2.0.5"
 
 # Install AriaNg
-wget -qO - https://github.com/mayswind/AriaNg/releases/download/1.3.2/AriaNg-1.3.2.zip | busybox unzip -qd /workdir/ariang -
-sed -i 's|6800|443|g;s|protocol:"http"|protocol:"https"|g' /workdir/ariang/js/aria-ng-3fcc0271ed.min.js
+wget -qO - https://github.com/mayswind/AriaNg/releases/download/${ARIANG_VERSION}/AriaNg-${ARIANG_VERSION}.zip | busybox unzip -qd /workdir/ariang -
+sed -i 's|6800|443|g;s|protocol:"http"|protocol:"https"|g' /workdir/ariang/js/aria-ng*.js
 
 # Install Rclone WebUI
-wget -qO - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip | busybox unzip -qd /workdir/rcloneweb -
+wget -qO - https://github.com/rclone/rclone-webui-react/releases/download/v${RCLONEWEB_VERSION}/currentbuild.zip | busybox unzip -qd /workdir/rcloneweb -
 
 # Install Homer
 wget -qO - https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer -
@@ -26,7 +29,7 @@ EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 mv ${DIR_TMP}/aria2c /workdir/2${EXEC}
 
 # Install qBit
-wget -qO - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.5.1.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip | busybox unzip -qd ${DIR_TMP} -
+wget -qO - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-${QBIT_VERSION}/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip | busybox unzip -qd ${DIR_TMP} -
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 install -m 755 ${DIR_TMP}/qbittorrent-nox /workdir/1${EXEC}
 
@@ -42,10 +45,6 @@ wget -qO - https://github.com/WDaan/VueTorrent/releases/latest/download/vuetorre
 # Install yt-dlp
 wget -qO /usr/bin/yt-dlp https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
 chmod +x /usr/bin/yt-dlp
-
-# Install ffmpeg
-wget -qO /usr/bin/ffmpeg https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
-chmod +x /usr/bin/ffmpeg
 
 # Install pyload & gallery-dl & telegram-upload
 apk add --no-cache --virtual .build-deps curl-dev gcc libffi-dev musl-dev jpeg-dev
