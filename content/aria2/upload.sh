@@ -109,21 +109,22 @@ UPLOAD_FILE() {
         RCLONE_FAIL_MSG="Failed to send job to Rclone"
     fi
     RCLONE_ERROR="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .error | sed 's/\"//g')"
-    if [ "${JOB_ID}" != "" ] && [ "${RCLONE_ERROR}" = "" ]; then
+    if [[ "${JOB_ID}" != "" ]] && [[ "${RCLONE_ERROR}" = "" ]]; then
         UPLOAD_LOG="$(DATE_TIME) ${INFO} ${RCLONE_SEND_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
         OUTPUT_UPLOAD_LOG
         RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .finished)"
-        while [[ "${RCLONE_FINISHED}" != "true" ]]; do
+        while [[ "${RCLONE_FINISHED}" = "false" ]]; do
             RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .finished)"
-            if [ "${RCLONE_FINISHED}" = "" ]; then
-                break
-            fi
+            RCLONE_ERROR="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .error | sed 's/\"//g')"
             sleep 10
         done
         RCLONE_SUCCESS="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:61802/job/status' | jq .success)"
         if [ "${RCLONE_FINISHED}" = "" ]; then
             echo "[INFO] ${RCLONE_NO_STATUS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
             SEND_TG_MSG Rclone "[INFO] ${RCLONE_NO_STATUS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
+        elif [ "${RCLONE_ERROR}" != "" ]; then
+            echo "[ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${MSG_PATH} -> ${REMOTE_PATH}"
+            SEND_TG_MSG Rclone "[ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${MSG_PATH} -> ${REMOTE_PATH}"
         elif [ "${RCLONE_SUCCESS}" = "true" ]; then
             echo "[INFO] ${RCLONE_SUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
             SEND_TG_MSG Rclone "[INFO] ${RCLONE_SUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
