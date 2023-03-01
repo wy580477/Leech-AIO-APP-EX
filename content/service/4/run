@@ -1,5 +1,7 @@
 #!/bin/sh
 
+exec 2>&1
+
 if [ ! -f "/mnt/data/config/rclone_options.conf" ]; then
     cp /workdir/rclone_options.conf /mnt/data/config/rclone_options.conf
 fi
@@ -15,8 +17,6 @@ export RCLONE_RC_USER=${GLOBAL_USER}
 export RCLONE_RC_PASS=${GLOBAL_PASSWORD}
 export RCLONE_CONFIG=/mnt/data/config/rclone.conf
 export RCLONE_RC_ADDR=localhost:61802
-export RCLONE_RC_ALLOW_ORIGIN=*
 
 # Run rclone
-exec 2>&1
 exec /workdir/4${EXEC} rcd
