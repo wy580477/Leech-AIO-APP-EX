@@ -5,7 +5,7 @@ echo $(date +%s) >/workdir/container_start_time
 
 # Restore backup
 RESTORE_BACKUP() {
-    BACKUP=$(curl -4 --retry 4 https://${CLOUDFLARE_WORKERS_HOST}/backup?key=${CLOUDFLARE_WORKERS_KEY} | jq .value | sed "s|\"||g")
+    BACKUP=$(curl --retry 4 https://${CLOUDFLARE_WORKERS_HOST}/backup?key=${CLOUDFLARE_WORKERS_KEY} | jq .value | sed "s|\"||g")
     DIR_TMP="$(mktemp -d)"
     echo ${BACKUP} | base64 -d >${DIR_TMP}/backup.tar.gz
     tar -zxf ${DIR_TMP}/backup.tar.gz -C /mnt/data

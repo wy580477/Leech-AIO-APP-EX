@@ -43,7 +43,7 @@ BACK_UP() {
     tar -zcf ${DIR_TMP}/backup.tar.gz -C ${DIR_TMP} config
     VALUE=$(base64 -w 0 ${DIR_TMP}/backup.tar.gz)
     echo \{\"_id\":\"backup\",\"value\":\"${VALUE}\"\} >./body
-    curl -s -4 --retry 4 -X POST https://${CLOUDFLARE_WORKERS_HOST}/?key=${CLOUDFLARE_WORKERS_KEY} \
+    curl -s --retry 4 -X POST https://${CLOUDFLARE_WORKERS_HOST}/?key=${CLOUDFLARE_WORKERS_KEY} \
     -d @body -H "Content-Type: application/json"
     rm -rf ${DIR_TMP} ./body
 }
@@ -59,7 +59,7 @@ RESTORE_BACKUP() {
     rm -rf ${DIR_TMP}
 }
 
-WORKER_STATUS=$(curl -4 --retry 4 https://${CLOUDFLARE_WORKERS_HOST} | jq .status | sed "s|\"||g")
+WORKER_STATUS=$(curl --retry 4 https://${CLOUDFLARE_WORKERS_HOST} | jq .status | sed "s|\"||g")
 
 if [ "${WORKER_STATUS}" = "Running" ]; then
     if [ -f /workdir/workers_fail.lock ]; then
