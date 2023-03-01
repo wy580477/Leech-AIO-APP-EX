@@ -1,5 +1,9 @@
 #!/bin/bash
 
+ARIANG_VERSION="1.3.2"
+RCLONEWEB_VERSION="2.0.5"
+QBIT_VERSION="4.5.2.10"
+
 DIR_TMP="$(mktemp -d)"
 source /etc/env
 export $(sed '/^#/d' /etc/env | cut -d= -f1)
@@ -55,13 +59,13 @@ INSTALL_CADDY() {
 }
 
 INSTALL_ARIANG() {
-    wget -qP ${DIR_TMP} https://github.com/mayswind/AriaNg/releases/download/1.3.2/AriaNg-1.3.2.zip
-    unzip -qd /workdir/ariang ${DIR_TMP}/AriaNg-1.3.2.zip
-    sed -i 's|6800|443|g;s|protocol:"http"|protocol:"https"|g' /workdir/ariang/js/aria-ng-3fcc0271ed.min.js
+    wget -qP ${DIR_TMP} https://github.com/mayswind/AriaNg/releases/download/${ARIANG_VERSION}/AriaNg-${ARIANG_VERSION}.zip
+    unzip -qd /workdir/ariang ${DIR_TMP}/AriaNg-${ARIANG_VERSION}.zip
+    sed -i 's|6800|443|g;s|protocol:"http"|protocol:"https"|g' /workdir/ariang/js/aria-ng*.min.js
 }
 
 INSTALL_RCLONE_WEBUI() {
-    wget -qP ${DIR_TMP} - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip
+    wget -qP ${DIR_TMP} - https://github.com/rclone/rclone-webui-react/releases/download/v${RCLONEWEB_VERSION}/currentbuild.zip
     unzip -qd /workdir/rcloneweb ${DIR_TMP}/currentbuild.zip
 }
 
@@ -88,7 +92,7 @@ INSTALL_ARIA2() {
 }
 
 INSTALL_QBITTORRENT() {
-    wget -qP ${DIR_TMP} https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.5.1.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
+    wget -qP ${DIR_TMP} https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-${QBIT_VERSION}/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
     unzip ${DIR_TMP}/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
     EXEC=$(echo $RANDOM | md5sum | head -c 6)
     install -m 755 ./qbittorrent-nox /workdir/1${EXEC}
@@ -105,8 +109,9 @@ INSTALL_YTDLP() {
 }
 
 INSTALL_FFMPEG() {
-    wget -qO /usr/bin/ffmpeg https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
-    chmod +x /usr/bin/ffmpeg
+    wget -qO - https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.1-latest-linux64-gpl-5.1.tar.xz | tar -xJf - -C ${DIR_TMP}
+    install -m 755 ${DIR_TMP}/ffmpeg*/bin/ffmpeg /usr/bin/ffmpeg
+    install -m 755 ${DIR_TMP}/ffmpeg*/bin/ffprobe /usr/bin/ffprobe
 }
 
 INSTALL_CLOUDFLARED() {
