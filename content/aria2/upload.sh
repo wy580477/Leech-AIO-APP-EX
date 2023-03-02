@@ -123,8 +123,8 @@ UPLOAD_FILE() {
             echo "[INFO] ${RCLONE_NO_STATUS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
             SEND_TG_MSG Rclone "[INFO] ${RCLONE_NO_STATUS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
         elif [ "${RCLONE_ERROR}" != "" ]; then
-            echo "[ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${MSG_PATH} -> ${REMOTE_PATH}"
-            SEND_TG_MSG Rclone "[ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${MSG_PATH} -> ${REMOTE_PATH}"
+            echo "[ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${LOCAL_PATH} -> ${REMOTE_PATH}"
+            SEND_TG_MSG Rclone "[ERROR] ${RCLONE_ERROR_MSG}: ${RCLONE_ERROR}, ${LOCAL_PATH} -> ${REMOTE_PATH}"
         elif [ "${RCLONE_SUCCESS}" = "true" ]; then
             echo "[INFO] ${RCLONE_SUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
             SEND_TG_MSG Rclone "[INFO] ${RCLONE_SUCCESS_MSG}: ${LOCAL_PATH} -> ${REMOTE_PATH}"
