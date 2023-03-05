@@ -1,5 +1,7 @@
 #!/bin/sh
 
+exec 2>&1
+
 # Update yt-dlp
 python3 -m pip install --no-cache-dir -U yt-dlp
 
@@ -14,5 +16,4 @@ export HOST=127.0.0.1
 export PORT=${METUBE_PORT}
 cd /app
 
-exec 2>&1
 exec python3 /app/app/main.py

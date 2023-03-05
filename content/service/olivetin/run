@@ -1,5 +1,7 @@
 #!/bin/sh
 
+exec 2>&1
+
 # Update gallery-dl
 pipx upgrade --pip-args='--no-cache-dir' gallery-dl
 
@@ -12,5 +14,4 @@ fi
 
 sed -i "s|listenAddressSingleHTTPFrontend:.*|listenAddressSingleHTTPFrontend: 127.0.0.1:${OLIVETIN_PORT}|g" /mnt/data/config/olivetin/config.yaml
 
-exec 2>&1
 exec OliveTin --configdir /mnt/data/config/olivetin
