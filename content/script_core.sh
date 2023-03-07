@@ -125,17 +125,17 @@ SEND_TG_MSG() {
 
 SEND_TG_FINISHED() {
     if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
-        SEND_TG_MSG "${APP}" "${FOLDER_NAME} 下载已完成"
+        SEND_TG_MSG "${APP}" "${FOLDER_NAME} 任务已完成"
     else
-        SEND_TG_MSG "${APP}" "${FOLDER_NAME} download completed"
+        SEND_TG_MSG "${APP}" "${FOLDER_NAME} task completed"
     fi
 }
 
 SEND_TG_FINISHED_TO_RCLONE() {
     if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
-        SEND_TG_MSG "${APP}" "${FOLDER_NAME} 下载已完成并发送上传任务至 Rclone"
+        SEND_TG_MSG "${APP}" "${FOLDER_NAME} 任务已完成并发送上传任务至 Rclone"
     else
-        SEND_TG_MSG "${APP}" "${FOLDER_NAME} download completed and send upload job to Rclone"
+        SEND_TG_MSG "${APP}" "${FOLDER_NAME} task completed and send upload job to Rclone"
     fi
 }
 
