@@ -54,8 +54,9 @@ INSTALL_TTYD() {
 }
 
 INSTALL_CADDY() {
-    wget -qO /usr/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=amd64"
-    chmod +x /usr/bin/caddy
+    RELEASE_LATEST="$(wget -S -O /dev/null https://github.com/caddyserver/caddy/releases/latest 2>&1 | grep -o 'v[0-9]*\..*' | tail -1)"
+    wget -qO - "https://github.com/caddyserver/caddy/releases/download/${RELEASE_LATEST}/caddy_${RELEASE_LATEST#v}_linux_amd64.tar.gz" | tar -zxf - -C ${DIR_TMP}
+    install -m 755 ${DIR_TMP}/caddy /usr/bin/caddy
 }
 
 INSTALL_ARIANG() {
