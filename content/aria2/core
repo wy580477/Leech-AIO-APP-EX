@@ -267,17 +267,17 @@ CLEAN_UP() {
 
 TG_DL_FINISHED() {
     if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
-        SEND_TG_MSG Aria2 "${TASK_FILE_NAME} 下载已完成"
+        SEND_TG_MSG Aria2 "${TASK_FILE_NAME} 任务已完成"
     else
-        SEND_TG_MSG Aria2 "${TASK_FILE_NAME} download completed"
+        SEND_TG_MSG Aria2 "${TASK_FILE_NAME} task completed"
     fi
 }
 
 TG_DL_FINISHED_RCLONE() {
     if [ "${GLOBAL_LANGUAGE}" = "chs" ]; then
-        SEND_TG_MSG Aria2 "${TASK_FILE_NAME} 下载已完成并发送上传任务至 Rclone"
+        SEND_TG_MSG Aria2 "${TASK_FILE_NAME} 任务已完成并发送上传任务至 Rclone"
     else
-        SEND_TG_MSG Aria2 "${TASK_FILE_NAME} download completed and send upload job to Rclone"
+        SEND_TG_MSG Aria2 "${TASK_FILE_NAME} task completed and send upload job to Rclone"
     fi
 }
 
