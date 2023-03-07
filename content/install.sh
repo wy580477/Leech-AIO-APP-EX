@@ -109,7 +109,7 @@ INSTALL_YTDLP() {
 }
 
 INSTALL_FFMPEG() {
-    wget -qO - https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-n5.1-latest-linux64-gpl-5.1.tar.xz | tar -xJf - -C ${DIR_TMP}
+    wget -qO - https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-2023-03-06-13-56/ffmpeg-n6.0-3-g0e11aafb08-linux64-gpl-6.0.tar.xz | tar -xJf - -C ${DIR_TMP}
     install -m 755 ${DIR_TMP}/ffmpeg*/bin/ffmpeg /usr/bin/ffmpeg
     install -m 755 ${DIR_TMP}/ffmpeg*/bin/ffprobe /usr/bin/ffprobe
 }
