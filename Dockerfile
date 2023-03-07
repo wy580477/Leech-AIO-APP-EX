@@ -9,6 +9,12 @@ RUN apk add git && \
     node_modules/.bin/ng build --configuration production
 
 
+FROM caddy:2.6.4-builder AS builder-caddy
+
+RUN xcaddy build \
+  --with github.com/caddy-dns/cloudflare
+
+
 FROM python:3.8-alpine AS dist
 
 COPY ./content /workdir/
@@ -57,6 +63,8 @@ RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse p7zip bash find
     && ln -s /workdir/service/* /etc/service/
 
 COPY --from=builder /metube/dist/metube /app/ui/dist/metube
+
+COPY --from=builder-caddy /usr/bin/caddy /usr/bin/caddy
 
 VOLUME /mnt/data
 
