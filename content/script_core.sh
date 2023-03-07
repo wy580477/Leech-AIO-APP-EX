@@ -105,9 +105,9 @@ UPLOAD_FOLDER() {
 }
 
 SEND_TG_MSG() {
-    if [[ -f "${MSG_PATH}" ]] && [[ "${TG_EXCLUDE_FILE_EXTENSION}" != "" ]] && [[ "${TASK_FILE_NAME}" =~ \.(${TG_EXCLUDE_FILE_EXTENSION})$ ]]; then
+    if [[ -f "${MSG_PATH}" ]] && [[ "${TG_EXCLUDE_FILE_EXTENSION}" != "" ]] && [[ "${FILE_NAME}" =~ \.(${TG_EXCLUDE_FILE_EXTENSION})$ ]]; then
         exit 0
-    elif [[ -f "${MSG_PATH}" ]] && [[ "${TG_INCLUDE_FILE_EXTENSION}" != "" ]] && [[ ! "${TASK_FILE_NAME}" =~ \.(${TG_INCLUDE_FILE_EXTENSION})$ ]]; then
+    elif [[ -f "${MSG_PATH}" ]] && [[ "${TG_INCLUDE_FILE_EXTENSION}" != "" ]] && [[ ! "${FILE_NAME}" =~ \.(${TG_INCLUDE_FILE_EXTENSION})$ ]]; then
         exit 0
     fi
     if [ "${TELEGRAM_CHAT_ID}" != "" ]; then
