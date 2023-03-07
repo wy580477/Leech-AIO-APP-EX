@@ -95,8 +95,6 @@ LOAD_SCRIPT_CONF() {
     EXCLUDE_FILE_EXTENSION="$(grep ^exclude-file-extension "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     INCLUDE_FILE_EXTENSION="$(grep ^include-file-extension "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     UPLOAD_LOG_PATH="$(grep ^upload-log "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
-    DEST_DIR="$(grep ^dest-dir "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
-    MOVE_LOG_PATH="$(grep ^move-log "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     DELETE_ON_REMOVED="$(grep ^delete-on-removed "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     DELETE_ON_ERROR="$(grep ^delete-on-error "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
     DELETE_ON_UNKNOWN="$(grep ^delete-on-unknown "${SCRIPT_CONF}" | cut -d= -f2- | sed "s|^[ \t]*||g;s|\r$||")"
@@ -116,7 +114,7 @@ READ_ARIA2_CONF() {
         exit 1
     else
         ARIA2_DOWNLOAD_DIR=$(grep ^dir "${ARIA2_CONF}" | cut -d= -f2-)
-        RPC_PORT=61800
+        RPC_PORT=${ARIA2_PORT}
         RPC_SECRET=$(grep ^rpc-secret "${ARIA2_CONF}" | cut -d= -f2-)
         SAVE_SESSION_INTERVAL=$(grep ^save-session-interval "${ARIA2_CONF}" | cut -d= -f2-)
         [[ ${ARIA2_DOWNLOAD_DIR} && ${RPC_PORT} && ${SAVE_SESSION_INTERVAL} ]] || {
