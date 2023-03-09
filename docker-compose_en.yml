@@ -22,6 +22,7 @@ services:
       # Portal page & base URL for all web services. Do not set to blank or '/'.
       CADDY_DOMAIN: 
       # If value is set to a valid domain name (it can be resolved to your host) and port 80/443 is open to internet, caddy's auto-https function will be enabled.
+      # You don't need to buy a domain. Any ddns service domain will work. Or you can set it to <your_host_ip>.nip.io
       # For advanced users, you can use Cloudflare api in CADDY_EMAIL env for SSL certificate instead of Email address. This way you don't need 80/443 ports.
       # If you set value to blank, http service will open to external IP.
       CADDY_EMAIL: internal
