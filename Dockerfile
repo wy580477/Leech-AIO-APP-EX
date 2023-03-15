@@ -41,7 +41,7 @@ ENV QBT_WEBUI_PORT=61805
 ENV RCLONE_PORT=61806
 ENV RCLONE_WEBDAV_PORT=61807
 
-RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse p7zip bash findutils \
+RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse3 p7zip bash findutils \
     && python3 -m pip install --user --no-cache-dir pipx \
     && apk add --no-cache --update --virtual .build-deps git curl-dev gcc g++ libffi-dev musl-dev jpeg-dev \
     && pip install --no-cache-dir pipenv \
