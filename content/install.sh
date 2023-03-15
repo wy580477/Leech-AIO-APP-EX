@@ -18,7 +18,7 @@ INSTALL_JQ_RUNIT() {
     rm -rf /etc/apt/sources.list.d
     CODE_NAME=$(lsb_release -c | sed 's/.*:\s*//')
     echo "deb http://us.archive.ubuntu.com/ubuntu/ ${CODE_NAME} main universe" >/etc/apt/sources.list
-    apt-get -qq update >/dev/null && apt-get -qq install -y jq runit >/dev/null
+    apt-get -qq update >/dev/null && apt-get -qq install -y fuse3 jq runit >/dev/null
 }
 
 INSTALL_PYLOAD() {
