@@ -25,6 +25,10 @@ if [ "${OLIVETIN}" != "Enable" ]; then
     sed -i "${LINE},${LINE2}d" /workdir/homer/assets/config.yml
 fi
 
+if [ "${RCLONE_DAV}" = "Disable" ]; then
+    sed -i "45,51d" /workdir/homer/assets/config.yml
+fi
+
 # Configure Caddyfile
 mkdir -p /mnt/data/config/caddy 2>/dev/null
 TEST_CADDYFILE="$(grep -c "ARIA2_PORT" /mnt/data/config/caddy/Caddyfile)" 2>/dev/null

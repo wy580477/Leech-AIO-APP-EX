@@ -39,6 +39,8 @@ services:
       OLIVETIN: Disable
       # OliveTin可以在网页上执行yt-dlp、gallery-dl和rclone等预定义shell指令，设置此项值为"Enable"开启。
       # 注意：开启后可通过OliveTin执行任意指令，不建议在安全敏感环境下使用。
+      RCLONE_DAV: Enable
+      # 设置值为 "Disable" 可禁用 Rclone WebDAV 服务器，可以节省约 20MB 内存。
       TZ: Asia/Shanghai
       # 指定时区。UTC为标准时间。
 

@@ -34,6 +34,8 @@ services:
       OLIVETIN: Disable
       # You can execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI. Set value to "Enable" to enable OliveTin. 
       # Attention: User can execute any shell command from OliveTin WebUI, so enable OliveTin at your own risk.
+      RCLONE_DAV: Enable
+      # You can set value to "Disable" to disable Rclone WebDAV server, this will save around 20MB memory.
       TZ: UTC
       # Timezone
 
