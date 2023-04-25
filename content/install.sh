@@ -2,7 +2,7 @@
 
 DIR_TMP="$(mktemp -d)"
 QBIT_VERSION="4.5.2.10"
-ARIANG_VERSION="1.3.3"
+ARIANG_VERSION="1.3.4"
 RCLONEWEB_VERSION="2.0.5"
 
 # Install AriaNg
