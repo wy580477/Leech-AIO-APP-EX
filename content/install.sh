@@ -110,13 +110,13 @@ INSTALL_YTDLP() {
 }
 
 INSTALL_FFMPEG() {
-    wget -qO - https://github.com/yt-dlp/FFmpeg-Builds/releases/download/autobuild-2023-03-06-13-56/ffmpeg-n6.0-3-g0e11aafb08-linux64-gpl-6.0.tar.xz | tar -xJf - -C ${DIR_TMP}
+    wget -qO - https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz | tar -xJf - -C ${DIR_TMP}
     install -m 755 ${DIR_TMP}/ffmpeg*/bin/ffmpeg /usr/bin/ffmpeg
     install -m 755 ${DIR_TMP}/ffmpeg*/bin/ffprobe /usr/bin/ffprobe
 }
 
 INSTALL_CLOUDFLARED() {
-    wget -qO /usr/bin/argo https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+    wget -qO /usr/bin/argo https://github.com/cloudflare/cloudflared/releases/download/2023.4.2/cloudflared-fips-linux-amd64
     chmod +x /usr/bin/argo
 }
 
