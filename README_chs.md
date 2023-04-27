@@ -13,7 +13,7 @@
 
 </details>
 
-## [Colab 部署](docs/README_colab_chs.md)
+<!---## [Colab 部署](docs/README_colab_chs.md)
 
 <details>
 <summary>截图</summary>
@@ -21,7 +21,7 @@
 ![avatar](screenshots/colab_chs.jpeg)
 
 </details>
-
+-->
 ## [Heroku 部署](docs/README_heroku_chs.md)
 
 Heroku已于2022年11月关闭免费服务

@@ -14,7 +14,7 @@ This project integrates yt-dlp, Aria2, gallery-dl, qBittorrent, pyLoad Download 
 
 </details>
 
-## [Colab Deployment](docs/README_colab.md)
+<!---## [Colab Deployment](docs/README_colab.md)
 
 <details>
 <summary>Screenshot</summary>
@@ -22,7 +22,7 @@ This project integrates yt-dlp, Aria2, gallery-dl, qBittorrent, pyLoad Download 
 ![avatar](screenshots/colab.jpeg)
 
 </details>
-
+-->
 ## [Heroku Deployment](docs/README_heroku.md)
 
 Heroku stopped offering free product plans and shut down free dynos starting Nov. 28, 2022.

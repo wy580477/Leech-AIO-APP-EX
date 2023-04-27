@@ -1,3 +1,5 @@
+## Colab has banned this project, deployment will cause your google account unable to use Colab.
+
 ## Attention
 
  1. **Do not abuse service from Colab or your account could get banned. Deploy at your own risk.**
