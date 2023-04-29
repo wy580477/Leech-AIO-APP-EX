@@ -21,7 +21,8 @@ services:
       GLOBAL_PORTAL_PATH: /portal
       # Portal page & base URL for all web services. Do not set to blank or '/'.
       CADDY_DOMAIN: 
-      # If value is set to a valid domain name (it can be resolved to your host) and port 80/443 is open to internet, caddy's auto-https function will be enabled.
+      # For example: "http://example.com" or "https://example.com"
+      # If value is set to a valid domain name (it can be resolved to your host) and port 80/443 is open to internet, caddy's auto-https function can be enabled.
       # You don't need to buy a domain. Any ddns service domain will work.
       # For advanced users, you can use Cloudflare api in CADDY_EMAIL env for SSL certificate instead of Email address. This way you don't need 80/443 ports.
       # If you set value to blank, http service will open to external IP.
@@ -29,8 +30,8 @@ services:
       # Email address for receiving notification emails from certification authority, you can use fake address.
       # Set to "{\n dns cloudflare your_cloudflare_api_key \n}", Caddy will use Cloudflare api for SSL certificate.
       # If set to "internal", caddy will use self-signed cert.
-      CADDY_WEB_PORT: 443
-      # Port for web services. If you want to disable auto-https from caddy, set to non-443 port.
+      CADDY_WEB_PORT: 8080
+      # Port for web services. You enable auto-https from caddy by setting to 443 port.
       OLIVETIN: Disable
       # You can execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI. Set value to "Enable" to enable OliveTin. 
       # Attention: User can execute any shell command from OliveTin WebUI, so enable OliveTin at your own risk.
