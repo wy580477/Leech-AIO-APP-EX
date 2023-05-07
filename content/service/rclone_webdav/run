@@ -3,10 +3,6 @@
 exec 2>&1
 sleep 3
 
-if [ "${RCLONE_DAV}" = "Disable" ]; then
-    sleep infinity
-fi
-
 export RCLONE_USER=${GLOBAL_USER}
 export RCLONE_PASS=${GLOBAL_PASSWORD}
 export RCLONE_CONFIG=/mnt/data/config/rclone.conf
