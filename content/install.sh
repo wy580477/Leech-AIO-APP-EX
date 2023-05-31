@@ -3,7 +3,7 @@
 set -xe
 
 DIR_TMP="$(mktemp -d)"
-QBIT_VERSION="4.5.2.10"
+QBIT_VERSION="4.5.3.10"
 
 OS_type="$(uname -m)"
 case "$OS_type" in
