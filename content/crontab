@@ -1,0 +1,7 @@
+# Run "docker exec allinone sv restart cron" in host terminal after editing for changes to take effect
+# 编辑后，在宿主机终端中运行"docker exec allinone sv restart cron"后生效
+
+# Update Aria2 tracker list
+0 0 * * *    /workdir/aria2/tracker.sh RPC localhost:${ARIA2_PORT} ${GLOBAL_PASSWORD}
+# Refresh Rclone remote token
+0 0 * * *    /workdir/refreshtoken.sh

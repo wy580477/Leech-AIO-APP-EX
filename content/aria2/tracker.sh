@@ -42,7 +42,7 @@ LIGHT_PURPLE_FONT_PREFIX="\033[1;35m"
 FONT_COLOR_SUFFIX="\033[0m"
 INFO="[${GREEN_FONT_PREFIX}INFO${FONT_COLOR_SUFFIX}]"
 ERROR="[${RED_FONT_PREFIX}ERROR${FONT_COLOR_SUFFIX}]"
-ARIA2_CONF=${1:-aria2*.conf}
+ARIA2_CONF="/mnt/data/config/aria2/aria2.conf"
 SCRIPT_CONF="/mnt/data/config/script.conf"
 ARIA2_AUTO_TRACKER="$(grep ^aria2-auto-tracker-update "${SCRIPT_CONF}" | cut -d= -f2-)"
 DOWNLOADER="curl -fsSL --connect-timeout 3 --max-time 3 --retry 2"
