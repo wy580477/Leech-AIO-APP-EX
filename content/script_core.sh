@@ -44,13 +44,13 @@ RCLONE_MSG() {
 
 RCLONE_PROCESS() {
     RCLONE_MSG
-    RCLONE_ERROR="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .error | sed 's/\"//g')"
+    RCLONE_ERROR="$(curl --noproxy '*' -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .error | sed 's/\"//g')"
     if [[ "${JOB_ID}" != "" ]] && [[ "${RCLONE_ERROR}" = "" ]]; then
         echo "$(DATE_TIME) [INFO] ${RCLONE_SEND_MSG}: ${MSG_PATH} -> ${REMOTE_PATH}"
-        RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .finished)"
+        RCLONE_FINISHED="$(curl --noproxy '*' -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .finished)"
         while [[ "${RCLONE_FINISHED}" = "false" ]]; do
-            RCLONE_FINISHED="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .finished)"
-            RCLONE_ERROR="$(curl -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .error | sed 's/\"//g')"
+            RCLONE_FINISHED="$(curl --noproxy '*' -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .finished)"
+            RCLONE_ERROR="$(curl --noproxy '*' -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .error | sed 's/\"//g')"
             sleep 10
         done
         RCLONE_SUCCESS="$(curl --noproxy '*' -s -u ${GLOBAL_USER}:${GLOBAL_PASSWORD} -H "Content-Type: application/json" -f -X POST -d '{"jobid":"'"${JOB_ID}"'"}' 'localhost:'${RCLONE_PORT}'/job/status' | jq .success)"
