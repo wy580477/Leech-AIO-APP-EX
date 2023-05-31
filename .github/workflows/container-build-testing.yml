@@ -58,7 +58,6 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            # minimal
             type=edge
 
       # Build and push Docker image with Buildx (don't push on PR)
