@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ARIANG_VERSION="1.3.4"
+ARIANG_VERSION="1.3.6"
 RCLONEWEB_VERSION="2.0.5"
-QBIT_VERSION="4.5.2.10"
+QBIT_VERSION="4.5.3.10"
 
 DIR_TMP="$(mktemp -d)"
 source /etc/env
