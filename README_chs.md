@@ -35,6 +35,8 @@ Heroku已于2022年11月关闭免费服务
 
 ## [Doprax 部署](docs/README_doprax_chs.md)
 
+Doprax 已停止提供免费服务
+
 <details>
 <summary>截图</summary>
 

@@ -1,5 +1,7 @@
 ## Attention
 
+### Doprax has stopped offering free plan.
+
  1. **Do not abuse service from Doprax or your account could get banned. Deploy at your own risk.**
  2. **High disk usage will likely get your account banned.**
  3. Aria2 & qBittorrent download speed is limited to 5MB/s on default.

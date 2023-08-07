@@ -36,6 +36,8 @@ Heroku stopped offering free product plans and shut down free dynos starting Nov
 
 ## [Doprax Deployment](docs/README_doprax.md)
 
+Doprax has stopped offering free plan.
+
 <details>
 <summary>Screenshot</summary>
 
