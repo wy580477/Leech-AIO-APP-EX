@@ -9,7 +9,7 @@ RUN apk add git && \
     node_modules/.bin/ng build --configuration production
 
 
-FROM 2.7.4-builder AS builder-caddy
+FROM caddy:2.7.4-builder AS builder-caddy
 
 RUN xcaddy build \
   --with github.com/caddy-dns/cloudflare@bfe272c8525b6dd8248fcdddb460fd6accfc4e84
