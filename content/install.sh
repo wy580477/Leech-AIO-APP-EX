@@ -28,7 +28,7 @@ arm*)
   OS_type2='arm-linux-musleabi_static'
   OS_type3='armv7'
   OS_type4='armhf'
-  OS_type5='arm32v7'
+  OS_type5='arm7'
   OS_type6='arm&arm=7'
   ;;
 *)
