@@ -11,7 +11,7 @@
 This project integrates yt-dlp & its Web frontend metube, gallery-dl, Aria2 + WebUI, qBittorrent + VueTorrent WebUI, pyLoad Download Manager, Rclone + WebUI with auto-upload function, Rclone Serve HTTP & Webdav, Filebrowser, Telegram notification.
 
  1. Rclone auto-upload function only needs to prepare rclone.conf file, and all other configurations are set to go.
- 2. AMD64/Arm64 multi-architecture support, Lite version has additional Armv7 support.
+ 2. AMD64/Arm64 multi-architecture support.
  3. Execute predefined yt-dlp, gallery-dl & Rclone commands from OliveTin WebUI.
  4. Rclone runs on daemon mode, easy to manually transfer files and monitor transfers in real time on WebUI.
  5. You can connect to Aria2, qBittorrent from other frontends/services，including Telegram bot/flexget/Radarr/Sonarr.

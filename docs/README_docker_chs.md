@@ -11,7 +11,7 @@
 本项目集成了yt-dlp和其Web前端metube、gallery-dl、Aria2+Rclone+qBittorrent+WebUI、pyLoad下载管理器、Rclone联动自动上传功能、Rclone远程存储文件列表和Webdav服务、Filebrowser轻量网盘。支持 Telegram 任务完成通知。
 
  1. 联动上传功能只需要准备rclone.conf配置文件, 其他一切配置都预备齐全。
- 2. AMD64/Arm64架构支持，Lite版本增加Armv7支持。
+ 2. AMD64/Arm64架构支持。
  3. 可以从OliveTin网页端执行预定义yt-dlp、gallery-dl和Rclone指令。
  4. Rclone以daemon方式运行，可在WebUI上手动传输文件和实时监测传输情况。
  5. Aria2、qBittorrent和Rclone可以接入AriaNg/RcloneNg等前端面板、Aria2/qBit 电报机器人以及flexget/Radarr/Sonarr等应用。
