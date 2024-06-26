@@ -1,8 +1,8 @@
 #!/bin/sh
 
 DIR_TMP="$(mktemp -d)"
-QBIT_VERSION="4.5.5.10"
-ARIANG_VERSION="1.3.6"
+QBIT_VERSION="4.6.5.10"
+ARIANG_VERSION="1.3.7"
 RCLONEWEB_VERSION="2.0.5"
 
 # Install AriaNg
@@ -29,9 +29,10 @@ EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
 install -m 755 ${DIR_TMP}/aria2c /workdir/2${EXEC}
 
 # Install qBit
-wget -qO - https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-${QBIT_VERSION}/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip | busybox unzip -qd ${DIR_TMP} -
+wget -qP ${DIR_TMP} https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-${QBIT_VERSION}/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
+busybox unzip ${DIR_TMP}/qbit*
 EXEC=$(echo $RANDOM | md5sum | head -c 6; echo)
-install -m 755 ${DIR_TMP}/qbittorrent-nox /workdir/1${EXEC}
+install -m 755 ./qbittorrent-nox /workdir/1${EXEC}
 
 # Install OliveTin
 curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/latest/download/OliveTin-Linux-amd64.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
