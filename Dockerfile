@@ -1,4 +1,4 @@
-FROM node:lts-alpine as builder
+FROM node:lts-alpine AS builder
 
 WORKDIR /metube
 
@@ -46,7 +46,7 @@ RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse3 p7zip bash fin
     && apk add --no-cache --update --virtual .build-deps git curl-dev gcc g++ libffi-dev musl-dev jpeg-dev \
     && pip install --no-cache-dir pipenv \
     && git clone https://github.com/alexta69/metube \
-    && mv ./metube/Pipfile* ./metube/app ./metube/favicon ./ \
+    && mv ./metube/Pipfile* ./metube/app ./ \
     && pipenv install --system --deploy --clear \
     && pip uninstall pipenv -y \
     && pipx install --pip-args='--no-cache-dir' pyload-ng[plugins] \
