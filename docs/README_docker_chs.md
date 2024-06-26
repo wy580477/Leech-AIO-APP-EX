@@ -30,7 +30,7 @@
 1. 访问ip地址或域名+基础URL即可打开导航页。
 2. 点击AriaNg，这时会弹出认证失败警告，按下图把之前部署时设置的密码填入RPC密钥，并检查协议和端口是否与浏览器地址栏显示的相符。
        <img src="https://user-images.githubusercontent.com/98247050/163184113-d0f09e78-01f9-4d4a-87b9-f4a9c1218253.png"  width="700"/>
-3. 点击qBittorrent或者VueTorrent，输入默认用户名admin和默认密码adminadmin登陆。然后更改用户名和密码，务必设置为强密码。
+3. 查看数据存放目录下 log/qBittorrent/current 文件，获得 qBit 临时密码。点击qBittorrent或者VueTorrent，输入默认用户名 admin 和临时密码登陆。然后更改用户名和密码，务必设置为强密码。
 
    如果qBittorrent无法使用默认账户密码登陆，通过Filebrowser删除config/qBittorrent/config/qBittorrent.conf文件，然后在宿主机终端下执行下面命令：
 ```

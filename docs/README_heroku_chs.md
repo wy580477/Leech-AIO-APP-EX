@@ -66,7 +66,7 @@
 1. 比如你的heroku域名是bobby.herokuapp.com，导航页路径是/portal，访问bobby.herokuapp.com/portal 即可到达导航页。
 2. 点击AriaNg，这时会弹出认证失败警告，按下图把之前部署时设置的密码填入RPC密钥即可。
        <img src="https://user-images.githubusercontent.com/98247050/163184113-d0f09e78-01f9-4d4a-87b9-f4a9c1218253.png"  width="700"/>
-3. 点击qBittorrent或者VueTorrent，输入默认用户名admin和默认密码adminadmin登陆。然后更改用户名和密码，务必设置为强密码。
+3. 点击并登陆Filbrowser，在 log/qBittorrent/current 文件中获得 qBit 临时密码，输入默认用户名 admin 和临时密码登陆。点击qBittorrent或者VueTorrent，输入默认用户名admin和临时密码登陆。然后更改用户名和密码，务必设置为强密码。
 
    如果qBittorrent无法使用默认账户密码登陆，通过Filebrowser删除config/qBittorrent/config/qBittorrent.conf文件，然后通过ttyd执行下面命令：
 
