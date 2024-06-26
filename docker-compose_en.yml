@@ -21,12 +21,14 @@ services:
       GLOBAL_PORTAL_PATH: /portal
       # Portal page & base URL for all web services. Do not set to blank or '/'.
       CADDY_DOMAIN: 
-      # For example: "http://example.com" or "https://example.com"
+      # Leave it blank if you intend to visit via IP address.
+      # For example: "http://example.com" or "https://example.com".
+      # Set to "http://<your_domain>" if you intend to using another reverse proxy in front.
       # If value is set to a valid domain name (it can be resolved to your host) and port 80/443 is open to internet, caddy's auto-https function can be enabled.
-      # You don't need to buy a domain. Any ddns service domain will work.
+      # Free ddns service domains probably work.
       # For advanced users, you can use Cloudflare api in CADDY_EMAIL env for SSL certificate instead of Email address. This way you don't need 80/443 ports.
-      # If you set value to blank, http service will open to external IP.
       CADDY_EMAIL: internal
+      # No need to change this value if you don't intent to visit via HTTPS protocol.
       # Email address for receiving notification emails from certification authority, you can use fake address.
       # Set to "{\n dns cloudflare your_cloudflare_api_key \n}", Caddy will use Cloudflare api for SSL certificate.
       # If set to "internal", caddy will use self-signed cert.

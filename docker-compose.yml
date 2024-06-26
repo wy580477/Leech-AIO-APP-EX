@@ -25,12 +25,14 @@ services:
       GLOBAL_PORTAL_PATH: /portal
       # 导航页路径和所有Web服务基础URL，不能为空值和"/"，后面不能加"/"。建议设置为不常见的字符串，防止字典爆破攻击。
       CADDY_DOMAIN: 
+      # 如果想直接通过 IP 访问，保留空值。
       # 举例："http://example.com" 或 "https://example.com"
+      # 如果前面有 nginx / caddy 等反向代理，设置为 "http://<你的域名>"。
       # 域名设置为有效域名（可以解析到你的host）,并且80/443端口面向公网开放，就可以启用caddy的自动申请证书开启https功能。
-      # 不是一定需要付费购买域名，免费 ddns 服务域名也可以。
+      # 免费 ddns 服务域名也可以，但不保证一定能行。
       # 如果在下面CADDY_EMAIL项中设置Cloudflare的DNS API申请证书，则无需占用80/443端口。
-      # 设置为空值，则对外部ip开放http服务。
       CADDY_EMAIL: internal
+      # 如不使用 HTTPS 协议访问，无需设置。
       # 接受证书颁发机构通知邮件的地址，可以填虚假地址。
       # 可以通过Cloudflare的DNS API申请证书, 变量值需设置为"{\n dns cloudflare your_cloudflare_api_key \n}"。
       # 默认值internal为使用caddy自签证书。
