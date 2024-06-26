@@ -9,13 +9,13 @@ RUN apk add git && \
     node_modules/.bin/ng build --configuration production
 
 
-FROM caddy:2.7.4-builder AS builder-caddy
+FROM caddy:2.8.4-builder AS builder-caddy
 
 RUN xcaddy build \
-  --with github.com/caddy-dns/cloudflare@bfe272c8525b6dd8248fcdddb460fd6accfc4e84
+  --with github.com/caddy-dns/cloudflare@d11ac0bfeab7475d8b89e2dc93f8c7a8b8859b8f
 
 
-FROM python:3.8-alpine AS dist
+FROM python:3.11-alpine AS dist
 
 COPY ./content /workdir/
 
@@ -52,7 +52,7 @@ RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse3 p7zip bash fin
     && pipx install --pip-args='--no-cache-dir' pyload-ng[plugins] \
     && pipx install --pip-args='--no-cache-dir' gallery-dl \
     && apk del .build-deps \
-    && wget -O - https://github.com/mayswind/AriaNg/releases/download/1.3.6/AriaNg-1.3.6.zip | busybox unzip -qd /workdir/ariang - \
+    && wget -O - https://github.com/mayswind/AriaNg/releases/download/1.3.7/AriaNg-1.3.7.zip | busybox unzip -qd /workdir/ariang - \
     && wget -O - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip | busybox unzip -qd /workdir/rcloneweb - \
     && wget -O - https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer - \
     && wget -O - https://github.com/WDaan/VueTorrent/releases/latest/download/vuetorrent.zip | busybox unzip -qd /workdir - \
