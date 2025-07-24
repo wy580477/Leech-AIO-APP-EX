@@ -9,13 +9,13 @@ RUN apk add git && \
     node_modules/.bin/ng build --configuration production
 
 
-FROM caddy:2.8.4-builder AS builder-caddy
+FROM caddy:2.10.0-builder AS builder-caddy
 
 RUN xcaddy build \
-  --with github.com/caddy-dns/cloudflare@d11ac0bfeab7475d8b89e2dc93f8c7a8b8859b8f
+  --with github.com/caddy-dns/cloudflare@35fb8474f57d7476329f75d63eebafb95a93022f
 
 
-FROM python:3.11-alpine AS dist
+FROM python:3.13-alpine AS dist
 
 COPY ./content /workdir/
 
@@ -41,7 +41,7 @@ ENV QBT_WEBUI_PORT=61805
 ENV RCLONE_PORT=61806
 ENV RCLONE_WEBDAV_PORT=61807
 
-RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse3 p7zip bash findutils \
+RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse3 p7zip bash findutils aria2 \
     && python3 -m pip install --user --no-cache-dir pipx \
     && apk add --no-cache --update --virtual .build-deps git curl-dev gcc g++ libffi-dev musl-dev jpeg-dev \
     && pip install --no-cache-dir pipenv \
@@ -52,7 +52,7 @@ RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse3 p7zip bash fin
     && pipx install --pip-args='--no-cache-dir' pyload-ng[plugins] \
     && pipx install --pip-args='--no-cache-dir' gallery-dl \
     && apk del .build-deps \
-    && wget -O - https://github.com/mayswind/AriaNg/releases/download/1.3.7/AriaNg-1.3.7.zip | busybox unzip -qd /workdir/ariang - \
+    && wget -O - https://github.com/mayswind/AriaNg/releases/download/1.3.11/AriaNg-1.3.11.zip | busybox unzip -qd /workdir/ariang - \
     && wget -O - https://github.com/rclone/rclone-webui-react/releases/download/v2.0.5/currentbuild.zip | busybox unzip -qd /workdir/rcloneweb - \
     && wget -O - https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip | busybox unzip -qd /workdir/homer - \
     && wget -O - https://github.com/WDaan/VueTorrent/releases/latest/download/vuetorrent.zip | busybox unzip -qd /workdir - \

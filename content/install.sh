@@ -3,7 +3,7 @@
 set -xe
 
 DIR_TMP="$(mktemp -d)"
-QBIT_VERSION="4.6.5.10"
+QBIT_VERSION="5.1.2.10"
 
 OS_type="$(uname -m)"
 case "$OS_type" in
@@ -48,9 +48,6 @@ install -m 755 ./qbittorrent-nox /usr/bin/qbittorrent-nox
 
 # Install Filebrowser
 wget -O - https://github.com/filebrowser/filebrowser/releases/latest/download/linux-${OS_type3}-filebrowser.tar.gz | tar -zxf - -C /usr/bin
-
-# Install Aria2
-wget -O - https://github.com/P3TERX/Aria2-Pro-Core/releases/download/1.36.0_2021.08.22/aria2-1.36.0-static-linux-${OS_type4}.tar.gz | tar -zxf - -C /usr/bin
 
 # Install OliveTin
 curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/latest/download/OliveTin-Linux-${OS_type5}.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
