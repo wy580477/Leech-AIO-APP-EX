@@ -46,7 +46,9 @@ RUN apk add --no-cache --update curl jq ffmpeg runit tzdata fuse3 p7zip bash fin
     && apk add --no-cache --update --virtual .build-deps git curl-dev gcc g++ libffi-dev musl-dev jpeg-dev \
     && pip install --no-cache-dir pipenv \
     && git clone https://github.com/alexta69/metube \
+    && sed -i 's|^yt-dlp.*|yt-dlp          = { version = "*", extras = ["default", "curl-cffi"] }|' ./metube/Pipfile \
     && mv ./metube/Pipfile* ./metube/app ./ \
+    && pipenv lock \
     && pipenv install --system --deploy --clear \
     && pip uninstall pipenv -y \
     && pipx install --pip-args='--no-cache-dir' pyload-ng[plugins] \
