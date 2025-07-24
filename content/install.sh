@@ -4,6 +4,7 @@ set -xe
 
 DIR_TMP="$(mktemp -d)"
 QBIT_VERSION="5.1.2.10"
+OliveTin_VERSION="2024.07.153"
 
 OS_type="$(uname -m)"
 case "$OS_type" in
@@ -50,7 +51,7 @@ install -m 755 ./qbittorrent-nox /usr/bin/qbittorrent-nox
 wget -O - https://github.com/filebrowser/filebrowser/releases/latest/download/linux-${OS_type3}-filebrowser.tar.gz | tar -zxf - -C /usr/bin
 
 # Install OliveTin
-curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/latest/download/OliveTin-Linux-${OS_type5}.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
+curl -s --retry 5 -H "Cache-Control: no-cache" -fsSL github.com/OliveTin/OliveTin/releases/download/${OliveTin_VERSION}/OliveTin-Linux-${OS_type5}.tar.gz -o - | tar -zxf - -C ${DIR_TMP}
 mv ${DIR_TMP}/*/OliveTin /usr/bin/
 mkdir -p /var/www/olivetin
 mv ${DIR_TMP}/*/webui/* /var/www/olivetin/
